@@ -17,6 +17,10 @@ function utils.map(mode, lhs, rhs, opts)
 	vim.api.nvim_set_keymap(mode, lhs, rhs, options)
 end
 
+-- render whitespaces
+utils.opt('o', 'list', true)
+utils.opt('o', 'listchars', 'tab:» ,lead:·,trail:·')
+
 -- tab management
 utils.opt('b', 'tabstop', 4)
 utils.opt('b', 'smartindent', true)
