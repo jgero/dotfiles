@@ -1,14 +1,13 @@
 { config, pkgs, ... }: {
-  programs.alacritty = {
+  programs.kitty = {
     enable = true;
+    font = {
+      package = pkgs.jetbrains-mono;
+      name = "JetBrains Mono";
+      size = 14;
+    };
     settings = {
-      font = {
-        normal.family = "JetBrains Mono";
-        bold.family = "JetBrains Mono";
-        italic.family = "JetBrains Mono";
-        bold_italic.family = "JetBrains Mono";
-        size = 14.0;
-      };
+      enable_audio_bell = false;
     };
   };
 }
