@@ -7,7 +7,7 @@
     ./shell.nix
     ./neovim
     ./terminal.nix
-	./git.nix
-	./ssh.nix
+    ./git.nix
+    ./ssh.nix
   ];
 }

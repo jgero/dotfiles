@@ -9,6 +9,7 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       <home-manager/nixos>
+	  ./systemd
     ];
 
   # Bootloader.
@@ -130,10 +131,11 @@
     wget
     wireguard-tools
     mullvad
+	restic
   ];
 
   system.autoUpgrade.enable = true;
-  system.autoUpgrade.allowReboot = true;
+  system.autoUpgrade.allowReboot = false;
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

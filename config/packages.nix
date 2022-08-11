@@ -1,4 +1,4 @@
-{ config, pkgs, inputs, ...}: {
+{ config, pkgs, inputs, ... }: {
   home.packages = with pkgs; [
     wget
     xclip
@@ -6,6 +6,7 @@
     ripgrep
     git
     bitwarden
-	signal-desktop
+    signal-desktop
+    restic
   ];
 }
