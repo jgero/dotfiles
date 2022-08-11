@@ -98,22 +98,19 @@ require('packer').startup(function(use)
     config = function() ${builtins.readFile ./lsp-completion.lua} end,
     requires = {
       --completion sources
-      use({
-        'hrsh7th/cmp-nvim-lua',
         'hrsh7th/cmp-nvim-lsp',
         'hrsh7th/cmp-buffer',
         'hrsh7th/cmp-path',
         'hrsh7th/cmp-cmdline',
-        use({
-          'ray-x/cmp-treesitter',
-          requires = { 'nvim-treesitter/nvim-treesitter' },
-        }),
-      }),
+        'ray-x/cmp-treesitter',
       -- snippets
-      use('l3mon4d3/luasnip'),
-      use('saadparwaiz1/cmp_luasnip'),
+		'l3mon4d3/luasnip',
+		'saadparwaiz1/cmp_luasnip',
     },
   })
+  use({ 'ray-x/cmp-treesitter', requires = { 'nvim-treesitter/nvim-treesitter' }})
+  use({'saadparwaiz1/cmp_luasnip', requires = { 'l3mon4d3/luasnip'}})
+
   use({
       'neovim/nvim-lspconfig',
     config = function()

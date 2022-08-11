@@ -139,18 +139,17 @@ utils.map('n', '<Leader>fs', ':lua require(\'telescope.builtin\').lsp_document_s
 -- Harpoon
 
 -- mark file
--- utils.map('n', '<leader>hm', ':lua require(\'harpoon.mark\').add_file()<CR>')
+utils.map('n', '<leader>hm', ':lua require(\'harpoon.mark\').add_file()<CR>')
 
 -- toggle menu
--- utils.map('n', '<leader>hl', ':lua require("harpoon.ui").toggle_quick_menu()<CR>')
+utils.map('n', '<leader>hl', ':lua require("harpoon.ui").toggle_quick_menu()<CR>')
 
 -- nav to file 1-4
--- utils.map('n', '<leader>ha', ':lua require("harpoon.ui").nav_file(1)<CR>')
--- utils.map('n', '<leader>hs', ':lua require("harpoon.ui").nav_file(2)<CR>')
--- utils.map('n', '<leader>hd', ':lua require("harpoon.ui").nav_file(3)<CR>')
--- utils.map('n', '<leader>hf', ':lua require("harpoon.ui").nav_file(4)<CR>')
+utils.map('n', '<leader>ha', ':lua require("harpoon.ui").nav_file(1)<CR>')
+utils.map('n', '<leader>hs', ':lua require("harpoon.ui").nav_file(2)<CR>')
+utils.map('n', '<leader>hd', ':lua require("harpoon.ui").nav_file(3)<CR>')
+utils.map('n', '<leader>hf', ':lua require("harpoon.ui").nav_file(4)<CR>')
 
 -- nav to terminals 1-2
--- utils.map('n', '<leader>hta', ':lua require("harpoon.term").gotoTerminal(1)<CR>')
--- utils.map('n', '<leader>hts', ':lua require("harpoon.term").gotoTerminal(2)<CR>')
-
+utils.map('n', '<leader>hta', ':lua require("harpoon.term").gotoTerminal(1)<CR>')
+utils.map('n', '<leader>hts', ':lua require("harpoon.term").gotoTerminal(2)<CR>')
