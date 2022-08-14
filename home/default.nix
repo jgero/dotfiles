@@ -4,10 +4,11 @@
 
   imports = [
     ./packages.nix
-    ./shell.nix
     ./neovim
     ./terminal.nix
     ./git.nix
     ./ssh.nix
+    ./task.nix
+    ./shell.nix
   ];
 }

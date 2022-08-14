@@ -35,12 +35,6 @@ require('packer').startup(function(use)
   use('wbthomason/packer.nvim')
   use('tpope/vim-surround')
   use('tpope/vim-repeat')
-  use({
-    'windwp/nvim-autopairs',
-    config = function()
-      require('nvim-autopairs').setup({})
-    end,
-  })
 
   -- navigation
   use({

@@ -6,10 +6,11 @@
 
 {
   imports =
-    [ # Include the results of the hardware scan.
+    [
+      # Include the results of the hardware scan.
       ./hardware-configuration.nix
       <home-manager/nixos>
-	  ./systemd
+      ./systemd
     ];
 
   # Bootloader.
@@ -97,6 +98,7 @@
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.jgero = {
+    shell = pkgs.zsh;
     isNormalUser = true;
     description = "Johannes";
     extraGroups = [ "networkmanager" "wheel" ];
@@ -105,20 +107,25 @@
       thunderbird
     ];
   };
+
+
   home-manager = {
-    users.jgero = import ./config;
+    users.jgero = import ./home;
   };
 
   fonts.fonts = with pkgs; [
     jetbrains-mono
   ];
 
+  # for zsh completion
+  environment.pathsToLink = [ "/share/zsh" ];
+
   # NixOs wiki guide: https://nixos.wiki/wiki/Yubikey
   # command for setting up slot 2 on yubikey: https://developers.yubico.com/yubico-pam/Authentication_Using_Challenge-Response.html
   security.pam.yubico = {
-   enable = true;
-   debug = true;
-   mode = "challenge-response";
+    enable = true;
+    # debug = true;
+    mode = "challenge-response";
   };
 
   # Allow unfree packages
@@ -131,7 +138,7 @@
     wget
     wireguard-tools
     mullvad
-	restic
+    restic
   ];
 
   system.autoUpgrade.enable = true;
