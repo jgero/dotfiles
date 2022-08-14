@@ -9,6 +9,6 @@
     ./git.nix
     ./ssh.nix
     ./task.nix
-    ./shell.nix
+    ./shell
   ];
 }
