@@ -10,5 +10,6 @@
     ./ssh.nix
     ./task.nix
     ./shell
+    ./tmux.nix
   ];
 }
