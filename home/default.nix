@@ -11,5 +11,6 @@
     ./task.nix
     ./shell
     ./tmux.nix
+    ./gnome_dconf.nix
   ];
 }

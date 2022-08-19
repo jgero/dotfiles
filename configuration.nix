@@ -141,6 +141,8 @@
     restic
   ];
 
+  programs.dconf.enable = true;
+
   system.autoUpgrade.enable = true;
   system.autoUpgrade.allowReboot = false;
 
