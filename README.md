@@ -14,3 +14,8 @@ sudo ln -sf ~/git/dotfiles/hardware-configuration.nix /etc/nixos
 sudo chown -hR /etc/nixos
 ```
 
+### SSH keys
+
+SSH keys also have to be set up manually. Which keys are expected to be there can be seen in
+`home/ssh.nix`.
+

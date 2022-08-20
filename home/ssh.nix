@@ -8,6 +8,12 @@
       "sftp.hidrive.strato.com" = {
         identityFile = "~/.ssh/id_hidrive";
       };
+      "gitlab.com" = {
+        identityFile = "~/.ssh/id_gitlab";
+      };
+      "github.com" = {
+        identityFile = "~/.ssh/id_github";
+      };
     };
   };
 }
