@@ -7,8 +7,9 @@
 
     extraPackages = with pkgs; [
       gcc
-    rnix-lsp
-    sumneko-lua-language-server
+      rnix-lsp
+      sumneko-lua-language-server
+      jdt-language-server
     ];
 
     extraConfig = ''
@@ -108,11 +109,18 @@ require('packer').startup(function(use)
   use({
       'neovim/nvim-lspconfig',
     config = function()
+      local project_dir = vim.fn.fnamemodify(vim.fn.getcwd(), ':p:h:t')
+      local jdtls_workspace = "${config.xdg.dataHome}/jdtls/" .. project_dir
     ${builtins.readFile ./lsp-server-commons.lua}
         require('lspconfig').rnix.setup {
           cmd = { "${pkgs.rnix-lsp}/bin/rnix-lsp" },
           capabilities = capabilities,
           on_attach = on_attach,
+        }
+        require('lspconfig').jdtls.setup {
+            cmd = { "${pkgs.jdt-language-server}/bin/jdt-language-server", "-data", jdtls_workspace },
+            capabilities = capabilities,
+            on_attach = on_attach,
         }
         require('lspconfig').sumneko_lua.setup {
           cmd = { "${pkgs.sumneko-lua-language-server}/bin/lua-language-server" },

@@ -7,6 +7,7 @@
     git
     bitwarden
     signal-desktop
-    restic
+    gradle
+    jdk
   ];
 }
