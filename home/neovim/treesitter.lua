@@ -16,4 +16,3 @@ require('nvim-treesitter.configs').setup({
 		enable_autocmd = false,
 	},
 })
-

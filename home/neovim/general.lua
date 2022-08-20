@@ -23,7 +23,7 @@ utils.opt('o', 'listchars', 'tab:» ,lead:·,trail:·')
 
 -- tab management
 utils.opt('b', 'tabstop', 4)
-utils.opt('b', 'smartindent', true)
+utils.opt('b', 'shiftwidth', 4)
 
 -- auto source vimrc from project dirs if they exist
 utils.opt('o', 'exrc', true)
@@ -64,10 +64,9 @@ utils.opt('o', 'splitbelow', true)
 vim.o.spelllang = 'en_us,de_de'
 vim.api.nvim_create_autocmd({ 'BufEnter', 'BufWinEnter' }, {
 	callback = function()
-		if
-			vim.bo.filetype == 'markdown'
-			or vim.bo.filetype == 'gitcommit'
-			or vim.bo.filetype == 'tex'
+		if vim.bo.filetype == 'markdown'
+		    or vim.bo.filetype == 'gitcommit'
+		    or vim.bo.filetype == 'tex'
 		then
 			vim.opt_local.spell = true
 		end
