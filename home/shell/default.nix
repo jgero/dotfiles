@@ -12,6 +12,10 @@
     sessionVariables = {
       FZF_BASE = "{pkgs.fzf}";
     };
+    shellAliases = {
+      addptask = "task add project:$(git rev-parse --show-toplevel | xargs basename)";
+      ptask = "task project:$(git rev-parse --show-toplevel | xargs basename)";
+    };
     initExtra = ''
       ${builtins.readFile ./prompt.zsh}
       # bind ctrl-f to the tmux session switcher
