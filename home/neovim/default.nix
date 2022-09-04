@@ -10,6 +10,7 @@
       rnix-lsp
       sumneko-lua-language-server
       jdt-language-server
+      rust-analyzer
     ];
 
     extraConfig = ''
@@ -114,6 +115,11 @@ require('packer').startup(function(use)
     ${builtins.readFile ./lsp-server-commons.lua}
         require('lspconfig').rnix.setup {
           cmd = { "${pkgs.rnix-lsp}/bin/rnix-lsp" },
+          capabilities = capabilities,
+          on_attach = on_attach,
+        }
+        require('lspconfig').rust_analyzer.setup {
+          cmd = { "${pkgs.rust-analyzer}/bin/rust-analyzer" },
           capabilities = capabilities,
           on_attach = on_attach,
         }

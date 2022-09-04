@@ -9,5 +9,7 @@
     signal-desktop
     gradle
     jdk
+    cargo
+    rustc
   ];
 }
