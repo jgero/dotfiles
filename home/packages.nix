@@ -11,5 +11,7 @@
     jdk
     cargo
     rustc
+    libreoffice
+    gimp
   ];
 }
