@@ -24,6 +24,17 @@ in
         pkgs.openssh
       ];
     };
+    restic_backup_to_harddrive = {
+      after = [ "run-media-jgero-backup\\x2ddrive.mount" ];
+      requires = [ "run-media-jgero-backup\\x2ddrive.mount" ];
+      wantedBy = [ "run-media-jgero-backup\\x2ddrive.mount" ];
+      serviceConfig = {
+        ExecStart = "${pkgs.restic}/bin/restic backup -r ${localRepo} --password-file ${passwordFile} --one-file-system --tag systemd.timer ${backupPaths}";
+      };
+      unitConfig = {
+        OnSuccess = "restic_backup.service";
+      };
+    };
     restic_prune = {
       serviceConfig = {
         Type = "oneshot";
