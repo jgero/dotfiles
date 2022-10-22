@@ -127,8 +127,6 @@ utils.map(
 	'<Leader>fn',
 	':lua require(\'telescope.builtin\').find_files({ search_dirs = { \'/home/jgero/sync/notes\' } })<CR>'
 )
--- find in (notification) messages
-utils.map('n', '<leader>fm', ':lua require(\'telescope\').extensions.notify.notify()<cr>')
 -- find files in dotfiles
 utils.map(
 	'n',

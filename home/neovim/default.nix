@@ -56,15 +56,10 @@ require('packer').startup(function(use)
 
   -- visuals
   use({
-    'Yazeed1s/minimal.nvim',
-    config = 'vim.cmd[[colorscheme minimal]]'
-  })
-  use({
-    'rcarriga/nvim-notify',
+    'folke/tokyonight.nvim',
     config = function()
-      vim.notify = require('notify')
-      ${builtins.readFile ./notifications.lua}
-    end,
+        vim.cmd([[colorscheme tokyonight-night]])
+    end
   })
 
   -- git stuff
@@ -100,8 +95,8 @@ require('packer').startup(function(use)
         'hrsh7th/cmp-cmdline',
         'ray-x/cmp-treesitter',
       -- snippets
-		'l3mon4d3/luasnip',
-		'saadparwaiz1/cmp_luasnip',
+        'l3mon4d3/luasnip',
+        'saadparwaiz1/cmp_luasnip',
     },
   })
   use({ 'ray-x/cmp-treesitter', requires = { 'nvim-treesitter/nvim-treesitter' }})
@@ -153,6 +148,13 @@ require('packer').startup(function(use)
       
     end
   })
+    use({
+      "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
+      config = function()
+          require("lsp_lines").setup()
+          vim.diagnostic.config({ virtual_text = false })
+      end,
+    })
 end)
 EOF
     '';
