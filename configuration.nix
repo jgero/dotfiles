@@ -139,6 +139,7 @@
     wireguard-tools
     mullvad
     restic
+    ntfs3g
   ];
 
   programs.dconf.enable = true;
