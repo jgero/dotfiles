@@ -15,6 +15,8 @@
         modules = [
           nixos-hardware.nixosModules.dell-xps-13-7390
           ./systems/xps.nix
+          ./modules/backup.nix
+          ./modules/font.nix
 
           home-manager.nixosModules.home-manager
           {
@@ -29,6 +31,7 @@
           system = "x86_64-linux";
           modules = [
             ./systems/wsl.nix
+            ./modules/font.nix
 
             home-manager.nixosModules.home-manager
             {

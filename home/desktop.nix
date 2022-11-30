@@ -1,17 +1,32 @@
-{
+{ pkgs, ... }: {
   home.stateVersion = "22.05";
   xdg.enable = true;
 
-  # imports = [
-  #   ./packages.nix
-  #   ./neovim
-  #   ./terminal.nix
-  #   ./git.nix
-  #   ./ssh.nix
-  #   ./task.nix
-  #   ./shell
-  #   ./tmux.nix
-  #   ./gnome_dconf.nix
-  # ];
+  home.packages = with pkgs; [
+    wget
+    xclip
+    fzf
+    ripgrep
+    git
+    bitwarden
+    signal-desktop
+    gradle
+    jdk
+    cargo
+    rustc
+    libreoffice
+    gimp
+  ];
+
+  imports = [
+    ./modules/neovim
+    ./modules/shell
+    ./modules/git.nix
+    ./modules/gnome_dconf.nix
+    ./modules/ssh.nix
+    ./modules/task.nix
+    ./modules/terminal.nix
+    ./modules/tmux.nix
+  ];
 }
 

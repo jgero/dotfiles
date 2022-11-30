@@ -14,13 +14,13 @@
   ];
 
   imports = [
-    ../modules/neovim
-    ../modules/terminal.nix
-    ../modules/git.nix
-    ../modules/ssh.nix
-    ../modules/task.nix
-    ../modules/shell
-    ../modules/tmux.nix
+    ./modules/neovim
+    ./modules/shell
+    ./modules/git.nix
+    ./modules/ssh.nix
+    ./modules/task.nix
+    ./modules/terminal.nix
+    ./modules/tmux.nix
   ];
 }
 

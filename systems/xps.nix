@@ -1,13 +1,11 @@
 { config, pkgs, ... }:
 
 {
-  # TODO: split these packages better to enable importing from other configs
   imports =
     [
-      # Include the results of the hardware scan.
+	  # TODO: is this necessary when including the hardware module in the flake?
+	  # -> probably yes -> find a smart way to include this
       ./hardware-configuration.nix
-      <home-manager/nixos>
-      ./systemd
     ];
 
   # Bootloader.
@@ -80,10 +78,6 @@
     isNormalUser = true;
     description = "Johannes";
     extraGroups = [ "networkmanager" "wheel" ];
-  };
-
-  home-manager = {
-    users.jgero = import ./home;
   };
 
   # NixOs wiki guide: https://nixos.wiki/wiki/Yubikey
