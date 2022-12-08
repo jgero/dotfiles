@@ -3,9 +3,7 @@
 {
   imports =
     [
-	  # TODO: is this necessary when including the hardware module in the flake?
-	  # -> probably yes -> find a smart way to include this
-      ./hardware-configuration.nix
+      ./xps-hardware-configuration.nix
     ];
 
   # Bootloader.
