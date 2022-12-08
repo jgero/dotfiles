@@ -10,12 +10,15 @@
     git
     bitwarden
     signal-desktop
+    firefox
+    thunderbird
     gradle
     jdk
     cargo
     rustc
     libreoffice
     gimp
+    gnome.gnome-boxes
   ];
 
   imports = [
