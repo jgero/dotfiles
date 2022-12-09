@@ -2,6 +2,10 @@
   imports = [
     ./scripts.nix
   ];
+
+  # for completion
+  # environment.pathsToLink = [ "/share/zsh" ];
+
   programs.zsh = {
     enable = true;
     enableAutosuggestions = true;
@@ -26,6 +30,7 @@
       plugins = [
         "fzf"
         "taskwarrior"
+        "systemd"
       ];
     };
   };
