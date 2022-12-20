@@ -2,9 +2,8 @@
 
 I am very new to this so copying this is not (yet) advised.
 
-In the future this is supposed to contain flakes for multiple environments. One is my private
-notebook, the other one is for potentially using it at work in WSL. I already started preparing for
-that by having different entrypoints for desktop and terminal only use.
+This repo contains a flake for different hosts. One of them is my private notebook (nixps), the
+other one is for using it at work in WSL (wsl). 
 
 ## Setup
 
