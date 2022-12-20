@@ -1,7 +1,7 @@
 { lib, pkgs, config, modulesPath, ... }:
 with lib;
 let
-  nixos-wsl = import ../nixos-wsl;
+  nixos-wsl = import /etc/nixos/nixos-wsl;
 in
 {
   imports = [
