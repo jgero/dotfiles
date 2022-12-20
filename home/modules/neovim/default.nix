@@ -11,6 +11,8 @@
       sumneko-lua-language-server
       jdt-language-server
       rust-analyzer
+      go
+      gopls
     ];
 
     extraConfig = ''
@@ -108,6 +110,11 @@ require('packer').startup(function(use)
       local project_dir = vim.fn.fnamemodify(vim.fn.getcwd(), ':p:h:t')
       local jdtls_workspace = "${config.xdg.dataHome}/jdtls/" .. project_dir
     ${builtins.readFile ./lsp-server-commons.lua}
+        require('lspconfig').gopls.setup {
+          cmd = { "${pkgs.gopls}/bin/gopls" },
+          capabilities = capabilities,
+          on_attach = on_attach,
+        }
         require('lspconfig').rnix.setup {
           cmd = { "${pkgs.rnix-lsp}/bin/rnix-lsp" },
           capabilities = capabilities,
