@@ -5,7 +5,7 @@ all the configurations and even the systemd units.
 
 ## Setup
 
-- create symlinks with stow (TODO: more details)
+- create symlinks with stow `stow --ignore='.*\.md' --ignore='.gitignore' .`
 - create missing `.env` files in systemd directory with contents of this
   structure:
 ```
@@ -13,6 +13,6 @@ RESTIC_PASSWORD="my-secret"
 RESTIC_REPOSITORY="my-path"
 ```
 - enable systemd timers and backup to harddrive service (don't forget using
-  `--user`
+  `--user`)
 - `chmod +x bash/scripts/*` to make scripts executable
 
