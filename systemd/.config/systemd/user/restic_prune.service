@@ -1,0 +1,9 @@
+[Unit]
+Description=Restic backup service (data pruning)
+
+[Service]
+Type=oneshot
+ExecStart=restic -r $RESTIC_REPOSITORY prune
+EnvironmentFile=%h/.config/systemd/user/restic_settings.env
+EnvironmentFile=%h/.config/systemd/user/restic_creds.env
+

@@ -1,0 +1,9 @@
+[Unit]
+Description=Restic backup service
+OnSuccess=restic_backup.service
+
+[Service]
+Type=oneshot
+ExecStart=restic -r $RESTIC_REPOSITORY unlock
+EnvironmentFile=%h/.config/systemd/user/restic_creds.env
+
