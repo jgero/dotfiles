@@ -5,7 +5,7 @@ all the configurations and even the systemd units.
 
 ## Setup
 
-- create symlinks with stow `stow --ignore='.*\.md' --ignore='.gitignore' .`
+- create symlinks with stow
 - create missing `.env` files in systemd directory with contents of this
   structure:
 ```
