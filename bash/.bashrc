@@ -12,6 +12,7 @@ then
 fi
 PATH="$PATH:$HOME/tools"
 PATH="$PATH:$HOME/tools/lua-language-server-3.6.4-linux-x64/bin"
+PATH="$PATH:$HOME/tools/jdt-language-server-1.9.0-202203031534/bin"
 PATH="$PATH:$HOME/scripts"
 export PATH
 
