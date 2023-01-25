@@ -1,0 +1,13 @@
+[Unit]
+Description=Restic backup to harddrive
+Requires=run-media-jgero-backup\x2ddrive.mount
+After=run-media-jgero-backup\x2ddrive.mount
+
+[Service]
+ExecStart=restic -r $RESTIC_REPOSITORY backup --verbose --one-file-system --tag systemd.timer $BACKUP_EXCLUDES $BACKUP_PATHS
+EnvironmentFile=%h/.config/systemd/user/restic_settings.env
+EnvironmentFile=%h/.config/systemd/user/restic_creds_local.env
+
+[Install]
+WantedBy=run-media-jgero-backup\x2ddrive.mount
+
