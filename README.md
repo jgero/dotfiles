@@ -14,4 +14,4 @@ RESTIC_REPOSITORY="my-path"
 ```
 - enable systemd timers and backup to harddrive service (don't forget using
   `--user`
-
+- `chmod +x bash/scripts/*` to make scripts executable
