@@ -10,7 +10,9 @@ if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]
 then
     PATH="$HOME/.local/bin:$HOME/bin:$PATH"
 fi
-PATH="$PATH:$HOME/tools/lua-language-server-3.6.4-linux-x64/bin:$HOME/scripts"
+PATH="$PATH:$HOME/tools"
+PATH="$PATH:$HOME/tools/lua-language-server-3.6.4-linux-x64/bin"
+PATH="$PATH:$HOME/scripts"
 export PATH
 
 # add fzf keybindings
