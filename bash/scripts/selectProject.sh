@@ -11,9 +11,9 @@ if [[ $# -eq 1 ]]; then
     selected=$1
 else
     # get a project from the pre-specified directories
-    selected=$(find \
+    selected=$(echo -e "$(find \
         $HOME/git \
-        -mindepth 1 -maxdepth 1 -type d | fzf)
+        -mindepth 1 -maxdepth 1 -type d)\n$HOME/dotfiles\n$HOME/.config/nvim" | fzf)
 fi
 
 # exit if no project was selected

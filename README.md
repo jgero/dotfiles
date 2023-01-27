@@ -16,3 +16,7 @@ RESTIC_REPOSITORY="my-path"
   `--user`)
 - `chmod +x bash/scripts/*` to make scripts executable
 
+## TODO
+
+- put scripts into `$HOME/.local/scripts`
+
