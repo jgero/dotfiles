@@ -17,7 +17,7 @@ PATH="$PATH:$HOME/scripts"
 export PATH
 
 # aliases
-alias ptask="task project:$(git rev-parse --show-toplevel | xargs basename)"
+alias ptask='task project:$(git rev-parse --show-toplevel | xargs basename)'
 
 # add fzf keybindings
 if [ -x "$(command -v fzf)"  ]
