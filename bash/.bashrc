@@ -18,6 +18,7 @@ export PATH
 
 # aliases
 alias ptask='task project:$(git rev-parse --show-toplevel | xargs basename)'
+alias compress10='mogrify -quality 10'
 
 # add fzf keybindings
 if [ -x "$(command -v fzf)"  ]
