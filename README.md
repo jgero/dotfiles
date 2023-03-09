@@ -16,7 +16,7 @@ RESTIC_REPOSITORY="my-path"
   `--user`)
 - `chmod +x bash/.local/bin/*` to make scripts executable
 
-## TODO
+## Cheatsheet
 
-- put scripts into `$HOME/.local/scripts`
+- use `pdfgrep` to find strings in PDF files
 
