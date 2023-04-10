@@ -5,6 +5,7 @@ all the configurations and even the systemd units.
 
 ## Setup
 
+- create all directories like `.local/bin` in the home directory
 - create symlinks with stow
 - create missing `.env` files in systemd directory with contents of this
   structure:
