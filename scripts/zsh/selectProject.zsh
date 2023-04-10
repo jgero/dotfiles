@@ -1,4 +1,3 @@
-#!/bin/bash
 # -------------------------------------------------------------------------------------------------
 # TMUX SESSION SWITCHER
 #
@@ -10,10 +9,10 @@ if [[ $# -eq 1 ]]; then
     # if an argument was given use this as selection target
     selected=$1
 else
-    # get a project from the pre-specified directories
-    selected=$(echo -e "$(find \
-        $HOME/git \
-        -mindepth 1 -maxdepth 1 -type d)\n$HOME/dotfiles\n$HOME/.config/nvim" | fzf)
+	# get a project from the pre-specified directories
+    selected=$(find \
+		$HOME/projects \
+		-mindepth 1 -maxdepth 1 -type d | fzf)
 fi
 
 # exit if no project was selected
@@ -36,7 +35,7 @@ if ! tmux has-session -t=$selected_name 2> /dev/null; then
 fi
 
 if [[ -z $TMUX ]]; then
-    tmux attach-session -t $selected_name
+	tmux attach-session -t $selected_name
 else
-    tmux switch-client -t $selected_name
+	tmux switch-client -t $selected_name
 fi
