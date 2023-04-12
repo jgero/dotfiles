@@ -16,6 +16,7 @@ in {
     thunderbird
     libreoffice
     gimp
+    element-desktop
 
     xclip
     fzf
