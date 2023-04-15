@@ -15,10 +15,6 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  # enable flakes
-  nix.package = pkgs.nixFlakes;
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
-
   time.timeZone = "Europe/Berlin";
 
   # TODO: internationalization and keyboard
