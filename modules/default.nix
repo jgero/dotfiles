@@ -1,10 +1,10 @@
 { pkgs, ... }: {
 
   imports = [
-    ./bluetooth.nix
     ./gnome.nix
-    ./packages.nix
+    ./impermanence.nix
     ./network.nix
+    ./packages.nix
     ./user.nix
   ];
 }
