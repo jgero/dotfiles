@@ -11,9 +11,9 @@
       GIT_EDITOR = "nix run ~/projects/init.lua --";
     };
     shellAliases = {
-      addptask = "task add project:$(git rev-parse --show-toplevel | xargs basename)";
       ptask = "task project:$(git rev-parse --show-toplevel | xargs basename)";
       nvim = "nix run ~/projects/init.lua --";
+      compress10 = "mogrify -quality 10";
     };
     initExtra = ''
       ${builtins.readFile ../scripts/zsh/prompt.zsh}

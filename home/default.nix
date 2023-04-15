@@ -26,6 +26,7 @@ in
     ripgrep
     tree
     ffmpeg
+    imagemagick
 
     selectProject
     quicknote
