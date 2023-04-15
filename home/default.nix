@@ -2,6 +2,8 @@
 let
   selectProject = pkgs.writeScriptBin "selectProject" (builtins.readFile ../scripts/zsh/selectProject.zsh);
   quicknote = pkgs.writeScriptBin "quicknote" (builtins.readFile ../scripts/zsh/quicknote.zsh);
+  compressVidDir = pkgs.writeScriptBin "compressVidDir" (builtins.readFile
+    ../scripts/zsh/compressVidDir.zsh);
 in
 {
   home.stateVersion = "22.11";
@@ -23,9 +25,11 @@ in
     fzf
     ripgrep
     tree
+    ffmpeg
 
     selectProject
     quicknote
+    compressVidDir
   ];
 
   imports = [
