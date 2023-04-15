@@ -8,27 +8,30 @@
   };
 
   outputs = { nixpkgs, home-manager, ... }:
-  let
-    system = "x84_64-linux";
-    pkgs = import nixpkgs {
-      inherit system;
-      config = { allowUnfree = true; };
-    };
-    lib = nixpkgs.lib;
-  in {
-    nixosConfigurations = {
-      nixps = lib.nixosSystem {
+    let
+      system = "x84_64-linux";
+      pkgs = import nixpkgs {
         inherit system;
-	modules = [
-	  ./modules
-	  ./configuration.nix
-	  home-manager.nixosModules.home-manager {
-	    home-manager.useGlobalPkgs = true;
-	    home-manager.useUserPackages = true;
-	    home-manager.users.jgero = import ./home;
-	  }
-	];
+        config = { allowUnfree = true; };
+      };
+      lib = nixpkgs.lib;
+    in
+    {
+      formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixpkgs-fmt;
+      nixosConfigurations = {
+        nixps = lib.nixosSystem {
+          inherit system;
+          modules = [
+            ./modules
+            ./configuration.nix
+            home-manager.nixosModules.home-manager
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.users.jgero = import ./home;
+            }
+          ];
+        };
       };
     };
-  };
 }
