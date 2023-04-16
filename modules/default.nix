@@ -6,6 +6,7 @@
     ./network.nix
     ./nix.nix
     ./packages.nix
+    ./sudo.nix
     ./user.nix
   ];
 }
