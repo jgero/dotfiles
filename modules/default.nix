@@ -1,6 +1,7 @@
 { pkgs, ... }: {
 
   imports = [
+    ./backup.nix
     ./gnome.nix
     ./impermanence.nix
     ./network.nix
