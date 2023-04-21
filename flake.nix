@@ -5,9 +5,10 @@
     nixpkgs.url = "nixpkgs/nixos-22.11";
     home-manager.url = "github:nix-community/home-manager/release-22.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
   };
 
-  outputs = { nixpkgs, home-manager, ... }:
+  outputs = { nixpkgs, home-manager, nixos-hardware, ... }:
     let
       system = "x84_64-linux";
       pkgs = import nixpkgs {
@@ -22,6 +23,7 @@
         nixps = lib.nixosSystem {
           inherit system;
           modules = [
+            nixos-hardware.nixosModules.dell-xps-13-7390
             ./modules
             ./configuration.nix
             home-manager.nixosModules.home-manager

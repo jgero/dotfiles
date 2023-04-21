@@ -34,6 +34,8 @@
   #   "caps:escape" # map caps to escape.
   # };
 
+  services.fwupd.enable = true;
+
 
 
   # This value determines the NixOS release from which the default
