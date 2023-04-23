@@ -4,6 +4,8 @@ let
   quicknote = pkgs.writeScriptBin "quicknote" (builtins.readFile ../scripts/zsh/quicknote.zsh);
   compressVidDir = pkgs.writeScriptBin "compressVidDir" (builtins.readFile
     ../scripts/zsh/compressVidDir.zsh);
+  encodeVid = pkgs.writeScriptBin "encodeVid" (builtins.readFile
+    ../scripts/zsh/encodeVid.zsh);
 in
 {
   home.stateVersion = "22.11";
@@ -31,6 +33,7 @@ in
     selectProject
     quicknote
     compressVidDir
+    encodeVid
   ];
 
   imports = [
