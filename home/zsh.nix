@@ -7,7 +7,6 @@
       gitdir = "$HOME/git";
     };
     sessionVariables = {
-      FZF_BASE = "{pkgs.fzf}";
       GIT_EDITOR = "nix run ~/projects/init.lua --";
     };
     shellAliases = {
