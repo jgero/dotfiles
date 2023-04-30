@@ -25,7 +25,7 @@
           modules = [
             nixos-hardware.nixosModules.dell-xps-13-7390
             ./modules
-            ./configuration.nix
+            ./hardware/xps_2020.nix
             home-manager.nixosModules.home-manager
             {
               home-manager.useGlobalPkgs = true;
