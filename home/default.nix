@@ -6,6 +6,10 @@ let
     ../scripts/zsh/compressVidDir.zsh);
   encodeVid = pkgs.writeScriptBin "encodeVid" (builtins.readFile
     ../scripts/zsh/encodeVid.zsh);
+  pidCpu = pkgs.writeScriptBin "pidCpu" (builtins.readFile
+    ../scripts/zsh/pidCpu.zsh);
+  pidMem = pkgs.writeScriptBin "pidMem" (builtins.readFile
+    ../scripts/zsh/pidMem.zsh);
 in
 {
   home.stateVersion = "22.11";
@@ -34,6 +38,8 @@ in
     quicknote
     compressVidDir
     encodeVid
+    pidCpu
+    pidMem
   ];
 
   imports = [

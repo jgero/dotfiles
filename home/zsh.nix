@@ -13,8 +13,6 @@
       ptask = "task project:$(git rev-parse --show-toplevel | xargs basename)";
       nvim = "nix run ~/projects/init.lua --";
       compress10 = "mogrify -quality 10";
-      pidCpu = "() { ps -p $1 -o %cpu | tr -dc \"[:digit:].\"; }";
-      pidMem = "() { ps -p $1 -o %mem | tr -dc \"[:digit:].\"; }";
     };
     initExtra = ''
       ${builtins.readFile ../scripts/zsh/prompt.zsh}
