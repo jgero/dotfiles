@@ -8,6 +8,8 @@
     };
     settings = {
       enable_audio_bell = false;
+      tab_bar_style = "hidden";
+      hide_window_decorations = true;
     };
   };
 }
