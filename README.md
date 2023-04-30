@@ -1,23 +1,34 @@
 # Dotfiles
 
-Use [GNU stow](https://www.gnu.org/software/stow/) to create the symlinks for
-all the configurations and even the systemd units.
+System flake for my Dell XPS.
 
-## Setup
+For a truly reproducible system, and to avoid as much potentially unexpected
+state as possible, this configuration emulates a temporary root file system by
+wiping the root partition on boot via rollback to an empty snapshot with ZFS.
 
-- create all directories like `.local/bin` in the home directory
-- create symlinks with stow
-- create missing `.env` files in systemd directory with contents of this
-  structure:
-```
-RESTIC_PASSWORD="my-secret"
-RESTIC_REPOSITORY="my-path"
-```
-- enable systemd timers and backup to harddrive service (don't forget using
-  `--user`)
-- `chmod +x bash/.local/bin/*` to make scripts executable
+> Such a setup is possible because NixOS only needs `/boot` and `/nix` in order
+> to boot, all other system files are simply links to files in `/nix`. [^1]
 
-## Cheatsheet
+To make it less annoying to use the system, the state of the home directory is
+kept (for now). For more information on how to set up the partitions to be able
+to use the flake see [this write-up](doc/nix_setup.md). Because of obvious
+reasons the recommended wallpaper for this setup is
+[this](https://github.com/krebs/nix-anarchy).
 
-- use `pdfgrep` to find strings in PDF files
+## Maintenance
+
+Upgrading the system is done by updating the nix flake. Also remember to look
+for firmware update with `fwupdmgr`.
+
+## Considerations for the future
+
+### Differing configurations
+
+If for some reason I should need different configurations on different systems I
+should consider building the whole flake in a functional style. Then I could
+just set some options for different host names in the `flake.nix` file.
+[Here](https://jdisaacs.com/blog/nixos-config/) is an example of how that could
+be done.
+
+[^1]: [NixOS Wiki - Impermanence](https://nixos.wiki/wiki/Impermanence)
 
