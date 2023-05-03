@@ -42,7 +42,7 @@
       unbind C-Left 
       unbind C-Right
 
-      set-option -g status-style bg=default
+      set-option -g status-style bg=#181a1f
       set -g status-left-length 30
       set -g status-left "#[fg=black,bg=#66abde,bold] #S #[bg=default] "
       set -g window-status-current-format "#[fg=black,bg=#5074bd,bold] #I: #W "
