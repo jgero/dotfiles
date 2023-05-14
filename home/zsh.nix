@@ -13,12 +13,14 @@
       ptask = "task project:$(git rev-parse --show-toplevel | xargs basename)";
       nvim = "nix run ~/projects/init.lua --";
       compress10 = "mogrify -quality 10";
-      importKey = "pushd ~/.ssh && ssh-keygen -K && mv id_ed25519_sk_rk id_ed25519_sk && mv id_ed25519_sk_rk.pub id_ed25519_sk.pub && popd";
+      addK = "ssh-add -K";
     };
     initExtra = ''
       ${builtins.readFile ../scripts/zsh/prompt.zsh}
       # bind ctrl-f to the tmux session switcher
       bindkey -s '^f' 'selectProject\n'
+      # start ssh agent to allow importing resident key
+      eval `ssh-agent -s` > /dev/null
     '';
     oh-my-zsh = {
       enable = true;
