@@ -25,6 +25,13 @@
           modules = [
             nixos-hardware.nixosModules.dell-xps-13-7390
             ./modules
+            {
+              jgero.network = {
+                hostname = "nixps";
+                hostid = "5e13b1e5";
+              };
+              jgero.backup.enable = true;
+            }
             ./hardware/xps_2020.nix
             home-manager.nixosModules.home-manager
             {
