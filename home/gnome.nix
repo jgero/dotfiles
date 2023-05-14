@@ -24,12 +24,12 @@
 
     "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
       name = "terminal";
-      command = "kitty";
+      command = "kitty --start-as=maximized";
       binding = "<Alt>Return";
     };
     "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1" = {
       name = "quicknote";
-      command = "kitty quicknote";
+      command = "kitty --start-as=maximized quicknote";
       binding = "<Alt>n";
     };
     "org/gnome/settings-daemon/plugins/media-keys" = {
