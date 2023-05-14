@@ -41,6 +41,25 @@
             }
           ];
         };
+        nixpad = lib.nixosSystem {
+          inherit system;
+          modules = [
+            ./modules
+            {
+              jgero.network = {
+                hostname = "nixpad";
+                hostid = "9a102409";
+              };
+            }
+            ./hardware/thinkpad_2023.nix
+            home-manager.nixosModules.home-manager
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.users.jgero = import ./home;
+            }
+          ];
+        };
       };
     };
 }
