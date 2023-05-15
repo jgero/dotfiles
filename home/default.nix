@@ -33,6 +33,7 @@ in
     tree
     ffmpeg
     imagemagick
+    pdfgrep
 
     selectProject
     quicknote
