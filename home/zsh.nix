@@ -14,6 +14,8 @@
       nvim = "nix run ~/projects/init.lua --";
       compress10 = "mogrify -quality 10";
       addK = "ssh-add -K";
+      createDevProfile = ''nix develop --profile "$XDG_DATA_HOME/dev-profile-$(git rev-parse --show-toplevel | xargs basename)"'';
+      dev = ''nix develop "$XDG_DATA_HOME/dev-profile-$(git rev-parse --show-toplevel | xargs basename)"'';
     };
     initExtra = ''
       ${builtins.readFile ../scripts/zsh/prompt.zsh}
