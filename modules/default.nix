@@ -11,6 +11,7 @@
     ./containers.nix
     ./firmware.nix
     ./gnome.nix
+    ./hyprland.nix
     ./i18n.nix
     ./impermanence.nix
     ./network.nix

@@ -6,9 +6,10 @@
     home-manager.url = "github:nix-community/home-manager/release-22.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+    hyprland.url = "github:hyprwm/Hyprland";
   };
 
-  outputs = { nixpkgs, home-manager, nixos-hardware, ... }:
+  outputs = { nixpkgs, home-manager, nixos-hardware, hyprland, ... }:
     let
       system = "x84_64-linux";
       pkgs = import nixpkgs {
@@ -31,6 +32,7 @@
                 hostid = "5e13b1e5";
               };
               jgero.backup.enable = true;
+              jgero.gnome.enable = true;
             }
             ./hardware/xps_2020.nix
             home-manager.nixosModules.home-manager
@@ -44,12 +46,14 @@
         nixpad = lib.nixosSystem {
           inherit system;
           modules = [
+            hyprland.nixosModules.default
             ./modules
             {
               jgero.network = {
                 hostname = "nixpad";
                 hostid = "9a102409";
               };
+              jgero.hyprland.enable = true;
             }
             ./hardware/thinkpad_2023.nix
             home-manager.nixosModules.home-manager
@@ -57,6 +61,9 @@
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.users.jgero = import ./home;
+              home-manager.extraSpecialArgs = {
+                inherit hyprland;
+              };
             }
           ];
         };

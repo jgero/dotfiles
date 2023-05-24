@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, hyprland, ... }:
 let
   selectProject = pkgs.writeScriptBin "selectProject" (builtins.readFile ../scripts/zsh/selectProject.zsh);
   quicknote = pkgs.writeScriptBin "quicknote" (builtins.readFile ../scripts/zsh/quicknote.zsh);
@@ -17,6 +17,7 @@ in
   home.username = "jgero";
   home.homeDirectory = "/home/jgero";
   xdg.enable = true;
+
 
   home.packages = with pkgs; [
     bitwarden
@@ -44,8 +45,10 @@ in
   ];
 
   imports = [
+    hyprland.homeManagerModules.default
     ./git.nix
     ./gnome.nix
+    ./hyprland.nix
     ./kitty.nix
     ./task.nix
     ./tmux.nix
