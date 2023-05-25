@@ -15,6 +15,7 @@
     ./impermanence.nix
     ./network.nix
     ./nix.nix
+    ./ssh.nix
     ./sudo.nix
     ./user.nix
   ];

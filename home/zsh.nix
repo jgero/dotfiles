@@ -23,7 +23,6 @@
       # bind ctrl-f to the tmux session switcher
       bindkey -s '^f' 'selectProject\n'
       # start ssh agent to allow importing resident key
-      eval `ssh-agent -s` > /dev/null
     '';
     oh-my-zsh = {
       enable = true;
