@@ -1,0 +1,56 @@
+* {
+    font-family: "JetBrains Mono";
+    font-size: 13px;
+}
+
+window#waybar {
+    background: transparent;
+    border: none;
+}
+
+#clock,
+#battery,
+#workspaces button {
+    padding: 0 10px;
+    margin: 6px 3px;
+    border-radius: 4px;
+    border: 1px solid transparent;
+    font-weight: bold;
+}
+
+#workspaces button {
+    border-color: #5074bd;
+    background-color: #5074bd;
+    transition: background-color .3s ease-out;
+    color: black;
+}
+#workspaces button.active {
+    background-color: #66abde;
+}
+
+#clock {
+    border-color: #5074bd;
+    background-color: #5074bd;
+    color: black;
+}
+
+#battery {
+    border-color: white;
+    background-color: black;
+    color: white;
+}
+#battery.charging {
+    background-color: yellow;
+    color: black;
+}
+#battery.plugged {
+    background-color: #66abde;
+    color: black;
+}
+#battery.warning {
+    border-color: yellow;
+}
+#battery.critical {
+    border-color: red;
+    background-color: red;
+}

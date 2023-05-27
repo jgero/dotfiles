@@ -52,6 +52,7 @@ in
     ./kitty.nix
     ./task.nix
     ./tmux.nix
+    ./waybar.nix
     ./zsh.nix
   ];
 }

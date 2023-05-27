@@ -11,6 +11,8 @@ in
   config = mkIf (cfg.enable)
     {
       programs.hyprland.enable = true;
+      xdg.portal.wlr.enable = true;
+      services.pipewire.enable = true;
       fonts.fonts = with pkgs; [
         (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
       ];
