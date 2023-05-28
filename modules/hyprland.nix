@@ -16,6 +16,7 @@ in
       fonts.fonts = with pkgs; [
         (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
       ];
+      security.pam.services.swaylock = { };
 
       services.greetd = {
         enable = true;

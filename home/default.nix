@@ -49,6 +49,7 @@ in
     ./gnome.nix
     ./hyprland.nix
     ./kitty.nix
+    ./swaylock.nix
     ./task.nix
     ./tmux.nix
     ./waybar.nix

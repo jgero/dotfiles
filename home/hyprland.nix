@@ -32,14 +32,22 @@ with lib;
         bind = $mod,Q,killactive,
 
         # focus
-        bind = $mod2,B,submap,focus
-        submap = focus
+        bind = $mod2,B,submap,FOCUS
+        submap = FOCUS
         bind = ,H,movefocus,l
         bind = ,L,movefocus,r
         bind = ,K,movefocus,u
         bind = ,J,movefocus,d
         bind = ,escape,submap,reset
         submap = reset
+
+        # logout
+        bind = $mod2,L,submap,SESSION
+        submap = SESSION
+        bind = ,L,exec,${pkgs.swaylock}/bin/swaylock
+        bind = ,escape,submap,reset
+        submap = reset
+
 
         # launch
         bind = $mod, SPACE, exec, ${pkgs.wofi}/bin/wofi --show=drun
