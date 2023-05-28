@@ -5,6 +5,8 @@
     restic
   ];
 
+  programs.zsh.enable = true;
+
   imports = [
     ./backup.nix
     ./boot.nix

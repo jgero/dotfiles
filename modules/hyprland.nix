@@ -16,5 +16,14 @@ in
       fonts.fonts = with pkgs; [
         (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
       ];
+
+      services.greetd = {
+        enable = true;
+        settings = {
+          default_session = {
+            command = "${pkgs.greetd.greetd}/bin/agreety --cmd Hyprland";
+          };
+        };
+      };
     };
 }

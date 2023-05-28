@@ -4,6 +4,7 @@ with lib;
   config = mkIf osConfig.jgero.hyprland.enable {
     wayland.windowManager.hyprland = {
       enable = true;
+      systemdIntegration = true;
       extraConfig = ''
         # highres and scaling 1 is important to fix wayland scaling issues
         monitor=,highres,auto,1
@@ -44,9 +45,6 @@ with lib;
         bind = $mod, SPACE, exec, ${pkgs.wofi}/bin/wofi --show=drun
         # terminal
         bind = $mod, Return, exec, kitty
-
-        # bar
-        exec-once=${pkgs.waybar}/bin/waybar
       '';
     };
   };
