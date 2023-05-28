@@ -18,7 +18,6 @@ in
   home.homeDirectory = "/home/jgero";
   xdg.enable = true;
 
-
   home.packages = with pkgs; [
     bitwarden
     signal-desktop
@@ -28,13 +27,13 @@ in
     gimp
     element-desktop
 
-    xclip
     fzf
     ripgrep
     tree
     ffmpeg
     imagemagick
     pdfgrep
+    killall
 
     selectProject
     quicknote
@@ -53,6 +52,7 @@ in
     ./task.nix
     ./tmux.nix
     ./waybar.nix
+    ./wofi.nix
     ./zsh.nix
   ];
 }

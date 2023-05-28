@@ -41,7 +41,7 @@ with lib;
         submap = reset
 
         # launch
-        bind = $mod, SPACE, exec, ${pkgs.sirula}/bin/sirula
+        bind = $mod, SPACE, exec, ${pkgs.wofi}/bin/wofi --show=drun
         # terminal
         bind = $mod, Return, exec, kitty
 
