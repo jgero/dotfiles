@@ -17,7 +17,7 @@
       addK = "ssh-add -K";
       createDevProfile = ''nix develop --profile "$XDG_DATA_HOME/dev-profile-$(git rev-parse --show-toplevel | xargs basename)"'';
       dev = ''nix develop "$XDG_DATA_HOME/dev-profile-$(git rev-parse --show-toplevel | xargs basename)"'';
-      hyperlandLogs = ''cat /tmp/hypr/$(ls -t /tmp/hypr/ | head -n 1)/hyprland.log'';
+      hyprlandLogs = ''cat /tmp/hypr/$(ls -t /tmp/hypr/ | head -n 1)/hyprland.log'';
     };
     initExtra = ''
       ${builtins.readFile ../scripts/zsh/prompt.zsh}
