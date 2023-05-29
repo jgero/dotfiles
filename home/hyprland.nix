@@ -44,10 +44,11 @@ with lib;
         # logout
         bind = $mod2,L,submap,SESSION
         submap = SESSION
-        bind = ,L,exec,${pkgs.swaylock}/bin/swaylock
+        bind = ,L,exec,hyprctl dispatch submap reset && ${pkgs.swaylock}/bin/swaylock
         bind = ,escape,submap,reset
         submap = reset
 
+        exec-once = ${pkgs.swayidle}/bin/swayidle -w
 
         # launch
         bind = $mod, SPACE, exec, ${pkgs.wofi}/bin/wofi --show=drun
