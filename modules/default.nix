@@ -5,10 +5,9 @@
     restic
   ];
 
-  programs.zsh.enable = true;
-
   imports = [
     ./backup.nix
+    ./bluetooth.nix
     ./boot.nix
     ./containers.nix
     ./firmware.nix

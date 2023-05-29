@@ -67,6 +67,7 @@ with lib;
         submap = SETTINGS
         bind = ,N,exec,hyprctl dispatch submap reset && kitty --detach -T nmtui ${pkgs.zsh}/bin/zsh -c nmtui
         bind = ,B,exec,hyprctl dispatch submap reset && kitty --detach -T bluetuith ${pkgs.zsh}/bin/zsh -c ${pkgs.bluetuith}/bin/bluetuith
+        bind = ,S,exec,hyprctl dispatch submap reset && ${pkgs.pavucontrol}/bin/pavucontrol
         bind = ,escape,submap,reset
         submap = reset
 
@@ -78,9 +79,9 @@ with lib;
         bind = $mod, Return, exec, kitty
 
         # floating settings windows
-        windowrule = float,title:^(nmtui|bluetuith)$
-        windowrule = center,title:^(nmtui|bluetuith)$
-        windowrule = size 900 500,title:^(nmtui|bluetuith)$
+        windowrule = float,title:^(nmtui|bluetuith|Volume Control)$
+        windowrule = center,title:^(nmtui|bluetuith|Volume Control)$
+        windowrule = size 900 500,title:^(nmtui|bluetuith|Volume Control)$
       '';
     };
   };

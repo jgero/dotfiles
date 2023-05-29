@@ -12,7 +12,12 @@ in
     {
       programs.hyprland.enable = true;
       xdg.portal.wlr.enable = true;
-      services.pipewire.enable = true;
+      security.rtkit.enable = true;
+      services.pipewire = {
+        enable = true;
+        alsa.enable = true;
+        pulse.enable = true;
+      };
       fonts.fonts = with pkgs; [
         (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
       ];
