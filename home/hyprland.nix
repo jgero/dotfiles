@@ -38,6 +38,7 @@ with lib;
         bind = ,L,movefocus,r
         bind = ,K,movefocus,u
         bind = ,J,movefocus,d
+        bind = ,Return,submap,reset
         bind = ,escape,submap,reset
         submap = reset
 
