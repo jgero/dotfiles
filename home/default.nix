@@ -29,7 +29,9 @@ in
 
     fzf
     ripgrep
+    fd
     tree
+    wl-clipboard
     ffmpeg
     imagemagick
     pdfgrep

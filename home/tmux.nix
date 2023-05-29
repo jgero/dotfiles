@@ -6,8 +6,10 @@
     keyMode = "vi";
     terminal = "screen-256color";
     extraConfig = ''
+      set -s copy-command 'wl-copy'
+
       bind -T copy-mode-vi v send-keys -X begin-selection
-      bind -T copy-mode-vi y send-keys -X copy-pipe-and-cancel 'xclip -in -selection clipboard'
+      bind -T copy-mode-vi y send-keys -X copy-pipe-and-cancel 'wl-copy'
 
       # vim-like pane resizing  
       bind -r K resize-pane -U
