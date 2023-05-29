@@ -42,10 +42,31 @@ with lib;
         bind = ,escape,submap,reset
         submap = reset
 
-        # logout
+        # session
         bind = $mod2,L,submap,SESSION
         submap = SESSION
         bind = ,L,exec,hyprctl dispatch submap reset && ${pkgs.swaylock}/bin/swaylock
+        bind = ,S,exec,hyprctl dispatch submap reset && systemctl suspend
+        bind = ,P,exec,hyprctl dispatch submap reset && systemctl poweroff
+        bind = ,R,exec,hyprctl dispatch submap reset && systemctl reboot
+        bind = ,escape,submap,reset
+        submap = reset
+
+        # resize
+        bind = $mod2,R,submap,RESIZE
+        submap = RESIZE
+        binde = ,right,resizeactive,10 0
+        binde = ,left,resizeactive,-10 0
+        binde = ,up,resizeactive,0 -10
+        binde = ,down,resizeactive,0 10
+        bind = ,escape,submap,reset
+        submap = reset
+
+        # settings
+        bind = $mod2,S,submap,SETTINGS
+        submap = SETTINGS
+        bind = ,N,exec,hyprctl dispatch submap reset && kitty --detach -T nmtui ${pkgs.zsh}/bin/zsh -c nmtui
+        bind = ,B,exec,hyprctl dispatch submap reset && kitty --detach -T bluetuith ${pkgs.zsh}/bin/zsh -c ${pkgs.bluetuith}/bin/bluetuith
         bind = ,escape,submap,reset
         submap = reset
 
@@ -55,6 +76,11 @@ with lib;
         bind = $mod, SPACE, exec, ${pkgs.wofi}/bin/wofi --show=drun
         # terminal
         bind = $mod, Return, exec, kitty
+
+        # floating settings windows
+        windowrule = float,title:^(nmtui|bluetuith)$
+        windowrule = center,title:^(nmtui|bluetuith)$
+        windowrule = size 900 500,title:^(nmtui|bluetuith)$
       '';
     };
   };
