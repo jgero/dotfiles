@@ -55,11 +55,6 @@ window#waybar {
     background-color: #66abde;
 }
 
-#battery.charging {
-    background-color: #4EFF63;
-    border-color: #4EFF63;
-    color: white;
-}
 #battery.warning {
     border-color: #EF6C00;
     background-color: #EF6C00;
@@ -68,5 +63,10 @@ window#waybar {
 #battery.critical {
     border-color: #F44336;
     background-color: #F44336;
+    color: white;
+}
+#battery.charging {
+    background-color: #4EFF63;
+    border-color: #4EFF63;
     color: white;
 }

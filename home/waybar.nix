@@ -1,9 +1,5 @@
 { pkgs, osConfig, lib, ... }:
 with lib;
-let
-  nixStoreSize = pkgs.writeScriptBin "nixStoreSize" (builtins.readFile
-    ../scripts/zsh/nixStoreSize.zsh);
-in
 {
   config = mkIf osConfig.jgero.hyprland.enable {
     programs.waybar = {

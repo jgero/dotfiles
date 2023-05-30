@@ -6,6 +6,17 @@ with lib;
       enable = true;
       systemdIntegration = true;
       extraConfig = ''
+        input {
+            touchpad {
+                natural_scroll = true
+            }
+        }
+        general {
+            col.active_border = 0xff5074bd
+        }
+        decoration {
+            rounding = 5
+        }
         # highres and scaling 1 is important to fix wayland scaling issues
         monitor=,highres,auto,1
 
@@ -72,6 +83,7 @@ with lib;
         submap = reset
 
         exec-once = ${pkgs.swayidle}/bin/swayidle -w
+        exec-once = ${pkgs.swaybg}/bin/swaybg --image /home/jgero/Downloads/galaxy_wallpaper.png
 
         # launch
         bind = $mod, SPACE, exec, ${pkgs.wofi}/bin/wofi --show=drun

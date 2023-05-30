@@ -11,6 +11,7 @@
       tab_bar_style = "hidden";
       hide_window_decorations = true;
       background = "#181a1f";
+      background_opacity = "0.85";
     };
   };
 }
