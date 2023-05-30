@@ -18,9 +18,6 @@ in
         alsa.enable = true;
         pulse.enable = true;
       };
-      fonts.fonts = with pkgs; [
-        (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
-      ];
       security.pam.services.swaylock = { };
 
       services.greetd = {
