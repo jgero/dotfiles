@@ -1,5 +1,9 @@
 { pkgs, osConfig, lib, ... }:
 with lib;
+let
+  nixStoreSize = pkgs.writeScriptBin "nixStoreSize" (builtins.readFile
+    ../scripts/zsh/nixStoreSize.zsh);
+in
 {
   config = mkIf osConfig.jgero.hyprland.enable {
     programs.waybar = {
@@ -12,9 +16,8 @@ with lib;
       settings = {
         foo = {
           layer = "top";
-          modules-left = [ "wlr/workspaces" "hyprland/submap" "hyprland/window" ];
+          modules-left = [ "custom/nixstore" "wlr/workspaces" "hyprland/submap" ];
           modules-center = [ "clock" ];
-          # add: nix store size?, pending flake update?, is system flake dirty?
           modules-right = [ "cpu" "memory" "hyprland/language" "network" "bluetooth" "wireplumber" "battery" ];
 
           # modules
@@ -22,6 +25,12 @@ with lib;
             format = "NET";
             format-wifi = "NET: {essid}";
             format-ethernet = "NET: WIRED";
+          };
+          "custom/nixstore" = {
+            exec = "${pkgs.coreutils}/bin/du -sh /nix/store | ${pkgs.gnused}/bin/sed 's/\\([0-9]\\+[A-Z]\\+\\).*/\\1/'";
+            interval = 300;
+            format = "STORE: {}";
+            tooltip = false;
           };
           wireplumber = {
             format = "VOL: {volume}%";
