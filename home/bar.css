@@ -8,23 +8,40 @@ window#waybar {
     border: none;
 }
 
-#clock,
 #battery,
+#bluetooth,
+#clock,
+#cpu,
+#language,
+#memory,
+#network,
 #workspaces button,
-#submap {
+#submap,
+#wireplumber {
     padding: 0 10px;
     margin: 6px 3px;
     border-radius: 4px;
-    border: 1px solid transparent;
+    border: 1px solid #5074bd;
     font-weight: bold;
+    background-color: #5074bd;
+    color: black;
+    transition: opacity .3s ease-out;
+    opacity: 1;
+}
+
+#bluetooth:not(.on),
+#network.disabled,
+#network.disconnected {
+    opacity: 0.4;
+}
+
+#wireplumber.muted {
+    opacity: 0.4;
 }
 
 #submap {
     color: #5074bd;
-    border-color: #5074bd;
-}
-#submap button {
-    color: red;
+    background-color: transparent;
 }
 
 #workspaces button {
@@ -37,29 +54,18 @@ window#waybar {
     background-color: #66abde;
 }
 
-#clock {
-    border-color: #5074bd;
-    background-color: #5074bd;
-    color: black;
-}
-
-#battery {
-    border-color: white;
-    background-color: black;
+#battery.charging {
+    background-color: #4EFF63;
+    border-color: #4EFF63;
     color: white;
 }
-#battery.charging {
-    background-color: yellow;
-    color: black;
-}
-#battery.plugged {
-    background-color: #66abde;
-    color: black;
-}
 #battery.warning {
-    border-color: yellow;
+    border-color: #EF6C00;
+    background-color: #EF6C00;
+    color: white;
 }
 #battery.critical {
-    border-color: red;
-    background-color: red;
+    border-color: #F44336;
+    background-color: #F44336;
+    color: white;
 }
