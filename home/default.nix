@@ -51,6 +51,7 @@ in
     ./gnome.nix
     ./hyprland.nix
     ./kitty.nix
+    ./ssh.nix
     ./swayidle.nix
     ./swaylock.nix
     ./task.nix
