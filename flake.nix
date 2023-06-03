@@ -32,7 +32,7 @@
                 hostid = "5e13b1e5";
               };
               jgero.backup.enable = true;
-              jgero.gnome.enable = true;
+              jgero.hyprland.enable = true;
             }
             ./hardware/xps_2020.nix
             home-manager.nixosModules.home-manager
@@ -40,6 +40,9 @@
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.users.jgero = import ./home;
+              home-manager.extraSpecialArgs = {
+                inherit hyprland;
+              };
             }
           ];
         };

@@ -83,7 +83,7 @@ with lib;
         submap = reset
 
         exec-once = ${pkgs.swayidle}/bin/swayidle -w
-        exec-once = ${pkgs.swaybg}/bin/swaybg --image /home/jgero/Downloads/galaxy_wallpaper.png
+        exec-once = ${pkgs.swaybg}/bin/swaybg --image /home/jgero/Pictures/galaxy_wallpaper.jpg
 
         # launch
         bind = $mod, SPACE, exec, ${pkgs.wofi}/bin/wofi --show=drun
