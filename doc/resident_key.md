@@ -27,11 +27,18 @@ can be 'generated' again from the Yubikey with `ssh-keygen -K`.
 When importing the SSH key from the Yubikey the biggest pitfall which I
 struggled with is that the local SSH agent needs to be running, which it didn't
 for a long time in my case. It has to be started with `eval "$(ssh-agent -s)"`,
-which I added to my zshrc.
+which I added to my zshrc. Another method would be to set
+`programs.ssh.startAgent`.
 
 After that is done it is just a simple `ssh-add -K`, which tells the SSH agent
 to import the key from a FIDO2 device. The key will only be added for this agent
 session, which means this will have to be done regularly. When adding or using
 the key you will be prompted for the PIN and touch, depending on what you
 specified when originally generating the SSH key onto the Yubikey.
+
+The next challenge is actually using the resident key. When the key is supposed
+to be used the SSH agent needs to prompt for a password. Depending on the
+configuration an applicable program is already installed. If not there is a way
+of forcing the agent to use a custom program by setting
+`programs.ssh.enableAskPass` and also specifying an `askPass` program.
 
