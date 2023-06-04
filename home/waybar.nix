@@ -14,18 +14,24 @@ with lib;
           layer = "top";
           modules-left = [ "custom/nixstore" "wlr/workspaces" "hyprland/submap" ];
           modules-center = [ "clock" ];
-          modules-right = [ "cpu" "memory" "hyprland/language" "network" "bluetooth" "wireplumber" "battery" ];
+          modules-right = [ "hyprland/language" "network" "bluetooth" "wireplumber" "cpu" "custom/coretemp" "memory" "battery" ];
 
           # modules
           network = {
-            format = "NET";
-            format-wifi = "NET: {essid}";
-            format-ethernet = "NET: WIRED";
+            format = "NET |";
+            format-wifi = "NET: {essid} |";
+            format-ethernet = "NET: WIRED |";
           };
           "custom/nixstore" = {
             exec = "${pkgs.coreutils}/bin/du -sh /nix/store | ${pkgs.gnused}/bin/sed 's/\\([0-9]\\+[A-Z]\\+\\).*/\\1/'";
             interval = 300;
             format = "STORE: {}";
+            tooltip = false;
+          };
+          "custom/coretemp" = {
+            exec = "${pkgs.lm_sensors}/bin/sensors | ${pkgs.gnugrep}/bin/grep 'Package id 0:' | ${pkgs.gnused}/bin/sed 's/^Package id 0:  +//' | ${pkgs.gnused}/bin/sed 's/\\.[0-9]°C[ ]\\+.*$//'";
+            interval = 10;
+            format = " {}°C |";
             tooltip = false;
           };
           wireplumber = {
@@ -39,12 +45,12 @@ with lib;
             tooltip = false;
           };
           bluetooth = {
-            format-on = "BLUE: ON";
-            format-off = "BLUE: OFF";
-            format-connected = "BLUE: {num_connections}";
+            format-on = "BLUE: ON |";
+            format-off = "BLUE: OFF |";
+            format-connected = "BLUE: {num_connections} |";
           };
           "hyprland/language" = {
-            format = "LANG: {}";
+            format = "LANG: {} |";
             format-en = "EN/US";
           };
           "wlr/workspaces" = {

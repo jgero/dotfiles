@@ -8,11 +8,13 @@ window#waybar {
     border: none;
 }
 
+/* standalone segment */
 #battery,
 #bluetooth,
 #clock,
 #cpu,
 #custom-nixstore,
+#custom-coretemp,
 #language,
 #memory,
 #network,
@@ -29,16 +31,44 @@ window#waybar {
     transition: opacity .3s ease-out;
     opacity: 1;
 }
-
-#bluetooth:not(.on),
+/* inactive segment */
+#bluetooth.off,
 #network.disabled,
-#network.disconnected {
+#network.disconnected,
+#wireplumber.muted,
+#battery.plugged {
     opacity: 0.4;
+}
+/* left part of multi-segment */
+#custom-coretemp,
+#language,
+#network,
+#bluetooth,
+#cpu {
+    margin-right: 0px;
+    padding-right: 3px;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+}
+/* right part of multi-segment */
+#custom-coretemp,
+#network,
+#bluetooth,
+#wireplumber,
+#memory {
+    margin-left: 0px;
+    padding-left: 3px;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+}
+/* merge segments */
+#custom-coretemp {
+    padding-left: 0;
+}
+#cpu {
+    padding-right: 0;
 }
 
-#wireplumber.muted {
-    opacity: 0.4;
-}
 
 #submap {
     color: #5074bd;
