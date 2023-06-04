@@ -81,6 +81,16 @@ with lib;
         bind = ,S,exec,hyprctl dispatch submap reset && ${pkgs.pavucontrol}/bin/pavucontrol
         bind = ,escape,submap,reset
         submap = reset
+        
+        # display
+        bind = $mod2,D,submap,DISPLAY
+        submap = DISPLAY
+        bind = ,M,exec,hyprctl dispatch submap reset && hyprctl keyword monitor ",highres,auto,1,mirror,eDP-1"
+        bind = ,E,exec,hyprctl dispatch submap reset && hyprctl keyword monitor ",highres,auto,1"
+        bind = ,S,exec,hyprctl dispatch submap reset && hyprctl keyword monitor "eDP-1, disable"
+        bind = ,R,exec,hyprctl dispatch submap reset && systemctl --user restart waybar.service
+        bind = ,escape,submap,reset
+        submap = reset
 
         exec-once = ${pkgs.swayidle}/bin/swayidle -w
         exec-once = ${pkgs.swaybg}/bin/swaybg --image /home/jgero/Pictures/galaxy_wallpaper.jpg
