@@ -1,5 +1,8 @@
 {
-  security.sudo.extraConfig = ''
-    Defaults lecture = never
-  '';
+  security.sudo = {
+    execWheelOnly = true;
+    extraConfig = ''
+      Defaults lecture = never
+    '';
+  };
 }

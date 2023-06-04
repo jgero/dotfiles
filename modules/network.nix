@@ -1,4 +1,4 @@
-{ pkgs, config, lib, ... }:
+{ config, lib, ... }:
 with lib;
 let
   cfg = config.jgero.network;
@@ -18,6 +18,7 @@ in
       hostName = cfg.hostname;
       hostId = cfg.hostid;
       networkmanager.enable = true;
+      firewall.enable = true;
     };
 
     # persist connections through rollbacks.

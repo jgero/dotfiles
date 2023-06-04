@@ -1,8 +1,11 @@
 { pkgs, ... }: {
   nix = {
+    settings = {
+      allowed-users = [ "@wheel" ];
+      experimental-features = [ "nix-command" "flakes" ];
+    };
     # enable flakes
     package = pkgs.nixFlakes;
-    settings.experimental-features = [ "nix-command" "flakes" ];
     # automatic garbage collection
     gc = {
       automatic = true;
