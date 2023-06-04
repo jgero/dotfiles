@@ -7,6 +7,7 @@ with lib;
       systemdIntegration = true;
       extraConfig = ''
         input {
+            kb_layout = us,de
             touchpad {
                 natural_scroll = true
             }
@@ -99,6 +100,7 @@ with lib;
         bind = $mod, SPACE, exec, ${pkgs.wofi}/bin/wofi --show=drun
         # terminal
         bind = $mod, Return, exec, kitty
+        bind = $mod2, SPACE, exec, hyprctl switchxkblayout $(hyprctl devices | ${pkgs.gnugrep}/bin/grep -B 4 'main: yes' | ${pkgs.gnused}/bin/sed -n '2p' | tr -d '\t\n') next
 
         # floating settings windows
         windowrule = float,title:^(nmtui|bluetuith|Volume Control)$
