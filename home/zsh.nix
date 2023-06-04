@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{
   programs.zsh = {
     enable = true;
     enableAutosuggestions = true;
@@ -23,7 +23,8 @@
       ${builtins.readFile ../scripts/zsh/prompt.zsh}
       # bind ctrl-f to the tmux session switcher
       bindkey -s '^f' 'selectProject\n'
-      # start ssh agent to allow importing resident key
+      # bind ctrl-h to reverse history search
+      bindkey '^h' history-incremental-pattern-search-backward
     '';
     oh-my-zsh = {
       enable = true;
