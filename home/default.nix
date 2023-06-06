@@ -26,6 +26,9 @@ in
     libreoffice
     gimp
     element-desktop
+    zathura
+    gnome.eog
+    vlc
 
     fzf
     ripgrep
