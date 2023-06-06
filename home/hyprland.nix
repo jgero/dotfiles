@@ -101,6 +101,9 @@ with lib;
         # terminal
         bind = $mod, Return, exec, kitty
         bind = $mod2, SPACE, exec, hyprctl switchxkblayout $(hyprctl devices | ${pkgs.gnugrep}/bin/grep -B 4 'main: yes' | ${pkgs.gnused}/bin/sed -n '2p' | tr -d '\t\n') next
+        # brightness
+        bind = $mod2, up, exec, ${pkgs.brightnessctl}/bin/brightnessctl set +10%
+        bind = $mod2, down, exec, ${pkgs.brightnessctl}/bin/brightnessctl set 10%-
 
         # floating settings windows
         windowrule = float,title:^(nmtui|bluetuith|Volume Control)$
