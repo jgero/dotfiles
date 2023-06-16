@@ -54,6 +54,7 @@ in
     ./gnome.nix
     ./hyprland.nix
     ./kitty.nix
+    ./mako.nix
     ./ssh.nix
     ./swayidle.nix
     ./swaylock.nix
