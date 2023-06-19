@@ -8,6 +8,7 @@ with lib;
       borderColor = "#66abde";
       borderRadius = 6;
       borderSize = 1;
+      defaultTimeout = 5000;
     };
   };
 }
