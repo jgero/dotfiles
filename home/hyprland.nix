@@ -100,7 +100,7 @@ with lib;
         bind = $mod, SPACE, exec, ${pkgs.wofi}/bin/wofi --show=drun
         # terminal
         bind = $mod, Return, exec, kitty
-        bind = $mod2, SPACE, exec, hyprctl switchxkblayout $(hyprctl devices | ${pkgs.gnugrep}/bin/grep -B 4 'main: yes' | ${pkgs.gnused}/bin/sed -n '2p' | tr -d '\t\n') next
+        bind = $mod2, SPACE, exec, hyprctl devices | ${pkgs.gnugrep}/bin/grep 'keyboard' | tr -d '\t' | xargs -I KEYBOARD hyprctl switchxkblayout KEYBOARD next
         # brightness
         bind = $mod2, up, exec, ${pkgs.brightnessctl}/bin/brightnessctl set +10%
         bind = $mod2, down, exec, ${pkgs.brightnessctl}/bin/brightnessctl set 10%-
