@@ -97,13 +97,15 @@ with lib;
         exec-once = ${pkgs.swaybg}/bin/swaybg --image /home/jgero/Pictures/galaxy_wallpaper.jpg
 
         # launch
-        bind = $mod, SPACE, exec, ${pkgs.wofi}/bin/wofi --show=drun
+        bind = $mod,SPACE,exec,${pkgs.wofi}/bin/wofi --show=drun
         # terminal
-        bind = $mod, Return, exec, kitty
-        bind = $mod2, SPACE, exec, hyprctl devices | ${pkgs.gnugrep}/bin/grep 'keyboard' | tr -d '\t' | xargs -I KEYBOARD hyprctl switchxkblayout KEYBOARD next
+        bind = $mod,Return,exec,kitty
+        bind = $mod2,SPACE,exec,hyprctl devices | ${pkgs.gnugrep}/bin/grep 'keyboard' | tr -d '\t' | xargs -I KEYBOARD hyprctl switchxkblayout KEYBOARD next
         # brightness
-        bind = $mod2, up, exec, ${pkgs.brightnessctl}/bin/brightnessctl set +10%
-        bind = $mod2, down, exec, ${pkgs.brightnessctl}/bin/brightnessctl set 10%-
+        bind = $mod2,up,exec,${pkgs.brightnessctl}/bin/brightnessctl set +10%
+        bind = $mod2,down,exec,${pkgs.brightnessctl}/bin/brightnessctl set 10%-
+        # screenshot
+        bind = CTRL SHIFT,s,exec,${pkgs.grim}/bin/grim -g "$(${pkgs.slurp}/bin/slurp)"
 
         # floating settings windows
         windowrule = float,title:^(nmtui|bluetuith|Volume Control)$
