@@ -11,7 +11,8 @@ in
   config = mkIf (cfg.enable)
     {
       programs.hyprland.enable = true;
-      xdg.portal.wlr.enable = true;
+      # hyprland complains now that wlr and hyprland portal are active at the same time
+      # xdg.portal.wlr.enable = true;
       security.rtkit.enable = true;
       services.pipewire = {
         enable = true;

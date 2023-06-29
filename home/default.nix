@@ -21,7 +21,7 @@ in
   home.packages = with pkgs; [
     bitwarden
     signal-desktop
-    firefox
+    firefox-wayland
     thunderbird
     libreoffice
     gimp
