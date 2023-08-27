@@ -11,9 +11,9 @@ in
     {
       systemd.user.services =
         let
-          remoteRepo = builtins.replaceStrings [ "\n" ] [ "" ] (builtins.readFile /home/jgero/secrets/remote-restic-repository);
-          localRepo = builtins.replaceStrings [ "\n" ] [ "" ] (builtins.readFile /home/jgero/secrets/local-restic-repository);
-          passwordFile = "/home/jgero/secrets/restic-password";
+          remoteRepo = "sftp:jgero@sftp.hidrive.strato.com:/users/jgero/backups";
+          localRepo = "/run/media/jgero/backup-drive/restic";
+          passwordFile = config.age.secrets.resticPw.path;
           backupPaths = "/home/jgero/sync";
           keep = {
             daily = "7";

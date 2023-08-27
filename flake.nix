@@ -7,9 +7,13 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     hyprland.url = "github:hyprwm/Hyprland";
+    agenix = {
+      url = "github:ryantm/agenix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { nixpkgs, home-manager, nixos-hardware, hyprland, ... }:
+  outputs = { nixpkgs, home-manager, nixos-hardware, hyprland, agenix, ... }:
     let
       system = "x84_64-linux";
       pkgs = import nixpkgs {
@@ -24,6 +28,10 @@
         nixps = lib.nixosSystem {
           inherit system;
           modules = [
+            agenix.nixosModules.default
+            {
+              _module.args.agenix = agenix.packages.x86_64-linux.default;
+            }
             nixos-hardware.nixosModules.dell-xps-13-7390
             ./modules
             {
