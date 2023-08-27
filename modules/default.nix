@@ -1,8 +1,9 @@
-{ pkgs, ... }: {
+{ pkgs, agenix, ... }: {
   environment.systemPackages = with pkgs; [
     neovim
     curl
     restic
+    agenix
   ];
 
   imports = [
@@ -17,6 +18,7 @@
     ./impermanence.nix
     ./network.nix
     ./nix.nix
+    ./secrets.nix
     ./ssh.nix
     ./sudo.nix
     ./user.nix

@@ -1,7 +1,8 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 let
-  askpass = pkgs.writeScriptBin "askpass" (builtins.readFile
-    ../scripts/zsh/askpass.zsh);
+  askpass = pkgs.writeScriptBin "askpass" ''
+    cat ${config.age.secrets.yubipin.path}
+  '';
 in
 {
   programs.ssh = {
