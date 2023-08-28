@@ -1,15 +1,16 @@
 { pkgs, hyprland, ... }:
 let
-  selectProject = pkgs.writeScriptBin "selectProject" (builtins.readFile ../scripts/zsh/selectProject.zsh);
-  quicknote = pkgs.writeScriptBin "quicknote" (builtins.readFile ../scripts/zsh/quicknote.zsh);
-  compressVidDir = pkgs.writeScriptBin "compressVidDir" (builtins.readFile
-    ../scripts/zsh/compressVidDir.zsh);
-  encodeVid = pkgs.writeScriptBin "encodeVid" (builtins.readFile
-    ../scripts/zsh/encodeVid.zsh);
-  pidCpu = pkgs.writeScriptBin "pidCpu" (builtins.readFile
-    ../scripts/zsh/pidCpu.zsh);
-  pidMem = pkgs.writeScriptBin "pidMem" (builtins.readFile
-    ../scripts/zsh/pidMem.zsh);
+  compress-vid-dir = pkgs.writeScriptBin "compress-vid-dir" ''
+    for file in *; do
+        if [ -f "$file" ]; then
+            new_location=$(echo "$file" | sed -r 's/.*VID_([0-9]{4})([0-9]{2})([0-9]{2})_([0-9]{6})\.mp4.*/\1_\2_\3_\4.mp4/')
+            ffmpeg -i "$file" -vcodec libx264 -crf 24 "$new_location"
+        fi
+    done
+  '';
+  encode-vid = pkgs.writeScriptBin "encode-vid" ''
+    ffmpeg -i "$1" -vcodec libx264 -crf 24 "$2"
+  '';
 in
 {
   home.stateVersion = "22.11";
@@ -39,17 +40,17 @@ in
     imagemagick
     pdfgrep
     killall
+    unzip
+    pdfcpu
 
-    selectProject
-    quicknote
-    compressVidDir
-    encodeVid
-    pidCpu
-    pidMem
+    compress-vid-dir
+    encode-vid
   ];
 
   imports = [
     hyprland.homeManagerModules.default
+    ./waybar
+    ./zsh
     ./git.nix
     ./gnome.nix
     ./hyprland.nix
@@ -60,8 +61,6 @@ in
     ./swaylock.nix
     ./task.nix
     ./tmux.nix
-    ./waybar.nix
     ./wofi.nix
-    ./zsh.nix
   ];
 }
