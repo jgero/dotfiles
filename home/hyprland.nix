@@ -5,6 +5,10 @@ with lib;
     wayland.windowManager.hyprland =
       let
         quicknote = import ../pkgs/quicknote.nix { inherit pkgs; };
+        wallpaper = builtins.fetchurl {
+          url = "https://my.hidrive.com/api/sharelink/download?id=lECFE2kr";
+          sha256 = "1sxwsvq8d1qnimnahdyjpzb94rzycnksr4m7j1khdm3ikxz9w33a";
+        };
       in
       {
         enable = true;
@@ -98,7 +102,7 @@ with lib;
           submap = reset
 
           exec-once = ${pkgs.swayidle}/bin/swayidle -w
-          exec-once = ${pkgs.swaybg}/bin/swaybg --image /home/jgero/Pictures/galaxy_wallpaper.jpg
+          exec-once = ${pkgs.swaybg}/bin/swaybg --image ${wallpaper}
 
           # launch
           bind = $mod,SPACE,exec,${pkgs.wofi}/bin/wofi --show=drun
