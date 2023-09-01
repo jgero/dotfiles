@@ -1,33 +1,22 @@
-{ pkgs, config, lib, ... }:
-with lib;
-let
-  cfg = config.jgero.hyprland;
-in
+{ pkgs, ... }:
 {
-  options.jgero.hyprland = {
-    enable = mkEnableOption "hyprland window manager";
-    default = false;
+  programs.hyprland.enable = true;
+  # hyprland complains now that wlr and hyprland portal are active at the same time
+  # xdg.portal.wlr.enable = true;
+  security.rtkit.enable = true;
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    pulse.enable = true;
   };
-  config = mkIf (cfg.enable)
-    {
-      programs.hyprland.enable = true;
-      # hyprland complains now that wlr and hyprland portal are active at the same time
-      # xdg.portal.wlr.enable = true;
-      security.rtkit.enable = true;
-      services.pipewire = {
-        enable = true;
-        alsa.enable = true;
-        pulse.enable = true;
-      };
-      security.pam.services.swaylock = { };
+  security.pam.services.swaylock = { };
 
-      services.greetd = {
-        enable = true;
-        settings = {
-          default_session = {
-            command = "${pkgs.greetd.greetd}/bin/agreety --cmd Hyprland";
-          };
-        };
+  services.greetd = {
+    enable = true;
+    settings = {
+      default_session = {
+        command = "${pkgs.greetd.greetd}/bin/agreety --cmd Hyprland";
       };
     };
+  };
 }

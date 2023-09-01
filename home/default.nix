@@ -52,7 +52,6 @@ in
     ./waybar
     ./zsh
     ./git.nix
-    ./gnome.nix
     ./hyprland.nix
     ./kitty.nix
     ./mako.nix
