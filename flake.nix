@@ -17,6 +17,7 @@
       url = "github:numtide/treefmt-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    impermanence.url = "github:nix-community/impermanence";
   };
 
   outputs =
@@ -27,7 +28,7 @@
     , hyprland
     , agenix
     , treefmt-nix
-    , ...
+    , impermanence
     }:
     let
       lib = nixpkgs.lib;
@@ -41,6 +42,7 @@
     {
       formatter.${system} = treefmtEval.config.build.wrapper;
       checks.${system}.formatter = treefmtEval.config.build.check self;
+      packages."${system}".install = import ./install.nix { inherit pkgs; };
       nixosConfigurations = builtins.listToAttrs (
         builtins.map
           (host: {
@@ -48,6 +50,7 @@
             value = lib.nixosSystem {
               inherit system pkgs;
               modules = [
+                impermanence.nixosModules.impermanence
                 agenix.nixosModules.default
                 {
                   _module.args.agenix = agenix.packages.${system}.default;
@@ -59,7 +62,7 @@
                   home-manager.useUserPackages = true;
                   home-manager.users.jgero = import ./home;
                   home-manager.extraSpecialArgs = {
-                    inherit hyprland;
+                    inherit hyprland impermanence;
                   };
                 }
               ] ++ host.nixosModules;

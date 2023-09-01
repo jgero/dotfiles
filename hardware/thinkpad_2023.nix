@@ -11,54 +11,80 @@
 
   boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "usb_storage" "sd_mod" "sr_mod" "sdhci_pci" ];
   boot.initrd.kernelModules = [ ];
-  boot.initrd.postDeviceCommands = lib.mkAfter ''
-    zfs rollback -r rpool/local/root@blank
-  '';
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
 
-  boot.zfs.devNodes = "/dev/disk/by-partuuid";
+  boot.initrd.postDeviceCommands = pkgs.lib.mkBefore ''
+    mkdir -p /mnt
 
-  fileSystems."/" =
-    {
-      device = "rpool/local/root";
-      fsType = "zfs";
-    };
+    # We first mount the btrfs root to /mnt
+    # so we can manipulate btrfs subvolumes.
+    mount -o subvol=/ /dev/disk/by-label/ROOT /mnt
 
-  fileSystems."/nix" =
-    {
-      device = "rpool/local/nix";
-      fsType = "zfs";
-    };
+    # While we're tempted to just delete /root and create
+    # a new snapshot from /root-blank, /root is already
+    # populated at this point with a number of subvolumes,
+    # which makes `btrfs subvolume delete` fail.
+    # So, we remove them first.
+    #
+    # /root contains subvolumes:
+    # - /root/var/lib/portables
+    # - /root/var/lib/machines
+    #
+    # I suspect these are related to systemd-nspawn, but
+    # since I don't use it I'm not 100% sure.
+    # Anyhow, deleting these subvolumes hasn't resulted
+    # in any issues so far, except for fairly
+    # benign-looking errors from systemd-tmpfiles.
+    btrfs subvolume list -o /mnt/root |
+    cut -f9 -d' ' |
+    while read subvolume; do
+      echo "deleting /$subvolume subvolume..."
+      btrfs subvolume delete "/mnt/$subvolume"
+    done &&
+    echo "deleting /root subvolume..." &&
+    btrfs subvolume delete /mnt/root
 
-  fileSystems."/home" =
-    {
-      device = "rpool/local/home";
-      fsType = "zfs";
-    };
+    echo "restoring blank /root subvolume..."
+    btrfs subvolume snapshot /mnt/root-blank /mnt/root
 
-  fileSystems."/persist" =
-    {
-      device = "rpool/safe/persist";
-      fsType = "zfs";
-      neededForBoot = true;
-    };
+    # Once we're done rolling back to a blank snapshot,
+    # we can unmount /mnt and continue on the boot process.
+    umount /mnt
+  '';
 
-  fileSystems."/var/log" =
-    {
-      device = "rpool/safe/log";
-      fsType = "zfs";
-      neededForBoot = true;
-    };
+  fileSystems."/" = {
+    device = "/dev/disk/by-label/ROOT";
+    fsType = "btrfs";
+    options = [ "subvol=root" "compress=zstd" "noatime" ];
+  };
 
-  fileSystems."/boot" =
-    {
-      device = "/dev/disk/by-uuid/3CBB-F5AA";
-      fsType = "vfat";
-    };
+  fileSystems."/nix" = {
+    device = "/dev/disk/by-label/ROOT";
+    fsType = "btrfs";
+    options = [ "subvol=nix" "compress=zstd" "noatime" ];
+  };
 
-  swapDevices =
-    [{ device = "/dev/disk/by-uuid/2d526ecb-1dc6-4622-b14c-700c836f9478"; }];
+  fileSystems."/data" = {
+    device = "/dev/disk/by-label/ROOT";
+    fsType = "btrfs";
+    options = [ "subvol=data" "compress=zstd" "noatime" ];
+    neededForBoot = true;
+  };
+
+  fileSystems."/var/log" = {
+    device = "/dev/disk/by-label/ROOT";
+    fsType = "btrfs";
+    options = [ "subvol=log" "compress=zstd" "noatime" ];
+    neededForBoot = true;
+  };
+
+  fileSystems."/boot" = {
+    device = "/dev/disk/by-label/BOOT";
+    fsType = "vfat";
+  };
+
+  swapDevices = [{ device = "/dev/disk/by-label/SWAP"; }];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
