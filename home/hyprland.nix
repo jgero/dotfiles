@@ -114,7 +114,7 @@ with lib;
           bind = $mod2,up,exec,${pkgs.brightnessctl}/bin/brightnessctl set +10%
           bind = $mod2,down,exec,${pkgs.brightnessctl}/bin/brightnessctl set 10%-
           # screenshot
-          bind = CTRL SHIFT,s,exec,${pkgs.grim}/bin/grim -g "$(${pkgs.slurp}/bin/slurp)"
+          bind = CTRL SHIFT,s,exec,${pkgs.grim}/bin/grim -g "$(${pkgs.slurp}/bin/slurp)" - | ${pkgs.wl-clipboard}/bin/wl-copy
 
           # floating settings windows
           windowrule = float,title:^(nmtui|bluetuith|Volume Control)$
