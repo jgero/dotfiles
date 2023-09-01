@@ -10,7 +10,6 @@
           hostid = "5e13b1e5";
         };
         jgero.backup.enable = true;
-        jgero.hyprland.enable = true;
       }
     ];
   }
@@ -23,7 +22,6 @@
           hostname = "nixpad";
           hostid = "9a102409";
         };
-        jgero.hyprland.enable = true;
       }
     ];
   }
