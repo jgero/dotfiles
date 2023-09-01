@@ -10,8 +10,9 @@
       dirHashes = {
         gitdir = "$HOME/git";
       };
+      history.path = "/nix/persist/jgero/zsh_history";
       sessionVariables = {
-        GIT_EDITOR = "nix run ~/projects/init.lua --";
+        EDITOR = "nix run ~/projects/init.lua --";
       };
       shellAliases = {
         ptask = "task project:$(git rev-parse --show-toplevel | xargs basename)";

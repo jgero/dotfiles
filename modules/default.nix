@@ -21,6 +21,7 @@
     ./ssh.nix
     ./sudo.nix
     ./user.nix
+    ./virtualisation.nix
   ];
 
   # This value determines the NixOS release from which the default

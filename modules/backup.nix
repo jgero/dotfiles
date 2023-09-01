@@ -14,7 +14,7 @@ in
           remoteRepo = "sftp:jgero@sftp.hidrive.strato.com:/users/jgero/backups";
           localRepo = "/run/media/jgero/backup-drive/restic";
           passwordFile = config.age.secrets.resticPw.path;
-          backupPaths = "/home/jgero/sync";
+          backupPaths = "/data/jgero";
           keep = {
             daily = "7";
             weekly = "4";

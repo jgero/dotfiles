@@ -1,4 +1,4 @@
-{ pkgs, hyprland, ... }:
+{ pkgs, hyprland, impermanence, ... }:
 let
   compress-vid-dir = pkgs.writeScriptBin "compress-vid-dir" ''
     for file in *; do
@@ -49,8 +49,10 @@ in
 
   imports = [
     hyprland.homeManagerModules.default
+    impermanence.nixosModules.home-manager.impermanence
     ./waybar
     ./zsh
+    ./fs.nix
     ./git.nix
     ./hyprland.nix
     ./kitty.nix
