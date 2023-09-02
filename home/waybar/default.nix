@@ -11,8 +11,7 @@
       foo = {
         layer = "top";
         modules-left = [ "custom/nixstore" "wlr/workspaces" "hyprland/submap" ];
-        modules-center = [ "clock" ];
-        modules-right = [ "hyprland/language" "network" "bluetooth" "wireplumber" "cpu" "custom/coretemp" "memory" "battery" ];
+        modules-right = [ "hyprland/language" "network" "bluetooth" "wireplumber" "cpu" "custom/coretemp" "memory" "battery" "clock" ];
 
         # modules
         network = {
@@ -56,7 +55,6 @@
         };
         "hyprland/submap" = {
           format = "SUB: {}";
-          max-length = 15;
           tooltip = false;
         };
         clock = {

@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 {
   wayland.windowManager.hyprland =
     let
@@ -6,6 +6,57 @@
       wallpaper = builtins.fetchurl {
         url = "https://my.hidrive.com/api/sharelink/download?id=lECFE2kr";
         sha256 = "1sxwsvq8d1qnimnahdyjpzb94rzycnksr4m7j1khdm3ikxz9w33a";
+      };
+      submaps = {
+        "FOCUS" = {
+          modifier = "$mod2";
+          key = "B";
+          bindings = [
+            { key = "H"; command = "movefocus"; params = "l"; description = "left"; }
+            { key = "L"; command = "movefocus"; params = "r"; description = "right"; }
+            { key = "K"; command = "movefocus"; params = "u"; description = "up"; }
+            { key = "J"; command = "movefocus"; params = "d"; description = "down"; }
+          ];
+        };
+        "SESSION" = {
+          modifier = "$mod2";
+          key = "L";
+          bindings = [
+            { key = "L"; command = "exec"; params = "hyprctl dispatch submap reset && ${pkgs.swaylock}/bin/swaylock"; description = "lock"; }
+            { key = "S"; command = "exec"; params = "hyprctl dispatch submap reset && systemctl suspend"; description = "suspend"; }
+            { key = "P"; command = "exec"; params = "hyprctl dispatch submap reset && systemctl poweroff"; description = "poweroff"; }
+            { key = "R"; command = "exec"; params = "hyprctl dispatch submap reset && systemctl reboot"; description = "reboot"; }
+          ];
+        };
+        "RESIZE" = {
+          modifier = "$mod2";
+          key = "R";
+          bindings = [
+            { key = "H"; command = "resizeactive"; params = "-10 0"; description = "left"; repeatable = true; }
+            { key = "L"; command = "resizeactive"; params = "10 0"; description = "right"; repeatable = true; }
+            { key = "K"; command = "resizeactive"; params = "0 -10"; description = "up"; repeatable = true; }
+            { key = "J"; command = "resizeactive"; params = "0 10"; description = "down"; repeatable = true; }
+          ];
+        };
+        "SETTINGS" = {
+          modifier = "$mod2";
+          key = "S";
+          bindings = [
+            { key = "N"; command = "exec"; params = "hyprctl dispatch submap reset && kitty --detach -T nmtui ${pkgs.zsh}/bin/zsh -c nmtui"; description = "etwork"; }
+            { key = "B"; command = "exec"; params = "hyprctl dispatch submap reset && kitty --detach -T bluetuith ${pkgs.zsh}/bin/zsh -c ${pkgs.bluetuith}/bin/bluetuith"; description = "luetooth"; }
+            { key = "S"; command = "exec"; params = "hyprctl dispatch submap reset && ${pkgs.pavucontrol}/bin/pavucontrol"; description = "ound"; }
+          ];
+        };
+        "DISPLAY" = {
+          modifier = "$mod2";
+          key = "D";
+          bindings = [
+            { key = "M"; command = "exec"; params = ''hyprctl dispatch submap reset && hyprctl keyword monitor ",highres,auto,1,mirror,eDP-1"''; description = "left"; }
+            { key = "E"; command = "exec"; params = ''hyprctl dispatch submap reset && hyprctl keyword monitor ",highres,auto,1"''; description = "right"; }
+            { key = "S"; command = "exec"; params = ''hyprctl dispatch submap reset && hyprctl keyword monitor "eDP-1, disable"''; description = "up"; }
+            { key = "R"; command = "exec"; params = ''hyprctl dispatch submap reset && systemctl --user restart waybar.service''; description = "down"; }
+          ];
+        };
       };
     in
     {
@@ -49,55 +100,25 @@
         bind = $mod SHIFT,H,movetoworkspace,-1
         bind = $mod,Q,killactive,
 
-        # focus
-        bind = $mod2,B,submap,FOCUS
-        submap = FOCUS
-        bind = ,H,movefocus,l
-        bind = ,L,movefocus,r
-        bind = ,K,movefocus,u
-        bind = ,J,movefocus,d
-        bind = ,Return,submap,reset
+        ${lib.strings.concatStringsSep "\n\n" (lib.attrsets.mapAttrsToList
+        (name: value: let
+          nameWithDesc = "${name} ${lib.strings.concatMapStringsSep " "
+          (binding: "(${binding.key})${binding.description}")
+          value.bindings}";
+        in ''
+        bind = ${value.modifier},${value.key},submap,${nameWithDesc}
+        submap = ${nameWithDesc}
+        ${lib.strings.concatMapStringsSep "\n" (binding:
+          lib.strings.concatStringsSep "," [
+          "bind${if binding.repeatable or false then "e" else ""} = "
+          binding.key
+          binding.command
+          binding.params
+          ]) value.bindings}
         bind = ,escape,submap,reset
         submap = reset
-
-        # session
-        bind = $mod2,L,submap,SESSION
-        submap = SESSION
-        bind = ,L,exec,hyprctl dispatch submap reset && ${pkgs.swaylock}/bin/swaylock
-        bind = ,S,exec,hyprctl dispatch submap reset && systemctl suspend
-        bind = ,P,exec,hyprctl dispatch submap reset && systemctl poweroff
-        bind = ,R,exec,hyprctl dispatch submap reset && systemctl reboot
-        bind = ,escape,submap,reset
-        submap = reset
-
-        # resize
-        bind = $mod2,R,submap,RESIZE
-        submap = RESIZE
-        binde = ,right,resizeactive,10 0
-        binde = ,left,resizeactive,-10 0
-        binde = ,up,resizeactive,0 -10
-        binde = ,down,resizeactive,0 10
-        bind = ,escape,submap,reset
-        submap = reset
-
-        # settings
-        bind = $mod2,S,submap,SETTINGS
-        submap = SETTINGS
-        bind = ,N,exec,hyprctl dispatch submap reset && kitty --detach -T nmtui ${pkgs.zsh}/bin/zsh -c nmtui
-        bind = ,B,exec,hyprctl dispatch submap reset && kitty --detach -T bluetuith ${pkgs.zsh}/bin/zsh -c ${pkgs.bluetuith}/bin/bluetuith
-        bind = ,S,exec,hyprctl dispatch submap reset && ${pkgs.pavucontrol}/bin/pavucontrol
-        bind = ,escape,submap,reset
-        submap = reset
-        
-        # display
-        bind = $mod2,D,submap,DISPLAY
-        submap = DISPLAY
-        bind = ,M,exec,hyprctl dispatch submap reset && hyprctl keyword monitor ",highres,auto,1,mirror,eDP-1"
-        bind = ,E,exec,hyprctl dispatch submap reset && hyprctl keyword monitor ",highres,auto,1"
-        bind = ,S,exec,hyprctl dispatch submap reset && hyprctl keyword monitor "eDP-1, disable"
-        bind = ,R,exec,hyprctl dispatch submap reset && systemctl --user restart waybar.service
-        bind = ,escape,submap,reset
-        submap = reset
+        ''
+        ) submaps)}
 
         exec-once = ${pkgs.swayidle}/bin/swayidle -w
         exec-once = ${pkgs.swaybg}/bin/swaybg --image ${wallpaper}
