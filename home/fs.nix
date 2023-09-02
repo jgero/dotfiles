@@ -13,7 +13,15 @@
     allowOther = true;
   };
   home.persistence."/nix/persist/jgero" = {
-    directories = [ "projects" ];
+    directories = [
+      "projects"
+      ".config/Signal"
+      ".config/Element"
+      ".thunderbird"
+      ".mozilla/firefox"
+      ".cache/mozilla/firefox"
+      ".local"
+    ];
     allowOther = true;
   };
 }
