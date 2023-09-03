@@ -7,9 +7,6 @@
       enable = true;
       enableAutosuggestions = true;
       enableSyntaxHighlighting = true;
-      dirHashes = {
-        gitdir = "$HOME/git";
-      };
       history.path = "/nix/persist/jgero/zsh_history";
       sessionVariables = {
         EDITOR = "nix run ~/projects/init.lua --";
