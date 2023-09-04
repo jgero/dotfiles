@@ -22,10 +22,10 @@
           modifier = "$mod2";
           key = "L";
           bindings = [
-            { key = "L"; command = "exec"; params = "hyprctl dispatch submap reset && ${pkgs.swaylock}/bin/swaylock"; description = "lock"; }
-            { key = "S"; command = "exec"; params = "hyprctl dispatch submap reset && systemctl suspend"; description = "suspend"; }
-            { key = "P"; command = "exec"; params = "hyprctl dispatch submap reset && systemctl poweroff"; description = "poweroff"; }
-            { key = "R"; command = "exec"; params = "hyprctl dispatch submap reset && systemctl reboot"; description = "reboot"; }
+            { key = "L"; command = "exec"; params = "hyprctl dispatch submap reset && ${pkgs.swaylock}/bin/swaylock"; description = "ock"; }
+            { key = "S"; command = "exec"; params = "hyprctl dispatch submap reset && systemctl suspend"; description = "uspend"; }
+            { key = "P"; command = "exec"; params = "hyprctl dispatch submap reset && systemctl poweroff"; description = "oweroff"; }
+            { key = "R"; command = "exec"; params = "hyprctl dispatch submap reset && systemctl reboot"; description = "eboot"; }
           ];
         };
         "RESIZE" = {
@@ -51,10 +51,10 @@
           modifier = "$mod2";
           key = "D";
           bindings = [
-            { key = "M"; command = "exec"; params = ''hyprctl dispatch submap reset && hyprctl keyword monitor ",highres,auto,1,mirror,eDP-1"''; description = "left"; }
-            { key = "E"; command = "exec"; params = ''hyprctl dispatch submap reset && hyprctl keyword monitor ",highres,auto,1"''; description = "right"; }
-            { key = "S"; command = "exec"; params = ''hyprctl dispatch submap reset && hyprctl keyword monitor "eDP-1, disable"''; description = "up"; }
-            { key = "R"; command = "exec"; params = ''hyprctl dispatch submap reset && systemctl --user restart waybar.service''; description = "down"; }
+            { key = "M"; command = "exec"; params = ''hyprctl dispatch submap reset && hyprctl keyword monitor ",highres,auto,1,mirror,eDP-1"''; description = "irror"; }
+            { key = "E"; command = "exec"; params = ''hyprctl dispatch submap reset && hyprctl keyword monitor ",highres,auto,1"''; description = "xtend"; }
+            { key = "S"; command = "exec"; params = ''hyprctl dispatch submap reset && hyprctl keyword monitor "eDP-1, disable"''; description = "ingle"; }
+            { key = "R"; command = "exec"; params = ''hyprctl dispatch submap reset && systemctl --user restart waybar.service''; description = "eload"; }
           ];
         };
       };
