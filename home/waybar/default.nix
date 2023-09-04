@@ -10,8 +10,9 @@
     settings = {
       foo = {
         layer = "top";
-        modules-left = [ "custom/nixstore" "wlr/workspaces" "hyprland/submap" ];
-        modules-right = [ "hyprland/language" "network" "bluetooth" "wireplumber" "cpu" "custom/coretemp" "memory" "battery" "clock" ];
+        modules-left = [ "clock" "custom/nixstore" "wlr/workspaces" ];
+        modules-center = [ "hyprland/submap" ];
+        modules-right = [ "hyprland/language" "network" "bluetooth" "wireplumber" "cpu" "custom/coretemp" "memory" "battery" ];
 
         # modules
         network = {
