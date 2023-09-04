@@ -5,7 +5,7 @@
     if [ ! -f "$NOTE_FILE_NAME" ]; then
       echo "# Notes for $(date +%Y-%m-%d)" > "$NOTE_FILE_NAME"
     fi
-    nix run ~/projects/init.lua -- -c "norm Go" \
+    nvim -c "norm Go" \
       -c "norm Go## $(date +%H:%M)" \
       -c "norm G2o" \
       -c "norm zz" \

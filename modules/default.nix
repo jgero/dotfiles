@@ -1,6 +1,5 @@
 { pkgs, agenix, ... }: {
   environment.systemPackages = with pkgs; [
-    neovim
     curl
     restic
     agenix

@@ -50,6 +50,7 @@ in
   imports = [
     hyprland.homeManagerModules.default
     impermanence.nixosModules.home-manager.impermanence
+    ./neovim
     ./waybar
     ./zsh
     ./fs.nix

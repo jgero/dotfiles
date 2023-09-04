@@ -8,13 +8,8 @@
       enableAutosuggestions = true;
       enableSyntaxHighlighting = true;
       history.path = "/nix/persist/jgero/zsh_history";
-      sessionVariables = {
-        EDITOR = "nix run ~/projects/init.lua --";
-      };
       shellAliases = {
         ptask = "task project:$(git rev-parse --show-toplevel | xargs basename)";
-        nvim = "nix run ~/projects/init.lua --";
-        nvimStable = "nix run github:jgero/init.lua/stable --";
         compress10 = "mogrify -quality 10";
         addK = "ssh-add -K";
         createDevProfile = ''nix develop --profile "$XDG_DATA_HOME/dev-profile-$(git rev-parse --show-toplevel | xargs basename)"'';
