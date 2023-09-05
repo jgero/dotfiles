@@ -7,10 +7,10 @@
       nil
       rust-analyzer
       kotlin-language-server
+      clang-tools
     ] ++ (with pkgs.nodePackages; [
       bash-language-server
-      vscode-html-languageserver-bin
-      vscode-css-languageserver-bin
+      vscode-langservers-extracted
       typescript-language-server
       svelte-language-server
     ]);

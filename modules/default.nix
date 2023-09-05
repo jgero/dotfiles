@@ -3,6 +3,8 @@
     curl
     restic
     agenix
+
+    clang
   ];
 
   imports = [

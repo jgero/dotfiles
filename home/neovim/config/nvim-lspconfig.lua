@@ -39,11 +39,19 @@ lspc.bashls.setup({
 	capabilities = capabilities,
 	on_attach = on_attach,
 })
+lspc.clangd.setup({
+	capabilities = capabilities,
+	on_attach = on_attach,
+})
 lspc.html.setup({
 	capabilities = capabilities,
 	on_attach = on_attach,
 })
 lspc.cssls.setup({
+	capabilities = capabilities,
+	on_attach = on_attach,
+})
+lspc.jsonls.setup({
 	capabilities = capabilities,
 	on_attach = on_attach,
 })
