@@ -2,19 +2,14 @@
 {
   programs.waybar = {
     enable = true;
-    # experimental flag is necessary for wlr workspaces module
-    package = pkgs.waybar.overrideAttrs (oa: {
-      mesonFlags = (oa.mesonFlags or  [ ]) ++ [ "-Dexperimental=true" ];
-    });
     systemd.enable = true;
     settings = {
       foo = {
         layer = "top";
-        modules-left = [ "clock" "custom/nixstore" "wlr/workspaces" ];
+        modules-left = [ "clock" "custom/nixstore" "hyprland/workspaces" ];
         modules-center = [ "hyprland/submap" ];
         modules-right = [ "hyprland/language" "network" "bluetooth" "wireplumber" "cpu" "custom/coretemp" "memory" "battery" ];
 
-        # modules
         network = {
           format = "NET |";
           format-wifi = "NET: {essid} |";
@@ -51,8 +46,8 @@
           format = "LANG: {} |";
           format-en = "EN/US";
         };
-        "wlr/workspaces" = {
-          format = "{icon}";
+        "hyprland/workspaces" = {
+          format = "{name}";
         };
         "hyprland/submap" = {
           format = "SUB: {}";

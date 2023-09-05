@@ -6,7 +6,7 @@
     {
       enable = true;
       enableAutosuggestions = true;
-      enableSyntaxHighlighting = true;
+      syntaxHighlighting.enable = true;
       history.path = "/nix/persist/jgero/zsh_history";
       shellAliases = {
         ptask = "task project:$(git rev-parse --show-toplevel | xargs basename)";

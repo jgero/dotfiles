@@ -61,26 +61,25 @@
     in
     {
       enable = true;
-      systemdIntegration = true;
-      extraConfig = ''
-        input {
-            kb_layout = us,de
-            touchpad {
-                natural_scroll = true
-            }
-        }
-        general {
-            col.active_border = 0xff5074bd
-        }
-        decoration {
-            rounding = 5
-        }
+      settings = {
+        input = {
+          kb_layout = "us,de";
+          touchpad = {
+            natural_scroll = true;
+          };
+        };
+        general = {
+          "col.active_border" = "0xff5074bd";
+        };
+        decoration = {
+          rounding = 5;
+        };
         # highres and scaling 1 is important to fix wayland scaling issues
-        monitor=,highres,auto,1
-
-        $mod = ALT
-        $mod2 = SUPER
-
+        monitor = ",highres,auto,1";
+        "$mod" = "ALT";
+        "$mod2" = "SUPER";
+      };
+      extraConfig = ''
         # jump
         bind = $mod,1,workspace,1
         bind = $mod,2,workspace,2

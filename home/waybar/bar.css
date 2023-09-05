@@ -1,6 +1,6 @@
 * {
     font-family: "JetBrains Mono";
-    font-size: 13px;
+    font-size: 14px;
 }
 
 window#waybar {
@@ -81,6 +81,7 @@ window#waybar {
     transition: background-color .3s ease-out;
     color: black;
 }
+
 #workspaces button.active {
     background-color: #66abde;
 }

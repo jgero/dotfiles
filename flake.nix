@@ -2,13 +2,12 @@
   description = "Who needs a working system anyways, me smash state";
 
   inputs = {
-    nixpkgs.url = "nixpkgs/nixos-23.05";
+    nixpkgs.url = "nixpkgs/nixos-unstable";
     home-manager = {
-      url = "github:nix-community/home-manager/release-23.05";
+      url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
-    hyprland.url = "github:hyprwm/Hyprland";
     agenix = {
       url = "github:ryantm/agenix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -25,7 +24,6 @@
     , nixpkgs
     , home-manager
     , nixos-hardware
-    , hyprland
     , agenix
     , treefmt-nix
     , impermanence
@@ -62,7 +60,7 @@
                   home-manager.useUserPackages = true;
                   home-manager.users.jgero = import ./home;
                   home-manager.extraSpecialArgs = {
-                    inherit hyprland impermanence;
+                    inherit impermanence;
                   };
                 }
               ] ++ host.nixosModules;
