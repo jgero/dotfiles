@@ -1,12 +1,9 @@
-{ pkgs, ... }: {
+{
   virtualisation = {
-    podman = {
-      enable = true;
-      extraPackages = [ pkgs.zfs ];
-    };
+    podman.enable = true;
     containers.storage.settings = {
       storage = {
-        driver = "zfs";
+        driver = "btrfs";
         graphroot = "/var/lib/containers/storage";
         runroot = "/run/containers/storage";
       };
