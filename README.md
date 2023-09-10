@@ -34,5 +34,10 @@ behind their own options, like backups and networking. But most of the
 configuration is just considered default for my systems and applied without
 explicit enabling.
 
+## TODO
+
+- Implement [append only
+backups](https://ruderich.org/simon/notes/append-only-backups-with-restic-and-rclone)
+
 [^1]: [NixOS Wiki - Impermanence](https://nixos.wiki/wiki/Impermanence)
 
