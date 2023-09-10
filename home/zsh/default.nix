@@ -16,6 +16,7 @@
         dev = ''nix develop "$XDG_DATA_HOME/dev-profile-$(git rev-parse --show-toplevel | xargs basename)"'';
         hyprlandLogs = ''cat /tmp/hypr/$(ls -t /tmp/hypr/ | head -n 1)/hyprland.log'';
         sp = ''${select-project}/bin/select-project'';
+        udm = "udisksctl mount -b";
       };
       initExtra = ''
         ${builtins.readFile ./prompt.zsh}

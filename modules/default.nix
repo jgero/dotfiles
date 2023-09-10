@@ -3,7 +3,11 @@
     curl
     restic
     agenix
+
+    udisks
   ];
+
+  services.udisks2.enable = true;
 
   imports = [
     ./backup.nix
