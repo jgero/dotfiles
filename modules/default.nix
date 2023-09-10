@@ -11,7 +11,6 @@
     ./backup.nix
     ./bluetooth.nix
     ./boot.nix
-    ./containers.nix
     ./firmware.nix
     ./hyprland.nix
     ./i18n.nix
