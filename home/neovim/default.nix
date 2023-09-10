@@ -8,6 +8,7 @@
       rust-analyzer
       kotlin-language-server
       clang-tools
+      gopls
     ] ++ (with pkgs.nodePackages; [
       bash-language-server
       vscode-langservers-extracted
@@ -45,7 +46,6 @@
         friendly-snippets
 
         comment-nvim
-        nvim-ts-context-commentstring
         vim-surround
         vim-repeat
 
