@@ -56,8 +56,8 @@
     cp /etc/machine-id /mnt/nix/persist/etc/machine-id
     mkdir -p /mnt/nix/persist/etc/ssh
     ssh-keygen -f /mnt/nix/persist/etc/ssh/ssh_host_ed25519_key -t ed25519 -q -N ""
-    mkdir /mnt/nix/persist/jgero
-    chown 1000:100 /mnt/nix/persist/jgero
+    mkdir -p /mnt/nix/persist/jgero/containers/{run,graph}
+    chown -R 1000:100 /mnt/nix/persist/jgero
 
     # data subvolume
     mkdir /mnt/data
