@@ -1,11 +1,11 @@
 local cmp = require("cmp")
-local luasnip = require("luasnip")
+local ls = require("luasnip")
 require("luasnip.loaders.from_vscode").lazy_load()
 
 cmp.setup({
 	snippet = {
 		expand = function(args)
-			luasnip.lsp_expand(args.body)
+			ls.lsp_expand(args.body)
 		end,
 	},
 	mapping = {
@@ -29,5 +29,24 @@ cmp.setup.cmdline(":", {
 		{ name = "path" },
 	}, {
 		{ name = "cmdline" },
+	}),
+})
+
+vim.keymap.set({ "i", "s" }, "<C-L>", function()
+	ls.jump(1)
+end, { silent = true, desc = "jump forwards in snippet" })
+
+local s = ls.snippet
+local t = ls.text_node
+local i = ls.insert_node
+
+ls.add_snippets("go", {
+	s("iferr", {
+		t({ "if " }),
+		i(1, "err != nil"),
+		t({ " {", "\treturn " }),
+		i(2, "err"),
+		t({ "", "}", "" }),
+		i(0),
 	}),
 })
