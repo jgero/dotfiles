@@ -233,7 +233,7 @@ normally have to do when using home-manager with a normal `configuration.nix`.
 
 ```nix
 inputs = {
-    hixpkgs.url = "nixpkgs/nixos-22.11";
+    nixpkgs.url = "nixpkgs/nixos-22.11";
     home-manager.url = "github:nix-community/home-manager/release-22.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 };
