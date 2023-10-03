@@ -127,7 +127,7 @@
         # terminal
         bind = $mod,Return,exec,kitty
         bind = $mod2,SPACE,exec,hyprctl devices | ${pkgs.gnugrep}/bin/grep 'keyboard' | tr -d '\t' | xargs -I KEYBOARD hyprctl switchxkblayout KEYBOARD next
-        bind = $mod,N,exec,kitty ${quicknote}/bin/quicknote
+        bind = $mod,N,exec,kitty --detach -T quicknote ${quicknote}/bin/quicknote
         # brightness
         bind = $mod2,up,exec,${pkgs.brightnessctl}/bin/brightnessctl set +10%
         bind = $mod2,down,exec,${pkgs.brightnessctl}/bin/brightnessctl set 10%-
@@ -135,9 +135,9 @@
         bind = CTRL SHIFT,s,exec,${pkgs.grim}/bin/grim -g "$(${pkgs.slurp}/bin/slurp)" - | ${pkgs.wl-clipboard}/bin/wl-copy -t image/png
 
         # floating settings windows
-        windowrule = float,title:^(nmtui|bluetuith|Volume Control)$
-        windowrule = center,title:^(nmtui|bluetuith|Volume Control)$
-        windowrule = size 900 500,title:^(nmtui|bluetuith|Volume Control)$
+        windowrule = float,title:^(nmtui|bluetuith|Volume Control|quicknote)$
+        windowrule = center,title:^(nmtui|bluetuith|Volume Control|quicknote)$
+        windowrule = size 900 500,title:^(nmtui|bluetuith|Volume Control|quicknote)$
       '';
     };
 }
