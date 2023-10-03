@@ -3,7 +3,7 @@ local builtin = require("telescope.builtin")
 vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "[f]ind [f]files" })
 vim.keymap.set("n", "<leader>fn", function()
 	builtin.find_files({
-		search_dirs = { "/home/jgero/sync/notes" },
+		search_dirs = { "/home/jgero/data/notes" },
 	})
 end, { desc = "[f]ind in [n]otes" })
 vim.keymap.set("n", "<leader>fd", function()
