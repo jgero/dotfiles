@@ -1,7 +1,9 @@
-{ disk ? "/dev/nvme0n1" }: {
+# run with mode 'disko' and --arg disk '"/dev/sda"'
+
+{ disk ? "/dev/nvme0n1", ... }: {
   disko.devices = {
     disk = {
-      vdb = {
+      internal = {
         type = "disk";
         device = disk;
         content = {
@@ -28,10 +30,9 @@
                   allowDiscards = true;
                   # if you want to use the key for interactive login be sure there is no trailing newline
                   # for example use `echo -n "password" > /tmp/secret.key`
-                  passwordFile = "/tmp/secret.key"; # Interactive
-                  # keyFile = "/tmp/secret.key";
+                  # passwordFile = "/tmp/secret.key"; # Interactive
+                  keyFile = "/tmp/secret.key";
                 };
-                additionalKeyFiles = [ "/tmp/additionalSecret.key" ];
                 content = {
                   type = "lvm_pv";
                   vg = "pool";
@@ -45,8 +46,16 @@
         pool = {
           type = "lvm_vg";
           lvs = {
+            swap = {
+              size = "16G";
+              content = {
+                type = "swap";
+                # randomEncryption = true;
+                resumeDevice = true; # resume from hiberation from this device
+              };
+            };
             root = {
-              end = "-16G";
+              size = "100%FREE";
               content = {
                 type = "btrfs";
                 extraArgs = [ "-f" ];
@@ -64,14 +73,6 @@
                     mountOptions = [ "compress=zstd" "noatime" ];
                   };
                 };
-              };
-            };
-            swap = {
-              size = "100%";
-              content = {
-                type = "swap";
-                # randomEncryption = true;
-                resumeDevice = true; # resume from hiberation from this device
               };
             };
           };
