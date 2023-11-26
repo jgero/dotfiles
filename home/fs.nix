@@ -21,6 +21,7 @@
       ".mozilla/firefox"
       ".cache/mozilla/firefox"
       ".local"
+      "vm"
     ];
     allowOther = true;
   };
