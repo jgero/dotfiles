@@ -55,7 +55,6 @@ in
     impermanence.nixosModules.home-manager.impermanence
     ./neovim
     ./waybar
-    ./zsh
     ./fs.nix
     ./git.nix
     ./hyprland.nix
@@ -68,5 +67,6 @@ in
     ./tmux.nix
     ./virtualisation.nix
     ./wofi.nix
+    ./zsh.nix
   ];
 }

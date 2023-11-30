@@ -13,6 +13,9 @@
         pid-cpu = pkgs.writeScriptBin "pid-cpu" ''
           ps -p $1 -o %cpu | tr -dc "[:digit:]."
         '';
+        git-branch = pkgs.writeScriptBin "git-branch" ''
+          git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'
+        '';
       in
       ''
         set -s copy-command 'wl-copy'
@@ -55,7 +58,7 @@
 
         set-option -g status-style bg=#181a1f
         set -g status-left-length 30
-        set -g status-left "#[fg=black,bg=#66abde,bold] #S #[bg=default] "
+        set -g status-left "#[fg=black,bg=#66abde,bold] #(echo $(${git-branch}/bin/git-branch))@#S #[bg=default] "
         set -g window-status-current-format "#[fg=black,bg=#5074bd,bold] #I: #W "
         set -g window-status-format "#[fg=black,bg=#66abde]#{?window_last_flag,#[bold],} #I: #W "
         set -g status-right "#[fg=black,bg=#5074bd,bold] [#{pid}] CPU: #(echo $(${pid-cpu}/bin/pid-cpu #{pid}))% MEM: #(echo $(${pid-mem}/bin/pid-mem #{pid}))% "
