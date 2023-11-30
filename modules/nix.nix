@@ -1,12 +1,15 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+let nixPath = "/etc/nixPath";
+in {
+  systemd.tmpfiles.rules = [
+    "L+ ${nixPath} - - - - ${pkgs.path}"
+  ];
   nix = {
+    nixPath = [ "nixpkgs=${nixPath}" ];
     settings = {
       allowed-users = [ "@wheel" ];
       experimental-features = [ "nix-command" "flakes" ];
     };
-    # enable flakes
-    package = pkgs.nixFlakes;
-    # automatic garbage collection
     gc = {
       automatic = true;
       dates = "weekly";
