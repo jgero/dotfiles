@@ -15,7 +15,6 @@
     ./firmware.nix
     ./hyprland.nix
     ./i18n.nix
-    ./impermanence.nix
     ./network.nix
     ./nix.nix
     ./secrets.nix

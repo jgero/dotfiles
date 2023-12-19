@@ -1,4 +1,4 @@
-{ pkgs, impermanence, ... }:
+{ pkgs, ... }:
 let
   compress-vid-dir = pkgs.writeScriptBin "compress-vid-dir" ''
     for file in *; do
@@ -48,7 +48,6 @@ in
   ];
 
   imports = [
-    impermanence.nixosModules.home-manager.impermanence
     ./neovim
     ./waybar
     ./fs.nix
