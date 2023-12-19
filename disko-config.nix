@@ -3,7 +3,7 @@
 { disk ? "/dev/nvme0n1", ... }: {
   disko.devices = {
     disk = {
-      internal = {
+      slot_0 = {
         type = "disk";
         device = disk;
         content = {
@@ -42,6 +42,7 @@
           };
         };
       };
+    };
       lvm_vg = {
         pool = {
           type = "lvm_vg";
@@ -78,6 +79,5 @@
           };
         };
       };
-    };
   };
 }

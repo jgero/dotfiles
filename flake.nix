@@ -17,6 +17,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     impermanence.url = "github:nix-community/impermanence";
+    disko = {
+        url = "github:nix-community/disko";
+        inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -27,6 +31,7 @@
     , agenix
     , treefmt-nix
     , impermanence
+    , disko
     }:
     let
       lib = nixpkgs.lib;
@@ -40,7 +45,6 @@
     {
       formatter.${system} = treefmtEval.config.build.wrapper;
       checks.${system}.formatter = treefmtEval.config.build.check self;
-      packages."${system}".install = import ./install.nix { inherit pkgs; };
       nixosConfigurations = builtins.listToAttrs (
         builtins.map
           (host: {
@@ -49,6 +53,8 @@
               inherit system pkgs;
               modules = [
                 impermanence.nixosModules.impermanence
+                disko.nixosModules.disko
+                ./disko-config.nix
                 agenix.nixosModules.default
                 {
                   _module.args.agenix = agenix.packages.${system}.default;

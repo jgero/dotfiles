@@ -16,7 +16,7 @@
   {
     name = "nixpad";
     nixosModules = [
-      ./hardware/thinkpad_2023.nix
+      ./hardware/work_pad_l590.nix
       {
         jgero.network = {
           hostname = "nixpad";
