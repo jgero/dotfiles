@@ -16,7 +16,6 @@
       url = "github:numtide/treefmt-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    impermanence.url = "github:nix-community/impermanence";
     disko = {
         url = "github:nix-community/disko";
         inputs.nixpkgs.follows = "nixpkgs";
@@ -30,7 +29,6 @@
     , nixos-hardware
     , agenix
     , treefmt-nix
-    , impermanence
     , disko
     }:
     let
@@ -52,7 +50,6 @@
             value = lib.nixosSystem {
               inherit system pkgs;
               modules = [
-                impermanence.nixosModules.impermanence
                 disko.nixosModules.disko
                 ./disko-config.nix
                 agenix.nixosModules.default
@@ -65,9 +62,6 @@
                   home-manager.useGlobalPkgs = true;
                   home-manager.useUserPackages = true;
                   home-manager.users.jgero = import ./home;
-                  home-manager.extraSpecialArgs = {
-                    inherit impermanence;
-                  };
                 }
               ] ++ host.nixosModules;
             };
