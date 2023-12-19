@@ -60,7 +60,6 @@ in
     ./swaylock.nix
     ./task.nix
     ./tmux.nix
-    ./virtualisation.nix
     ./wofi.nix
     ./zsh.nix
   ];
