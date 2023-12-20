@@ -18,7 +18,6 @@
       extraConfig = ''
         for_window [title="floating_shell"] floating enable, border pixel 1, sticky enable
         for_window [title="dmenu"] floating enable, border pixel 1, sticky enable
-        corner_radius 4
         blur enable
       '';
       config = {
