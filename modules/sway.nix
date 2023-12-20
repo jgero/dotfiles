@@ -1,8 +1,12 @@
 { pkgs, ... }:
 {
-  programs.hyprland.enable = true;
-  # hyprland complains now that wlr and hyprland portal are active at the same time
-  # xdg.portal.wlr.enable = true;
+  programs.sway.enable = true;
+  xdg.portal = {
+    enable = true;
+    wlr.enable = true;
+  };
+
+  security.polkit.enable = true;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
@@ -15,7 +19,7 @@
     enable = true;
     settings = {
       default_session = {
-        command = "${pkgs.greetd.greetd}/bin/agreety --cmd Hyprland";
+        command = "${pkgs.greetd.greetd}/bin/agreety --cmd sway";
       };
     };
   };

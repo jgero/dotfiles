@@ -1,15 +1,15 @@
-{ pkgs, ... }:
-{
+{ pkgs, ... }: {
   services.swayidle = {
     enable = true;
-    systemdTarget = "hyprland-session.target";
+    systemdTarget = "sway-session.target";
     events = [
-      { event = "before-sleep"; command = "${pkgs.swaylock}/bin/swaylock -f"; }
+      { event = "lock"; command = "${pkgs.swaylock}/bin/swaylock";}
+      { event = "before-sleep"; command = "${pkgs.swaylock}/bin/swaylock";}
+      { event = "after-resume"; command = "${pkgs.swayfx}/bin/swaymsg \"output * toggle\"";}
     ];
     timeouts = [
-      { timeout = 300; command = "hyprctl dispatch dpms off"; resumeCommand = "hyprctl dispatch dpms on"; }
-      { timeout = 305; command = "${pkgs.swaylock}/bin/swaylock -f"; }
+      { timeout = 600; command = "${pkgs.swaylock}/bin/swaylock";}
+      { timeout = 1200; command = "${pkgs.swayfx}/bin/swaymsg \"output * toggle\"";}
     ];
   };
 }
-

@@ -52,10 +52,10 @@ in
     ./waybar
     ./fs.nix
     ./git.nix
-    ./hyprland.nix
     ./kitty.nix
     ./mako.nix
     ./ssh.nix
+    ./sway.nix
     ./swayidle.nix
     ./swaylock.nix
     ./task.nix

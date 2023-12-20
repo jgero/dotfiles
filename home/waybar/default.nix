@@ -6,9 +6,9 @@
     settings = {
       foo = {
         layer = "top";
-        modules-left = [ "clock" "custom/nixstore" "hyprland/workspaces" ];
-        modules-center = [ "hyprland/submap" ];
-        modules-right = [ "hyprland/language" "network" "bluetooth" "wireplumber" "cpu" "custom/coretemp" "memory" "battery" ];
+        modules-left = [ "clock" "custom/nixstore" "sway/workspaces" ];
+        modules-center = [ "sway/mode" ];
+        modules-right = [ "sway/language" "network" "bluetooth" "wireplumber" "cpu" "custom/coretemp" "memory" "battery" ];
 
         network = {
           format = "NET |";

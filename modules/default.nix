@@ -13,13 +13,13 @@
     ./bluetooth.nix
     ./boot.nix
     ./firmware.nix
-    ./hyprland.nix
     ./i18n.nix
     ./network.nix
     ./nix.nix
     ./secrets.nix
     ./ssh.nix
     ./sudo.nix
+    ./sway.nix
     ./user.nix
     ./virtualisation.nix
     ./gtk.nix
