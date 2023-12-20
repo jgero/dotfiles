@@ -42,15 +42,15 @@
           format-off = "BLUE: OFF |";
           format-connected = "BLUE: {num_connections} |";
         };
-        "hyprland/language" = {
+        "sway/language" = {
           format = "LANG: {} |";
           format-en = "EN/US";
         };
-        "hyprland/workspaces" = {
+        "sway/workspaces" = {
           format = "{name}";
         };
-        "hyprland/submap" = {
-          format = "SUB: {}";
+        "sway/mode" = {
+          format = "MODE: {}";
           tooltip = false;
         };
         clock = {
