@@ -74,6 +74,9 @@
         decoration = {
           rounding = 5;
         };
+        misc = {
+          disable_hyprland_logo = true;
+        };
         # highres and scaling 1 is important to fix wayland scaling issues
         monitor = ",highres,auto,1";
         "$mod" = "ALT";
