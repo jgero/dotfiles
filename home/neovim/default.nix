@@ -3,18 +3,11 @@
     enable = true;
     defaultEditor = true;
     extraPackages = with pkgs;[
-      sumneko-lua-language-server
-      nil
-      rust-analyzer
-      kotlin-language-server
-      clang-tools
-      gopls
-    ] ++ (with pkgs.nodePackages; [
-      bash-language-server
-      vscode-langservers-extracted
-      typescript-language-server
-      svelte-language-server
-    ]);
+      ripgrep
+      fzf
+      gcc
+      fd
+    ];
     plugins = with pkgs.vimPlugins;
       let
         transparent = pkgs.vimUtils.buildVimPlugin {
@@ -59,13 +52,26 @@
     extraLuaConfig = lib.strings.concatStringsSep "\n"
       (lib.attrsets.mapAttrsToList
         (name: value:
-          "require('jgero.${lib.strings.removeSuffix ".lua" name}')"
+          if lib.strings.hasSuffix ".lua.nix" name then
+            "require('jgero.${lib.strings.removeSuffix ".lua.nix" name}')"
+          else if lib.strings.hasSuffix ".lua" name then
+            "require('jgero.${lib.strings.removeSuffix ".lua" name}')"
+          else ""
         )
         (builtins.readDir ./config)
       ++ [
       ]);
   };
-  xdg.configFile."nvim/lua/jgero" = {
-    source = ./config;
-  };
+  xdg.configFile = (lib.attrsets.mapAttrs'
+    (name: value:
+      if lib.strings.hasSuffix ".lua.nix" name then
+        (lib.attrsets.nameValuePair
+          ("nvim/lua/jgero/" +
+            (lib.strings.removeSuffix ".nix" name))
+          ({ text = import ./config/${name} { inherit pkgs lib; }; }))
+      else if lib.strings.hasSuffix ".lua" name then
+        (lib.attrsets.nameValuePair ("nvim/lua/jgero/" + name) ({ text = builtins.readFile ./config/${name}; }))
+      else { }
+    )
+    (builtins.readDir ./config));
 }

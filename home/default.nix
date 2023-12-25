@@ -43,10 +43,6 @@ in
     unzip
     pdfcpu
 
-    cargo
-    go
-    clang
-
     compress-vid-dir
     encode-vid
   ];
