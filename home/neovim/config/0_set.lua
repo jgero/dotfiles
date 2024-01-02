@@ -7,14 +7,28 @@ vim.o.listchars = "tab:» ,lead:·,trail:·,eol:¬,extends:…"
 vim.o.nu = true
 vim.o.relativenumber = true
 -- indent config
-vim.o.tabstop = 4
-vim.o.softtabstop = 4
-vim.o.shiftwidth = 4
-vim.o.expandtab = true
-vim.o.smartindent = true
+-- vim.o.tabstop = 4
+-- vim.o.softtabstop = 4
+-- vim.o.shiftwidth = 4
+-- vim.o.expandtab = true
+-- vim.api.nvim_create_autocmd("FileType", {
+-- 	pattern = { "*.lua", "*.go" },
+-- 	callback = function()
+-- 		vim.opt_local.expandtab = false
+-- 		vim.opt_local.softtabstop = 0
+-- 	end,
+-- })
+-- vim.o.smartindent = true
 vim.o.wrap = false
 vim.o.colorcolumn = "80"
-vim.o.textwidth = 80 -- this enables re-arranging lines with gq
+vim.o.textwidth = 80 -- enable re-arranging lines with gq
+vim.o.formatoptions = "cqj" -- no auto formatting for text
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = { "*.tex", "*.md" },
+	callback = function()
+		vim.opt_local.formatoptions = "tcqj" -- auto formatting for text as well
+	end,
+})
 -- history
 vim.o.backup = false
 vim.o.swapfile = false

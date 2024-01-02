@@ -11,7 +11,7 @@
     plugins = with pkgs.vimPlugins;
       let
         transparent = pkgs.vimUtils.buildVimPlugin {
-          name = "vim-better-whitespace";
+          name = "transparent-nvim";
           src = pkgs.fetchFromGitHub {
             owner = "xiyaowong";
             repo = "transparent.nvim";
@@ -19,10 +19,20 @@
             sha256 = "sha256-Z4Icv7c/fK55plk0y/lEsoWDhLc8VixjQyyO6WdTOVw=";
           };
         };
+        tabset = pkgs.vimUtils.buildVimPlugin {
+          name = "tabset-nvim";
+          src = pkgs.fetchFromGitHub {
+            owner = "FotiadisM";
+            repo = "tabset.nvim";
+            rev = "996f95e4105d053a163437e19a40bd2ea10abeb2";
+            sha256 = "sha256-kOLN74p5AvZlmZRd2hT5c1uV7qziVcyIB8fpC1RiDPk=";
+          };
+        };
       in
       [
         nvim-treesitter
         nvim-lspconfig
+        tabset
 
         onedark-nvim
         transparent
