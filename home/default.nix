@@ -50,6 +50,7 @@ in
   imports = [
     ./neovim
     ./waybar
+    ./bash.nix
     ./fs.nix
     ./git.nix
     ./kitty.nix
@@ -61,6 +62,5 @@ in
     ./task.nix
     ./tmux.nix
     ./wofi.nix
-    ./zsh.nix
   ];
 }

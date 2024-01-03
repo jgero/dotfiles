@@ -1,7 +1,6 @@
 { pkgs, ... }: {
-  programs.zsh.enable = true;
   users.users.jgero = {
-    shell = pkgs.zsh;
+    shell = pkgs.bash;
     isNormalUser = true;
     extraGroups = [ "wheel" "libvirtd" ];
     initialPassword = "password";
