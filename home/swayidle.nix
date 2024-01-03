@@ -5,11 +5,11 @@
     events = [
       { event = "lock"; command = "${pkgs.swaylock}/bin/swaylock";}
       { event = "before-sleep"; command = "${pkgs.swaylock}/bin/swaylock";}
-      { event = "after-resume"; command = "${pkgs.swayfx}/bin/swaymsg \"output * toggle\"";}
+      { event = "after-resume"; command = "${pkgs.sway}/bin/swaymsg \"output * toggle\"";}
     ];
     timeouts = [
       { timeout = 600; command = "${pkgs.swaylock}/bin/swaylock";}
-      { timeout = 1200; command = "${pkgs.swayfx}/bin/swaymsg \"output * toggle\"";}
+      { timeout = 1200; command = "${pkgs.sway}/bin/swaymsg \"output * toggle\"";}
     ];
   };
 }

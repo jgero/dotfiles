@@ -14,11 +14,9 @@
     in
     {
       enable = true;
-      package = pkgs.swayfx;
       extraConfig = ''
         for_window [title="floating_shell"] floating enable, border pixel 1, sticky enable
         for_window [title="dmenu"] floating enable, border pixel 1, sticky enable
-        blur enable
       '';
       config = {
         modifier = "Mod1";
@@ -104,8 +102,8 @@
           "${cfg.modifier}+tab" = "workspace back_and_forth";
 
           # Moving
-          "${cfg.modifier}+Shift+${cfg.right}" = "move container to workspace right, workspace right";
-          "${cfg.modifier}+Shift+${cfg.left}" = "move container to workspace left, workspace left";
+          "${cfg.modifier}+Shift+${cfg.right}" = "move container to workspace next, workspace next";
+          "${cfg.modifier}+Shift+${cfg.left}" = "move container to workspace prev, workspace prev";
 
           # Workspaces
           "${cfg.modifier}+1" = "workspace number 1";
@@ -126,7 +124,7 @@
           # Screenshot mode
           "${cfg.modifier}+Shift+s" = "mode \"${modeScreenshot}\"";
 
-          "Mod4+space" = "exec ${pkgs.swayfx}/bin/swaymsg input $(${pkgs.swayfx}/bin/swaymsg -t get_inputs --raw | ${pkgs.jq}/bin/jq '[.[] | select(.type == \"keyboard\")][0] | .identifier') xkb_switch_layout next";
+          "Mod4+space" = "exec ${pkgs.sway}/bin/swaymsg input $(${pkgs.sway}/bin/swaymsg -t get_inputs --raw | ${pkgs.jq}/bin/jq '[.[] | select(.type == \"keyboard\")][0] | .identifier') xkb_switch_layout next";
           "${cfg.modifier}+n" = "exec kitty --detach -T floating_shell ${quicknote}/bin/quicknote";
 
           # Multimedia Keys
@@ -142,25 +140,25 @@
         };
         modes = {
           "${modeShutdown}" = {
-            "h" = "exec ${pkgs.systemd}/bin/systemctl hibernate && ${pkgs.swayfx}/bin/swaymsg mode default";
-            "l" = "exec ${pkgs.swaylock}/bin/swaylock && ${pkgs.swayfx}/bin/swaymsg mode default";
-            # "e" = "exec ${pkgs.systemd}/bin/loginctl terminate-user $USER && ${pkgs.swayfx}/bin/swaymsg mode default";
-            "r" = "exec ${pkgs.systemd}/bin/systemctl reboot && ${pkgs.swayfx}/bin/swaymsg mode default";
-            "s" = "exec ${pkgs.systemd}/bin/systemctl suspend && ${pkgs.swayfx}/bin/swaymsg mode default";
-            "p" = "exec ${pkgs.systemd}/bin/systemctl poweroff && ${pkgs.swayfx}/bin/swaymsg mode default";
+            "h" = "exec ${pkgs.systemd}/bin/systemctl hibernate && ${pkgs.sway}/bin/swaymsg mode default";
+            "l" = "exec ${pkgs.swaylock}/bin/swaylock && ${pkgs.sway}/bin/swaymsg mode default";
+            # "e" = "exec ${pkgs.systemd}/bin/loginctl terminate-user $USER && ${pkgs.sway}/bin/swaymsg mode default";
+            "r" = "exec ${pkgs.systemd}/bin/systemctl reboot && ${pkgs.sway}/bin/swaymsg mode default";
+            "s" = "exec ${pkgs.systemd}/bin/systemctl suspend && ${pkgs.sway}/bin/swaymsg mode default";
+            "p" = "exec ${pkgs.systemd}/bin/systemctl poweroff && ${pkgs.sway}/bin/swaymsg mode default";
             Escape = "mode default";
             Return = "mode default";
           };
           "${modeScreenshot}" = {
-            "r" = "exec ${pkgs.swayfx}/bin/swaymsg mode default && ${pkgs.grim}/bin/grim -g \"$(${pkgs.slurp}/bin/slurp)\" - | ${pkgs.wl-clipboard}/bin/wl-copy";
-            "s" = "exec ${pkgs.swayfx}/bin/swaymsg mode default && ${pkgs.grim}/bin/grim -o \"$(${pkgs.swayfx}/bin/swaymsg -t get_outputs | ${pkgs.jq}/bin/jq -r '.[] | select(.focused)' | ${pkgs.jq}/bin/jq -r '.name')\" - | ${pkgs.wl-clipboard}/bin/wl-copy";
+            "r" = "exec ${pkgs.sway}/bin/swaymsg mode default && ${pkgs.grim}/bin/grim -g \"$(${pkgs.slurp}/bin/slurp)\" - | ${pkgs.wl-clipboard}/bin/wl-copy";
+            "s" = "exec ${pkgs.sway}/bin/swaymsg mode default && ${pkgs.grim}/bin/grim -o \"$(${pkgs.sway}/bin/swaymsg -t get_outputs | ${pkgs.jq}/bin/jq -r '.[] | select(.focused)' | ${pkgs.jq}/bin/jq -r '.name')\" - | ${pkgs.wl-clipboard}/bin/wl-copy";
             Escape = "mode default";
             Return = "mode default";
           };
           "${modeSettings}" = {
-            "n" = "exec ${pkgs.swayfx}/bin/swaymsg mode default && kitty --detach -T floating_shell ${pkgs.zsh}/bin/zsh -c nmtui";
-            "b" = "exec ${pkgs.swayfx}/bin/swaymsg mode default && kitty --detach -T floating_shell ${pkgs.zsh}/bin/zsh -c ${pkgs.bluetuith}/bin/bluetuith";
-            "s" = "exec ${pkgs.swayfx}/bin/swaymsg mode default && kitty --detach -T floating_shell ${pkgs.zsh}/bin/zsh -c ${pkgs.pulsemixer}/bin/pulsemixer";
+            "n" = "exec ${pkgs.sway}/bin/swaymsg mode default && kitty --detach -T floating_shell ${pkgs.zsh}/bin/zsh -c nmtui";
+            "b" = "exec ${pkgs.sway}/bin/swaymsg mode default && kitty --detach -T floating_shell ${pkgs.zsh}/bin/zsh -c ${pkgs.bluetuith}/bin/bluetuith";
+            "s" = "exec ${pkgs.sway}/bin/swaymsg mode default && kitty --detach -T floating_shell ${pkgs.zsh}/bin/zsh -c ${pkgs.pulsemixer}/bin/pulsemixer";
             Escape = "mode default";
             Return = "mode default";
           };
