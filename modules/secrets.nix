@@ -1,5 +1,4 @@
 {
-  age.identityPaths = [ "/nix/persist/etc/ssh/ssh_host_ed25519_key" ];
   age.secrets.yubipin = {
     file = ../secrets/yubipin.age;
     owner = "jgero";
