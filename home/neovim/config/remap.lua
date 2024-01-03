@@ -9,7 +9,3 @@ vim.keymap.set(
 	'{ -> v:hlsearch ? ":nohl\\<CR>" : "\\<CR>" }()',
 	{ expr = true, desc = "reset search highlight" }
 )
--- exit terminal mode with escape
-vim.keymap.set("t", "<Esc>", "<C-\\><C-n>", { desc = "exit terminal mode with escape" })
--- open new terminal on the bottom
-vim.keymap.set("", "<leader>t", ":split term://zsh<cr>:startinsert<cr>", { desc = "open terminal" })

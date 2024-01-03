@@ -156,9 +156,9 @@
             Return = "mode default";
           };
           "${modeSettings}" = {
-            "n" = "exec ${pkgs.sway}/bin/swaymsg mode default && kitty --detach -T floating_shell ${pkgs.zsh}/bin/zsh -c nmtui";
-            "b" = "exec ${pkgs.sway}/bin/swaymsg mode default && kitty --detach -T floating_shell ${pkgs.zsh}/bin/zsh -c ${pkgs.bluetuith}/bin/bluetuith";
-            "s" = "exec ${pkgs.sway}/bin/swaymsg mode default && kitty --detach -T floating_shell ${pkgs.zsh}/bin/zsh -c ${pkgs.pulsemixer}/bin/pulsemixer";
+            "n" = "exec ${pkgs.sway}/bin/swaymsg mode default && kitty --detach -T floating_shell ${pkgs.bash}/bin/bash -c nmtui";
+            "b" = "exec ${pkgs.sway}/bin/swaymsg mode default && kitty --detach -T floating_shell ${pkgs.bash}/bin/bash -c ${pkgs.bluetuith}/bin/bluetuith";
+            "s" = "exec ${pkgs.sway}/bin/swaymsg mode default && kitty --detach -T floating_shell ${pkgs.bash}/bin/bash -c ${pkgs.pulsemixer}/bin/pulsemixer";
             Escape = "mode default";
             Return = "mode default";
           };
