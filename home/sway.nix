@@ -93,17 +93,13 @@
           "${cfg.modifier}+space" = "exec ${cfg.menu}";
           "${cfg.modifier}+Control+r" = "reload";
 
-          # Focus
-          "${cfg.modifier}+${cfg.left}" = "focus left";
-          "${cfg.modifier}+${cfg.down}" = "focus down";
-          "${cfg.modifier}+${cfg.up}" = "focus up";
-          "${cfg.modifier}+${cfg.right}" = "focus right";
-
           "${cfg.modifier}+tab" = "workspace back_and_forth";
 
           # Moving
           "${cfg.modifier}+Shift+${cfg.right}" = "move container to workspace next, workspace next";
           "${cfg.modifier}+Shift+${cfg.left}" = "move container to workspace prev, workspace prev";
+          "${cfg.modifier}+${cfg.left}" = "workspace prev";
+          "${cfg.modifier}+${cfg.right}" = "workspace next";
 
           # Workspaces
           "${cfg.modifier}+1" = "workspace number 1";
@@ -116,6 +112,17 @@
           "${cfg.modifier}+8" = "workspace number 8";
           "${cfg.modifier}+9" = "workspace number 9";
           "${cfg.modifier}+0" = "workspace number 10";
+          # Workspaces
+          "${cfg.modifier}+Shift+1" = "move container to workspace number 1";
+          "${cfg.modifier}+Shift+2" = "move container to workspace number 2";
+          "${cfg.modifier}+Shift+3" = "move container to workspace number 3";
+          "${cfg.modifier}+Shift+4" = "move container to workspace number 4";
+          "${cfg.modifier}+Shift+5" = "move container to workspace number 5";
+          "${cfg.modifier}+Shift+6" = "move container to workspace number 6";
+          "${cfg.modifier}+Shift+7" = "move container to workspace number 7";
+          "${cfg.modifier}+Shift+8" = "move container to workspace number 8";
+          "${cfg.modifier}+Shift+9" = "move container to workspace number 9";
+          "${cfg.modifier}+Shift+0" = "move container to workspace number 10";
 
           # Shutdown mode
           "Mod4+l" = "mode \"${modeShutdown}\"";
@@ -125,7 +132,7 @@
           "${cfg.modifier}+Shift+s" = "mode \"${modeScreenshot}\"";
 
           "Mod4+space" = "exec ${pkgs.sway}/bin/swaymsg input $(${pkgs.sway}/bin/swaymsg -t get_inputs --raw | ${pkgs.jq}/bin/jq '[.[] | select(.type == \"keyboard\")][0] | .identifier') xkb_switch_layout next";
-          "${cfg.modifier}+n" = "exec kitty --detach -T floating_shell ${quicknote}/bin/quicknote";
+          "${cfg.modifier}+n" = "exec kitty --detach -T floating_shell ${pkgs.bash}/bin/bash -c ${quicknote}/bin/quicknote";
 
           # Multimedia Keys
           "XF86AudioMute" = "exec ${pkgs.pulseaudio}/bin/pactl set-sink-mute @DEFAULT_SINK@ toggle";
