@@ -1,6 +1,4 @@
-# run with mode 'disko' and --arg disk '"/dev/sda"'
-
-{ disk ? "/dev/nvme0n1", ... }: {
+{ disk, ... }: {
   disko.devices = {
     disk = {
       slot_0 = {
