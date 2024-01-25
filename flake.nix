@@ -51,7 +51,6 @@
               inherit system pkgs;
               modules = [
                 disko.nixosModules.disko
-                ./disko-config.nix
                 agenix.nixosModules.default
                 {
                   _module.args.agenix = agenix.packages.${system}.default;

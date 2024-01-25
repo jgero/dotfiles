@@ -23,6 +23,7 @@
           hostid = "9a102409";
         };
       }
+      (import ./disko-config.nix { disk = "/dev/sda"; })
     ];
   }
   {
