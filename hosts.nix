@@ -16,11 +16,23 @@
   {
     name = "nixpad";
     nixosModules = [
-      ./hardware/work_pad_l590.nix
+      ./hardware/thinkpad_2023.nix
       {
         jgero.network = {
           hostname = "nixpad";
           hostid = "9a102409";
+        };
+      }
+    ];
+  }
+  {
+    name = "workpad";
+    nixosModules = [
+      ./hardware/work_pad_l590.nix
+      {
+        jgero.network = {
+          hostname = "workpad";
+          hostid = "69666999";
         };
       }
     ];
