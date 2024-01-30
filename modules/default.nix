@@ -23,6 +23,7 @@
     ./sudo.nix
     ./user.nix
     ./virtualisation.nix
+    ./gtk.nix
   ];
 
   # This value determines the NixOS release from which the default
