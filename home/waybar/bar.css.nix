@@ -71,7 +71,9 @@ window#waybar {
 }
 
 #mode {
+    border-color: transparent;
     background-color: transparent;
+    color: ${background};
 }
 
 #workspaces button {

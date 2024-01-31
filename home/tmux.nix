@@ -1,5 +1,8 @@
-{ pkgs, ... }: {
-  programs.tmux = {
+{ pkgs, osConfig, ... }: {
+  programs.tmux = let
+    background = osConfig.jgero.colors.background;
+    foreground = osConfig.jgero.colors.foreground;
+  in {
     enable = true;
     clock24 = true;
     escapeTime = 0;
@@ -56,12 +59,12 @@
         unbind C-Left 
         unbind C-Right
 
-        set-option -g status-style bg=#181a1f
+        set-option -g status-style bg=${background}
         set -g status-left-length 30
-        set -g status-left "#[fg=black,bg=#66abde,bold] #(echo $(${git-branch}/bin/git-branch))@#S #[bg=default] "
-        set -g window-status-current-format "#[fg=black,bg=#5074bd,bold] #I: #W "
-        set -g window-status-format "#[fg=black,bg=#66abde]#{?window_last_flag,#[bold],} #I: #W "
-        set -g status-right "#[fg=black,bg=#5074bd,bold] [#{pid}] CPU: #(echo $(${pid-cpu}/bin/pid-cpu #{pid}))% MEM: #(echo $(${pid-mem}/bin/pid-mem #{pid}))% "
+        set -g status-left "#[fg=${foreground},bg=${background},bold] #(echo $(${git-branch}/bin/git-branch))@#S #[bg=default] "
+        set -g window-status-current-format "#[fg=${background},bg=${foreground},bold] #I: #W "
+        set -g window-status-format "#[fg=${foreground},bg=${background}]#{?window_last_flag,#[bold],} #I: #W "
+        set -g status-right "#[fg=${foreground},bg=${background},bold] [#{pid}] CPU: #(echo $(${pid-cpu}/bin/pid-cpu #{pid}))% MEM: #(echo $(${pid-mem}/bin/pid-mem #{pid}))% "
       '';
   };
 }
