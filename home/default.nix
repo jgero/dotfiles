@@ -31,7 +31,6 @@ in
     gnome.eog
     vlc
 
-    fzf
     ripgrep
     fd
     tree
@@ -52,6 +51,7 @@ in
     ./waybar
     ./bash.nix
     ./fs.nix
+    ./fzf.nix
     ./git.nix
     ./kitty.nix
     ./mako.nix
