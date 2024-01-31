@@ -1,11 +1,11 @@
-{ config, pkgs, ... }:
+{ config, pkgs, osConfig, ... }:
 {
   wayland.windowManager.sway =
     let
       quicknote = import ../pkgs/quicknote.nix { inherit pkgs; };
       wallpaper = builtins.fetchurl {
-        url = "https://my.hidrive.com/api/sharelink/download?id=lECFE2kr";
-        sha256 = "1sxwsvq8d1qnimnahdyjpzb94rzycnksr4m7j1khdm3ikxz9w33a";
+        url = "https://live.staticflickr.com/65535/51615066903_205139d85e_o_d.png";
+        sha256 = "15yii4zlx422d2fdl3wpz6a4faflzqam18kn7sbr9rmxlflcj2iw";
       };
       cfg = config.wayland.windowManager.sway.config;
       modeSettings = "(n)etwork (b)luetooth (s)ound";
@@ -48,11 +48,11 @@
         };
         colors = {
           focused = {
-            border = "#8C3D2B";
+            border = "${osConfig.jgero.colors.foreground}";
             background = "#59281D";
             text = "#cccccc";
             indicator = "#cccccc";
-            childBorder = "#8C3D2B";
+            childBorder = "${osConfig.jgero.colors.foreground}";
           };
           focusedInactive = {
             border = "#8C6056";

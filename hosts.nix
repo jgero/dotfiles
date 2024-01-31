@@ -22,6 +22,10 @@
           hostname = "nixpad";
           hostid = "9a102409";
         };
+        jgero.colors = {
+          background = "#23323f";
+          foreground = "#969591";
+        };
       }
       (import ./disko-config.nix { disk = "/dev/sda"; })
     ];

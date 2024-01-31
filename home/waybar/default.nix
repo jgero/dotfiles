@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, osConfig, ... }:
 {
   programs.waybar = {
     enable = true;
@@ -65,6 +65,10 @@
         };
       };
     };
-    style = ./bar.css;
+    style = (import ./bar.css.nix {
+      inherit pkgs;
+      background = osConfig.jgero.colors.background;
+      foreground = osConfig.jgero.colors.foreground;
+    });
   };
 }

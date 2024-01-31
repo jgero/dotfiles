@@ -1,3 +1,4 @@
+{ pkgs, background, foreground, ... }: pkgs.writeText "bar.css" ''
 * {
     font-family: "JetBrains Mono";
     font-size: 14px;
@@ -24,10 +25,10 @@ window#waybar {
     padding: 0 10px;
     margin: 6px 3px;
     border-radius: 4px;
-    border: 1px solid #5074bd;
+    border: 1px solid ${background};
     font-weight: bold;
-    background-color: #5074bd;
-    color: black;
+    background-color: ${background};
+    color: ${foreground};
     transition: opacity .3s ease-out;
     opacity: 1;
 }
@@ -37,7 +38,7 @@ window#waybar {
 #network.disconnected,
 #wireplumber.muted,
 #battery.plugged {
-    opacity: 0.4;
+    opacity: 0.5;
 }
 /* left part of multi-segment */
 #custom-coretemp,
@@ -69,21 +70,17 @@ window#waybar {
     padding-right: 0;
 }
 
-
-#submap {
-    color: #5074bd;
+#mode {
     background-color: transparent;
 }
 
 #workspaces button {
-    border-color: #5074bd;
-    background-color: #5074bd;
     transition: background-color .3s ease-out;
-    color: black;
 }
 
 #workspaces button.focused {
-    background-color: #66abde;
+    color: ${background};
+    background-color: ${foreground};
 }
 
 #battery.warning {
@@ -101,3 +98,4 @@ window#waybar {
     border-color: #4EFF63;
     color: white;
 }
+''
