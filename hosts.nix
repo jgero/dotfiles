@@ -26,6 +26,7 @@
           background = "#23323f";
           foreground = "#969591";
         };
+        jgero.keyboard.no-caps = true;
       }
       (import ./disko-config.nix { disk = "/dev/sda"; })
     ];
