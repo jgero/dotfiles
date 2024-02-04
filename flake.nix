@@ -53,7 +53,7 @@
                 disko.nixosModules.disko
                 agenix.nixosModules.default
                 {
-                  _module.args.agenix = agenix.packages.${system}.default;
+                  jgero.secrets.package = agenix.packages.${system}.default;
                 }
                 ./modules
                 home-manager.nixosModules.home-manager
