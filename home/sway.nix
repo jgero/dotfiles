@@ -1,5 +1,8 @@
 { config, pkgs, osConfig, ... }:
 {
+  home.packages = with pkgs; [
+    nwg-displays
+  ];
   wayland.windowManager.sway =
     let
       quicknote = import ../pkgs/quicknote.nix { inherit pkgs; };
