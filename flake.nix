@@ -2,9 +2,10 @@
   description = "Who needs a working system anyways, me smash state";
 
   inputs = {
-    nixpkgs.url = "nixpkgs/nixos-unstable";
+    nixpkgs.url = "nixpkgs/nixos-23.11";
+    nixpkgs-unstable.url = "nixpkgs/nixos-unstable";
     home-manager = {
-      url = "github:nix-community/home-manager";
+      url = "github:nix-community/home-manager/release-23.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
@@ -25,6 +26,7 @@
   outputs =
     { self
     , nixpkgs
+    , nixpkgs-unstable
     , home-manager
     , nixos-hardware
     , agenix
@@ -35,6 +37,10 @@
       lib = nixpkgs.lib;
       system = "x86_64-linux";
       pkgs = import nixpkgs {
+        inherit system;
+        config = { allowUnfree = true; };
+      };
+      pkgs-unstable = import nixpkgs-unstable {
         inherit system;
         config = { allowUnfree = true; };
       };
@@ -61,6 +67,7 @@
                   home-manager.useGlobalPkgs = true;
                   home-manager.useUserPackages = true;
                   home-manager.users.jgero = import ./home;
+                  home-manager.extraSpecialArgs = { inherit pkgs-unstable; };
                 }
               ] ++ host.nixosModules;
             };
