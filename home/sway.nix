@@ -1,4 +1,4 @@
-{ config, pkgs, osConfig, ... }:
+{ config, pkgs, osConfig, lib, ... }:
 {
   home.packages = with pkgs; [
     nwg-displays
@@ -87,6 +87,7 @@
           };
           "type:keyboard" = {
             xkb_layout = "us,de";
+            xkb_options = lib.mkIf (osConfig.jgero.keyboard.no-caps) "caps:escape";
           };
         };
         keybindings = {

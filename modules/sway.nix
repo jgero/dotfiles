@@ -1,12 +1,21 @@
 { pkgs, lib, ... }: {
-  options.jgero.colors = with lib; {
-    background = mkOption {
-      type = types.str;
-      description = "HEX value of background color in the format of '#000000'";
+  options.jgero = with lib; {
+    colors = {
+      background = mkOption {
+        type = types.str;
+        description = "HEX value of background color in the format of '#000000'";
+      };
+      foreground = mkOption {
+        type = types.str;
+        description = "HEX value of foreground items and text color in the format of '#000000'";
+      };
     };
-    foreground = mkOption {
-      type = types.str;
-      description = "HEX value of foreground items and text color in the format of '#000000'";
+    keyboard = {
+      no-caps = mkOption {
+        type = types.bool;
+        default = false;
+        description = "map the capslock to escape";
+      };
     };
   };
   config = {
