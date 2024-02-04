@@ -34,41 +34,41 @@
         };
       };
     };
-      lvm_vg = {
-        pool = {
-          type = "lvm_vg";
-          lvs = {
-            swap = {
-              size = "16G";
-              content = {
-                type = "swap";
-                # randomEncryption = true;
-                resumeDevice = true; # resume from hiberation from this device
-              };
+    lvm_vg = {
+      pool = {
+        type = "lvm_vg";
+        lvs = {
+          swap = {
+            size = "16G";
+            content = {
+              type = "swap";
+              # randomEncryption = true;
+              resumeDevice = true; # resume from hiberation from this device
             };
-            root = {
-              size = "100%FREE";
-              content = {
-                type = "btrfs";
-                extraArgs = [ "-f" ];
-                subvolumes = {
-                  "/root" = {
-                    mountpoint = "/";
-                    mountOptions = [ "compress=zstd" "noatime" ];
-                  };
-                  "/data" = {
-                    mountpoint = "/data";
-                    mountOptions = [ "compress=zstd" "noatime" ];
-                  };
-                  "/nix" = {
-                    mountpoint = "/nix";
-                    mountOptions = [ "compress=zstd" "noatime" ];
-                  };
+          };
+          root = {
+            size = "100%FREE";
+            content = {
+              type = "btrfs";
+              extraArgs = [ "-f" ];
+              subvolumes = {
+                "/root" = {
+                  mountpoint = "/";
+                  mountOptions = [ "compress=zstd" "noatime" ];
+                };
+                "/data" = {
+                  mountpoint = "/data";
+                  mountOptions = [ "compress=zstd" "noatime" ];
+                };
+                "/nix" = {
+                  mountpoint = "/nix";
+                  mountOptions = [ "compress=zstd" "noatime" ];
                 };
               };
             };
           };
         };
       };
+    };
   };
 }
