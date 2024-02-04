@@ -1,4 +1,4 @@
-{ pkgs, ... }: ''
+{ pkgs, pkgs-unstable, ... }: ''
   local function use_exec_or_fallback(exec, fallback, arg)
   	local cmd = {}
   	if vim.fn.executable(exec) == 1 then
@@ -107,6 +107,6 @@
   lspc.templ.setup({
   	capabilities = capabilities,
   	on_attach = on_attach,
-  	cmd = use_exec_or_fallback("templ", "${pkgs.templ}/bin/templ", "lsp"),
+  	cmd = use_exec_or_fallback("templ", "${pkgs-unstable.templ}/bin/templ", "lsp"),
   })
 ''
