@@ -55,6 +55,7 @@ in
     ./git.nix
     ./kitty.nix
     ./mako.nix
+    ./secrets.nix
     ./ssh.nix
     ./sway.nix
     ./swayidle.nix

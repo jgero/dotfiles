@@ -1,8 +1,6 @@
-{ pkgs, agenix, ... }: {
+{ pkgs, ... }: {
   environment.systemPackages = with pkgs; [
     curl
-    agenix
-
     udisks
   ];
 
