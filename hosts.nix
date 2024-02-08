@@ -9,8 +9,14 @@
           hostname = "nixps";
           hostid = "5e13b1e5";
         };
+        jgero.colors = {
+          background = "#23323f";
+          foreground = "#969591";
+        };
         jgero.backup.enable = true;
+        jgero.keyboard.no-caps = true;
       }
+      (import ./disko-config.nix { disk = "/dev/nvme0n1"; })
     ];
   }
   {
