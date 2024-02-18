@@ -4,7 +4,7 @@ local map = function(mode, keys, func, desc)
 	if desc then
 		desc = "CODY: " .. desc
 	end
-	vim.keymap.set(mode, keys, func, { buffer = vim.api.nvim_get_current_buf(), desc = desc })
+	vim.keymap.set(mode, keys, func, { desc = desc })
 end
 
 map("v", "<leader>ar", function ()
