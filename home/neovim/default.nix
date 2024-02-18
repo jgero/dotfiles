@@ -7,6 +7,7 @@
       fzf
       gcc
       fd
+      nodejs_21
     ];
     plugins = with pkgs.vimPlugins;
       let
@@ -47,6 +48,7 @@
         luasnip
         cmp_luasnip
         friendly-snippets
+        sg-nvim
 
         comment-nvim
         vim-surround

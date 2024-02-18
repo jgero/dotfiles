@@ -17,6 +17,7 @@ cmp.setup({
 		["<CR>"] = cmp.mapping.confirm(),
 	},
 	sources = cmp.config.sources({
+		{ name = "cody" },
 		{ name = "nvim_lsp" },
 		{ name = "luasnip" },
 		{ name = "treesitter" },
