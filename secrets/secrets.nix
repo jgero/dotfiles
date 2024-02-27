@@ -6,6 +6,7 @@ let
 in
 {
   "yubipin.age".publicKeys = all;
-  "restic-password.age".publicKeys = all;
-  "backup-server-ssh-identity.age".publicKeys = all;
+  "restic-password.age".publicKeys = [ nixps ];
+  "backup-server-ssh-identity.age".publicKeys = [ nixps ];
+  "sg-access-token.age".publicKeys = all;
 }

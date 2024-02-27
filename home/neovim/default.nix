@@ -1,4 +1,4 @@
-{ pkgs, pkgs-unstable, lib, ... }: {
+{ pkgs, pkgs-unstable, lib, osConfig, ... }: {
   programs.neovim = {
     enable = true;
     defaultEditor = true;
@@ -8,6 +8,7 @@
       gcc
       fd
       nodejs_21
+      cargo
     ];
     plugins = with pkgs.vimPlugins;
       let
@@ -48,7 +49,8 @@
         luasnip
         cmp_luasnip
         friendly-snippets
-        sg-nvim
+        # my-sg-nvim
+        pkgs-unstable.vimPlugins.sg-nvim
 
         comment-nvim
         vim-surround
@@ -80,7 +82,7 @@
         (lib.attrsets.nameValuePair
           ("nvim/lua/jgero/" +
             (lib.strings.removeSuffix ".nix" name))
-          ({ text = import ./config/${name} { inherit pkgs pkgs-unstable lib; }; }))
+          ({ text = import ./config/${name} { inherit pkgs pkgs-unstable lib osConfig; }; }))
       else if lib.strings.hasSuffix ".lua" name then
         (lib.attrsets.nameValuePair ("nvim/lua/jgero/" + name) ({ text = builtins.readFile ./config/${name}; }))
       else { }

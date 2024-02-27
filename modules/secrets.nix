@@ -24,5 +24,10 @@ with lib;
       owner = "jgero";
       group = "users";
     };
+    age.secrets.sgAccessToken = {
+      file = ../secrets/sg-access-token.age;
+      owner = "jgero";
+      group = "users";
+    };
   };
 }
