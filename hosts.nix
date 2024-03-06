@@ -48,6 +48,7 @@
           keyboard.no-caps = true;
           packages.home = with pkgs; [ teams-for-linux ];
           user.email = "johannes.gerold@fntsoftware.com";
+          virt.dockerCompat = true;
         };
       }
       (import ./disko-config.nix { disk = "/dev/nvme0n1"; })
