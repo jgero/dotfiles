@@ -46,7 +46,13 @@
           hostname = "workpad";
           hostid = "69666999";
         };
+        jgero.colors = {
+          background = "#23323f";
+          foreground = "#969591";
+        };
+        jgero.keyboard.no-caps = true;
       }
+      (import ./disko-config.nix { disk = "/dev/nvme0n1"; })
     ];
   }
 ]
