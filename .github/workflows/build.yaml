@@ -1,17 +1,13 @@
-name: Build
+name: Check
 
 on:
   pull_request:
     types: [opened, synchronize, reopened]
-    branches: ["main"]
 
 jobs:
-  build:
-    name: Build
+  check:
+    name: Check
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        host: ["nixps", "nixpad", "workpad"]
 
     steps:
       - name: Checkout
@@ -20,15 +16,8 @@ jobs:
       - name: Install nix
         run: sh <(curl -L https://nixos.org/nix/install) --no-daemon
 
-      - name: Free disk space
-        run: |
-          sudo rm -rf /usr/share/dotnet
-          sudo rm -rf /opt/ghc
-          sudo rm -rf "/usr/local/share/boost"
-          sudo rm -rf "$AGENT_TOOLSDIRECTORY"
-
-      - name: Nix build
+      - name: Nix flake check
         run: |
           . /home/runner/.nix-profile/etc/profile.d/nix.sh
-          nix build .#nixosConfigurations.${{ matrix.host }}.config.system.build.toplevel --extra-experimental-features "nix-command flakes"
+          nix flake check --extra-experimental-features "nix-command flakes"
 
