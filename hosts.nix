@@ -5,12 +5,15 @@
       nixos-hardware.nixosModules.dell-xps-13-7390
       ./hardware/xps_2020.nix
       {
-        jgero.network = {
-          hostname = "nixps";
-          hostid = "5e13b1e5";
+        jgero = {
+          user.email = "git+commit@jgero.me";
+          network = {
+            hostname = "nixps";
+            hostid = "5e13b1e5";
+          };
+          backup.enable = true;
+          keyboard.no-caps = true;
         };
-        jgero.backup.enable = true;
-        jgero.keyboard.no-caps = true;
       }
       (import ./disko-config.nix { disk = "/dev/nvme0n1"; })
     ];
@@ -20,11 +23,14 @@
     nixosModules = [
       ./hardware/thinkpad_2023.nix
       {
-        jgero.network = {
-          hostname = "nixpad";
-          hostid = "9a102409";
+        jgero = {
+          user.email = "git+commit@jgero.me";
+          network = {
+            hostname = "nixpad";
+            hostid = "9a102409";
+          };
+          keyboard.no-caps = true;
         };
-        jgero.keyboard.no-caps = true;
       }
       (import ./disko-config.nix { disk = "/dev/sda"; })
     ];
@@ -41,6 +47,7 @@
           };
           keyboard.no-caps = true;
           packages.home = with pkgs; [ teams-for-linux ];
+          user.email = "johannes.gerold@fntsoftware.com";
         };
       }
       (import ./disko-config.nix { disk = "/dev/nvme0n1"; })

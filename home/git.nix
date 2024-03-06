@@ -1,8 +1,8 @@
-{
+{ osConfig, ... }: {
   programs.git = {
     enable = true;
     userName = "Johannes Gerold";
-    userEmail = "git+commit@jgero.me";
+    userEmail = osConfig.jgero.user.email;
     extraConfig = {
       init = { defaultBranch = "main"; };
     };
