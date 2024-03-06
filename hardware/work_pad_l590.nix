@@ -9,6 +9,7 @@
   boot.extraModulePackages = [ ];
 
   networking.useDHCP = lib.mkDefault true;
+  services.throttled.enable = true;
 
   hardware.enableRedistributableFirmware = true;
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
