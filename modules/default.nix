@@ -14,6 +14,7 @@
     ./i18n.nix
     ./network.nix
     ./nix.nix
+    ./packages.nix
     ./secrets.nix
     ./ssh.nix
     ./sudo.nix

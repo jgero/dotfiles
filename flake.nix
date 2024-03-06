@@ -79,6 +79,6 @@
               ] ++ host.nixosModules;
             };
           })
-          (import ./hosts.nix { inherit nixos-hardware; }));
+          (import ./hosts.nix { inherit pkgs nixos-hardware; }));
     };
 }
