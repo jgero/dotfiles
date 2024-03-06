@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, osConfig, ... }:
 let
   compress-vid-dir = pkgs.writeScriptBin "compress-vid-dir" ''
     for file in *; do
@@ -44,7 +44,7 @@ in
 
     compress-vid-dir
     encode-vid
-  ];
+  ] ++ osConfig.jgero.packages.home;
 
   imports = [
     ./neovim

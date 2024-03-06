@@ -1,4 +1,4 @@
-{ nixos-hardware }: [
+{ pkgs, nixos-hardware }: [
   {
     name = "nixps";
     nixosModules = [
@@ -34,11 +34,14 @@
     nixosModules = [
       ./hardware/work_pad_l590.nix
       {
-        jgero.network = {
-          hostname = "workpad";
-          hostid = "69666999";
+        jgero = {
+          network = {
+            hostname = "workpad";
+            hostid = "69666999";
+          };
+          keyboard.no-caps = true;
+          packages.home = with pkgs; [ teams-for-linux ];
         };
-        jgero.keyboard.no-caps = true;
       }
       (import ./disko-config.nix { disk = "/dev/nvme0n1"; })
     ];
