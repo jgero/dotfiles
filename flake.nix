@@ -59,7 +59,13 @@
                 disko.nixosModules.disko
                 agenix.nixosModules.default
                 {
-                  jgero.secrets.package = agenix.packages.${system}.default;
+                  jgero = {
+                    secrets.package = agenix.packages.${system}.default;
+                    colors = {
+                      background = "#23323f";
+                      foreground = "#969591";
+                    };
+                  };
                 }
                 ./modules
                 home-manager.nixosModules.home-manager
