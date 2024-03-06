@@ -2,6 +2,7 @@
   environment.systemPackages = with pkgs; [
     curl
     udisks
+    btop
   ];
 
   services.udisks2.enable = true;
