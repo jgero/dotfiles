@@ -10,11 +10,10 @@ with lib;
     users.users.jgero = {
       shell = pkgs.bash;
       isNormalUser = true;
-      extraGroups = [
+      extraGroups = lib.lists.flatten [
         "wheel"
         "libvirtd"
-        (mkIf (config.jgero.virt.dockerCompat) "podman")
-      ];
+      ] ++ lib.lists.optional (config.jgero.virt.dockerCompat) "podman";
       initialPassword = "password";
     };
   };
