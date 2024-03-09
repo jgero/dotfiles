@@ -16,11 +16,11 @@ in
 
     virtualisation = {
       spiceUSBRedirection.enable = true;
-      podman = mkIf (cfg.dockerCompat)
+      podman = { enable = true; } // optionalAttrs cfg.dockerCompat
         {
           dockerCompat = true;
           dockerSocket.enable = true;
-        } // { enable = true; };
+        };
       libvirtd.enable = true;
     };
   };
