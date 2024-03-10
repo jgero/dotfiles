@@ -8,7 +8,7 @@
         sha256 = "15yii4zlx422d2fdl3wpz6a4faflzqam18kn7sbr9rmxlflcj2iw";
       };
       cfg = config.wayland.windowManager.sway.config;
-      modeSettings = "(n)etwork (b)luetooth (s)ound";
+      modeSettings = "(n)etwork (b)luetooth (s)ound (d)isplay";
       modeShutdown = "(h)ibernate (l)ock (r)eboot (s)uspend (p)oweroff";
       modeScreenshot = "(r)egion (s)creen";
     in
@@ -26,12 +26,6 @@
           "*" = {
             bg = "${wallpaper} fill";
           };
-          # "DP-2" = {
-          #   pos = "2560 0";
-          # };
-          # "HDMI-A-1" = {
-          #   pos = "0 0";
-          # };
         };
         gaps = {
           inner = 6;
@@ -39,11 +33,9 @@
         };
         fonts.names = [ "JetBrainsMono" ];
         window = {
-          /* titlebar = false; */
           border = 1;
         };
         floating = {
-          /* titlebar = false; */
           border = 1;
         };
         colors = {
@@ -150,7 +142,6 @@
           "${modeShutdown}" = {
             "h" = "exec ${pkgs.systemd}/bin/systemctl hibernate && ${pkgs.sway}/bin/swaymsg mode default";
             "l" = "exec ${pkgs.swaylock}/bin/swaylock && ${pkgs.sway}/bin/swaymsg mode default";
-            # "e" = "exec ${pkgs.systemd}/bin/loginctl terminate-user $USER && ${pkgs.sway}/bin/swaymsg mode default";
             "r" = "exec ${pkgs.systemd}/bin/systemctl reboot && ${pkgs.sway}/bin/swaymsg mode default";
             "s" = "exec ${pkgs.systemd}/bin/systemctl suspend && ${pkgs.sway}/bin/swaymsg mode default";
             "p" = "exec ${pkgs.systemd}/bin/systemctl poweroff && ${pkgs.sway}/bin/swaymsg mode default";
@@ -167,6 +158,7 @@
             "n" = "exec ${pkgs.sway}/bin/swaymsg mode default && kitty --detach -T floating_shell ${pkgs.bash}/bin/bash -c nmtui";
             "b" = "exec ${pkgs.sway}/bin/swaymsg mode default && kitty --detach -T floating_shell ${pkgs.bash}/bin/bash -c ${pkgs.bluetuith}/bin/bluetuith";
             "s" = "exec ${pkgs.sway}/bin/swaymsg mode default && kitty --detach -T floating_shell ${pkgs.bash}/bin/bash -c ${pkgs.pulsemixer}/bin/pulsemixer";
+            "d" = "exec ${pkgs.sway}/bin/swaymsg mode default && exec ${pkgs.nwg-displays}/bin/nwg-displays";
             Escape = "mode default";
             Return = "mode default";
           };
