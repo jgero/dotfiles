@@ -41,24 +41,24 @@
         colors = {
           focused = {
             border = "${osConfig.jgero.colors.foreground}";
-            background = "#59281D";
-            text = "#cccccc";
-            indicator = "#cccccc";
+            background = "${osConfig.jgero.colors.foreground}";
+            text = "${osConfig.jgero.colors.background}";
+            indicator = "${osConfig.jgero.colors.background}";
             childBorder = "${osConfig.jgero.colors.foreground}";
           };
           focusedInactive = {
-            border = "#8C6056";
-            background = "#593E38";
-            text = "#cccccc";
-            indicator = "#cccccc";
-            childBorder = "#8C6056";
+            border = "${osConfig.jgero.colors.foreground}";
+            background = "${osConfig.jgero.colors.foreground}";
+            text = "${osConfig.jgero.colors.background}";
+            indicator = "${osConfig.jgero.colors.background}";
+            childBorder = "${osConfig.jgero.colors.foreground}";
           };
           unfocused = {
-            border = "#444444";
-            background = "#222222";
-            text = "#cccccc";
-            indicator = "#cccccc";
-            childBorder = "#444444";
+            border = "${osConfig.jgero.colors.background}";
+            background = "${osConfig.jgero.colors.background}";
+            text = "${osConfig.jgero.colors.foreground}";
+            indicator = "${osConfig.jgero.colors.foreground}";
+            childBorder = "${osConfig.jgero.colors.background}";
           };
           urgent = {
             border = "#8C3D2B";
