@@ -12,6 +12,7 @@ with lib;
       isNormalUser = true;
       extraGroups = lib.lists.flatten [
         "wheel"
+        "networkmanager"
         "libvirtd"
       ] ++ lib.lists.optional (config.jgero.virt.dockerCompat) "podman";
       initialPassword = "password";
