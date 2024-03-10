@@ -1,7 +1,9 @@
 { pkgs }: pkgs.writeShellApplication {
   name = "quicknote";
   text = ''
-    NOTE_FILE_NAME="$HOME/data/notes/quick/note-$(date +%Y-%m-%d).md"
+    NOTE_DIR="$HOME/data/notes/quick"
+    NOTE_FILE_NAME="$NOTE_DIR/note-$(date +%Y-%m-%d).md"
+    mkdir -p "$NOTE_DIR"
     if [ ! -f "$NOTE_FILE_NAME" ]; then
       echo "# Notes for $(date +%Y-%m-%d)" > "$NOTE_FILE_NAME"
     fi
