@@ -1,12 +1,12 @@
 { pkgs, pkgs-unstable, ... }: ''
-  local function use_exec_or_fallback(exec, fallback, arg)
+  local function use_exec_or_fallback(exec, fallback, ...)
   	local cmd = {}
   	if vim.fn.executable(exec) == 1 then
   		table.insert(cmd, exec)
   	else
   		table.insert(cmd, fallback)
   	end
-  	if arg ~= nil then
+    for _, arg in ipairs({...}) do
   		table.insert(cmd, arg)
   	end
   	return cmd
