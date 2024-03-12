@@ -7,6 +7,11 @@
 
   services.udisks2.enable = true;
 
+  documentation.man = {
+    enable = true;
+    generateCaches = true;
+  };
+
   imports = [
     ./backup.nix
     ./bluetooth.nix

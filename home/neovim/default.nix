@@ -1,4 +1,4 @@
-{ pkgs, pkgs-unstable, lib, osConfig, ... }: {
+{ pkgs, pkgs-unstable, lib, osConfig, nixpkgs, ... }: {
   programs.neovim = {
     enable = true;
     defaultEditor = true;
@@ -82,7 +82,7 @@
         (lib.attrsets.nameValuePair
           ("nvim/lua/jgero/" +
             (lib.strings.removeSuffix ".nix" name))
-          ({ text = import ./config/${name} { inherit pkgs pkgs-unstable lib osConfig; }; }))
+          ({ text = import ./config/${name} { inherit pkgs nixpkgs pkgs-unstable lib osConfig; }; }))
       else if lib.strings.hasSuffix ".lua" name then
         (lib.attrsets.nameValuePair ("nvim/lua/jgero/" + name) ({ text = builtins.readFile ./config/${name}; }))
       else { }
