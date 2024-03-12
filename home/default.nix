@@ -17,7 +17,6 @@ in
   programs.home-manager.enable = true;
   home.username = "jgero";
   home.homeDirectory = "/home/jgero";
-  xdg.enable = true;
 
   home.packages = with pkgs; [
     bitwarden
@@ -41,6 +40,7 @@ in
     killall
     unzip
     pdfcpu
+    xdg-utils
 
     compress-vid-dir
     encode-vid
@@ -50,7 +50,6 @@ in
     ./neovim
     ./waybar
     ./bash.nix
-    ./fs.nix
     ./fzf.nix
     ./git.nix
     ./kitty.nix
@@ -63,5 +62,6 @@ in
     ./task.nix
     ./tmux.nix
     ./wofi.nix
+    ./xdg.nix
   ];
 }
