@@ -32,7 +32,7 @@
     , agenix
     , treefmt-nix
     , disko
-    }:
+    }@inputs:
     let
       lib = nixpkgs.lib;
       system = "x86_64-linux";
@@ -73,8 +73,7 @@
                   home-manager.useGlobalPkgs = true;
                   home-manager.useUserPackages = true;
                   home-manager.users.jgero = import ./home;
-                  # home-manager.extraSpecialArgs = { inherit pkgs-unstable my-sg-nvim; };
-                  home-manager.extraSpecialArgs = { inherit pkgs-unstable; };
+                  home-manager.extraSpecialArgs = inputs // { inherit pkgs-unstable; };
                 }
               ] ++ host.nixosModules;
             };
