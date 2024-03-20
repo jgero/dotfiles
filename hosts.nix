@@ -46,7 +46,10 @@
             hostid = "69666999";
           };
           keyboard.no-caps = true;
-          packages.home = with pkgs; [ teams-for-linux ];
+          packages.home = with pkgs; [
+            teams-for-linux
+            (with jetbrains; (plugins.addPlugins idea-community [ "ideavim" ]))
+          ];
           user.email = "johannes.gerold@fntsoftware.com";
           virt.dockerCompat = true;
         };
