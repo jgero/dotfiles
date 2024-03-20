@@ -122,7 +122,7 @@
           "Mod4+s" = "mode \"${modeSettings}\"";
 
           # Screenshot mode
-          "${cfg.modifier}+Shift+s" = "mode \"${modeScreenshot}\"";
+          "${cfg.modifier}+Shift+s" = "exec ${pkgs.sway}/bin/swaymsg mode default && ${pkgs.grim}/bin/grim -g \"$(${pkgs.slurp}/bin/slurp)\" - | ${pkgs.wl-clipboard}/bin/wl-copy -t image/png";
 
           "Mod4+space" = "exec ${pkgs.sway}/bin/swaymsg input $(${pkgs.sway}/bin/swaymsg -t get_inputs --raw | ${pkgs.jq}/bin/jq '[.[] | select(.type == \"keyboard\")][0] | .identifier') xkb_switch_layout next";
           "${cfg.modifier}+n" = "exec kitty --detach -T floating_shell ${pkgs.bash}/bin/bash -c ${quicknote}/bin/quicknote";
@@ -145,12 +145,6 @@
             "r" = "exec ${pkgs.systemd}/bin/systemctl reboot && ${pkgs.sway}/bin/swaymsg mode default";
             "s" = "exec ${pkgs.systemd}/bin/systemctl suspend && ${pkgs.sway}/bin/swaymsg mode default";
             "p" = "exec ${pkgs.systemd}/bin/systemctl poweroff && ${pkgs.sway}/bin/swaymsg mode default";
-            Escape = "mode default";
-            Return = "mode default";
-          };
-          "${modeScreenshot}" = {
-            "r" = "exec ${pkgs.sway}/bin/swaymsg mode default && ${pkgs.grim}/bin/grim -g \"$(${pkgs.slurp}/bin/slurp)\" - | ${pkgs.wl-clipboard}/bin/wl-copy";
-            "s" = "exec ${pkgs.sway}/bin/swaymsg mode default && ${pkgs.grim}/bin/grim -o \"$(${pkgs.sway}/bin/swaymsg -t get_outputs | ${pkgs.jq}/bin/jq -r '.[] | select(.focused)' | ${pkgs.jq}/bin/jq -r '.name')\" - | ${pkgs.wl-clipboard}/bin/wl-copy";
             Escape = "mode default";
             Return = "mode default";
           };
