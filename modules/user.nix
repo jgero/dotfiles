@@ -7,8 +7,9 @@ with lib;
     };
   };
   config = {
+    programs.zsh.enable = true;
     users.users.jgero = {
-      shell = pkgs.bash;
+      shell = pkgs.zsh;
       isNormalUser = true;
       extraGroups = lib.lists.flatten [
         "wheel"

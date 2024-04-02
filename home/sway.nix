@@ -10,7 +10,6 @@
       cfg = config.wayland.windowManager.sway.config;
       modeSettings = "(n)etwork (b)luetooth (s)ound (d)isplay";
       modeShutdown = "(h)ibernate (l)ock (r)eboot (s)uspend (p)oweroff";
-      modeScreenshot = "(r)egion (s)creen";
     in
     {
       enable = true;

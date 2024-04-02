@@ -49,12 +49,12 @@ in
   imports = [
     ./neovim
     ./waybar
-    ./bash.nix
     ./fzf.nix
     ./git.nix
     ./kitty.nix
     ./mako.nix
     ./secrets.nix
+    ./shell.nix
     ./ssh.nix
     ./sway.nix
     ./swayidle.nix
