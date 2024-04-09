@@ -8,6 +8,6 @@ in
 {
   "yubipin.age".publicKeys = all;
   "restic-password.age".publicKeys = [ nixps ];
-  "backup-server-ssh-identity.age".publicKeys = [ nixps ];
+  "backup-env.age".publicKeys = [ nixps ];
   "sg-access-token.age".publicKeys = all;
 }

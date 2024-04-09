@@ -19,8 +19,8 @@ with lib;
       owner = "jgero";
       group = "users";
     };
-    age.secrets.backupIdentity = {
-      file = ../secrets/backup-server-ssh-identity.age;
+    age.secrets.backupEnv = {
+      file = ../secrets/backup-env.age;
       owner = "jgero";
       group = "users";
     };
