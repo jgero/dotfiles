@@ -1,3 +1,15 @@
+local telescope = require("telescope")
+
+telescope.setup({
+	defaults = {
+		-- Format path as "file.txt (path/to/file/)"
+		path_display = function(opts, path)
+			local tail = require("telescope.utils").path_tail(path)
+			return string.format("%s (%s)", tail, path)
+		end,
+	},
+})
+
 local builtin = require("telescope.builtin")
 
 vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "[f]ind [f]files" })
