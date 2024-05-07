@@ -78,6 +78,6 @@
               ] ++ host.nixosModules;
             };
           })
-          (import ./hosts.nix { inherit pkgs nixos-hardware; }));
+          (import ./hosts.nix { inherit pkgs pkgs-unstable nixos-hardware; }));
     };
 }

@@ -1,4 +1,4 @@
-{ pkgs, nixos-hardware }: [
+{ pkgs, pkgs-unstable, nixos-hardware }: [
   {
     name = "nixps";
     nixosModules = [
@@ -47,7 +47,7 @@
           };
           keyboard.no-caps = true;
           packages.home = with pkgs; [
-            teams-for-linux
+            pkgs-unstable.teams-for-linux
             (with jetbrains; (plugins.addPlugins idea-community [ "ideavim" ]))
           ];
           user.email = "johannes.gerold@fntsoftware.com";
