@@ -1,23 +1,16 @@
-name: Check
+name: run flake check
 
 on:
   pull_request:
     types: [opened, synchronize, reopened]
+  push:
+    branches: [main]
 
 jobs:
-  check:
-    name: Check
+  lints:
+    name: Build
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Install nix
-        run: sh <(curl -L https://nixos.org/nix/install) --no-daemon
-
-      - name: Nix flake check
-        run: |
-          . /home/runner/.nix-profile/etc/profile.d/nix.sh
-          nix flake check --extra-experimental-features "nix-command flakes"
-
+      - uses: actions/checkout@v4
+      - uses: DeterminateSystems/nix-installer-action@11
+      - run: nix flake check
