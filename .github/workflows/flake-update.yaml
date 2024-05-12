@@ -1,36 +1,14 @@
-name: Flake update
+name: update flake lock
 
 on:
+  workflow_dispatch:
   schedule:
-    - cron:  '0 4 * * *'
+    - cron: '0 0 * * 2'
 
 jobs:
-  flake-update:
-    name: Flake update
+  lockfile:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Install nix
-        run: sh <(curl -L https://nixos.org/nix/install) --no-daemon
-
-      - name: Nix flake update
-        run: |
-          . /home/runner/.nix-profile/etc/profile.d/nix.sh
-          nix flake update --extra-experimental-features "nix-command flakes"
-
-      - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v6
-        with:
-          base: main
-          branch: chore/flake-update
-          delete-branch: true
-          title: Automatic flake update
-          labels: flake-update,bot
-          commit-message: |
-            chore(nixos): flake update
-
-            flake update by github actions bot
-
+      - uses: actions/checkout@v4
+      - uses: DeterminateSystems/nix-installer-action@v11
+      - uses: DeterminateSystems/update-flake-lock@v21
