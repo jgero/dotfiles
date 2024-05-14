@@ -6,6 +6,7 @@
       # get a project from the pre-specified directories
       selected=$(find \
           $HOME/projects \
+          $HOME/data/projects \
           -mindepth 1 -maxdepth 1 -type d | fzf)
   fi
 
