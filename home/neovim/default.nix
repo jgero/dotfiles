@@ -55,6 +55,7 @@
         comment-nvim
         vim-surround
         vim-repeat
+        oil-nvim
 
         telescope-nvim
         telescope-fzf-native-nvim
