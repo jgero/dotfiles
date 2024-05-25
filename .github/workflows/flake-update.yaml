@@ -12,3 +12,4 @@ jobs:
       - uses: actions/checkout@v4
       - uses: DeterminateSystems/nix-installer-action@v11
       - uses: DeterminateSystems/update-flake-lock@v21
+      - run: nix flake check
