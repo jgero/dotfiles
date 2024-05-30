@@ -7,7 +7,7 @@ let
 in
 {
   "yubipin.age".publicKeys = all;
-  "restic-password.age".publicKeys = [ nixps ];
-  "backup-env.age".publicKeys = [ nixps ];
+  "restic-password.age".publicKeys = [ nixps backup ];
+  "backup-env.age".publicKeys = [ nixps backup ];
   "sg-access-token.age".publicKeys = all;
 }
