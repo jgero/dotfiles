@@ -27,7 +27,7 @@ in
           id = "GPN";
           type = "wifi";
           autoconnect = true;
-          interface-name = "wlp3s0";
+          interface-name = "wlp2s0";
         };
         wifi = {
           mode = "infrastructure";
