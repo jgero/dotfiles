@@ -7,7 +7,7 @@
       fzf
       gcc
       fd
-      nodejs_21
+      nodejs_22
       cargo
     ];
     plugins = with pkgs.vimPlugins;
