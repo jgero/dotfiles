@@ -5,7 +5,7 @@
     in
     {
       enable = true;
-      enableAutosuggestions = true;
+      autosuggestion.enable = true;
       syntaxHighlighting.enable = true;
       shellAliases = {
         ptask = "task project:$(git rev-parse --show-toplevel | xargs basename)";
