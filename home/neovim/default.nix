@@ -9,6 +9,7 @@
       fd
       nodejs_22
       cargo
+      tree-sitter
     ];
     plugins = with pkgs.vimPlugins;
       let
