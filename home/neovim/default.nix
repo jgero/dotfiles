@@ -13,15 +13,6 @@
     ];
     plugins = with pkgs.vimPlugins;
       let
-        transparent = pkgs.vimUtils.buildVimPlugin {
-          name = "transparent-nvim";
-          src = pkgs.fetchFromGitHub {
-            owner = "xiyaowong";
-            repo = "transparent.nvim";
-            rev = "f09966923f7e329ceda9d90fe0b7e8042b6bdf31";
-            sha256 = "sha256-Z4Icv7c/fK55plk0y/lEsoWDhLc8VixjQyyO6WdTOVw=";
-          };
-        };
         tabset = pkgs.vimUtils.buildVimPlugin {
           name = "tabset-nvim";
           src = pkgs.fetchFromGitHub {
@@ -38,7 +29,7 @@
         tabset
 
         onedark-nvim
-        transparent
+        transparent-nvim
 
         lsp_lines-nvim
         nvim-cmp
@@ -50,8 +41,11 @@
         luasnip
         cmp_luasnip
         friendly-snippets
-        # my-sg-nvim
         pkgs-unstable.vimPlugins.sg-nvim
+
+        # debugging
+        pkgs-unstable.vimPlugins.nvim-dap
+        pkgs-unstable.vimPlugins.nvim-dap-go
 
         comment-nvim
         vim-surround
