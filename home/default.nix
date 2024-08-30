@@ -29,6 +29,11 @@ in
     zathura
     gnome.eog
     vlc
+    (inkscape-with-extensions.override {
+      inkscapeExtensions = with pkgs.inkscape-extensions; [
+        silhouette
+      ];
+    })
 
     ripgrep
     fd

@@ -15,6 +15,7 @@ with lib;
         "wheel"
         "networkmanager"
         "libvirtd"
+        "lp"
       ] ++ lib.lists.optional (config.jgero.virt.dockerCompat) "podman";
       initialPassword = "password";
     };
