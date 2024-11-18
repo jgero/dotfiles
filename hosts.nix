@@ -35,26 +35,4 @@
       (import ./disko-config.nix { disk = "/dev/sda"; })
     ];
   }
-  {
-    name = "workpad";
-    nixosModules = [
-      ./hardware/work_pad_l590.nix
-      {
-        jgero = {
-          network = {
-            hostname = "workpad";
-            hostid = "69666999";
-          };
-          keyboard.no-caps = true;
-          packages.home = with pkgs; [
-            pkgs-unstable.teams-for-linux
-            (with jetbrains; (plugins.addPlugins idea-community [ "ideavim" ]))
-          ];
-          user.email = "johannes.gerold@fntsoftware.com";
-          virt.dockerCompat = true;
-        };
-      }
-      (import ./disko-config.nix { disk = "/dev/nvme0n1"; })
-    ];
-  }
 ]
