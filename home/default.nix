@@ -34,6 +34,8 @@ in
         silhouette
       ];
     })
+    nextcloud-client
+    jameica
 
     ripgrep
     fd
