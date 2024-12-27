@@ -27,7 +27,7 @@ in
     gimp
     element-desktop
     zathura
-    gnome.eog
+    eog
     vlc
     (inkscape-with-extensions.override {
       inkscapeExtensions = with pkgs.inkscape-extensions; [
