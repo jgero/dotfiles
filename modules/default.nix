@@ -29,6 +29,7 @@
     ./virtualisation.nix
     ./gtk.nix
     ./pam.nix
+    ./printing.nix
   ];
 
   # This value determines the NixOS release from which the default
