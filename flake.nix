@@ -21,6 +21,10 @@
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    lix-module = {
+      url = "https://git.lix.systems/lix-project/nixos-module/archive/2.92.0.tar.gz";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -32,6 +36,7 @@
     , agenix
     , treefmt-nix
     , disko
+    , lix-module
     }@inputs:
     let
       lib = nixpkgs.lib;
@@ -58,6 +63,7 @@
               modules = [
                 disko.nixosModules.disko
                 agenix.nixosModules.default
+                lix-module.nixosModules.default
                 {
                   jgero = {
                     secrets.package = agenix.packages.${system}.default;
