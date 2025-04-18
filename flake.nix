@@ -21,6 +21,7 @@
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    flake-utils.url = "github:numtide/flake-utils";
   };
 
   outputs =
@@ -32,59 +33,10 @@
     , agenix
     , treefmt-nix
     , disko
+    , flake-utils
     }@inputs:
-    let
-      lib = nixpkgs.lib;
-      system = "x86_64-linux";
-      myNeovimOverlay = final: prev: {
-        neovim = import ./pkgs/neovim {
-          inherit system;
-          nixpkgs = nixpkgs-unstable;
-        };
-      };
-      pkgs = import nixpkgs {
-        inherit system;
-        config = { allowUnfree = true; };
-        overlays = [ myNeovimOverlay ];
-      };
-      pkgs-unstable = import nixpkgs-unstable {
-        inherit system;
-        config = { allowUnfree = true; };
-      };
-      treefmtEval = treefmt-nix.lib.evalModule pkgs ./treefmt.nix;
-    in
-    {
-      formatter.${system} = treefmtEval.config.build.wrapper;
-      checks.${system}.formatter = treefmtEval.config.build.check self;
-      nixosConfigurations = builtins.listToAttrs (
-        builtins.map
-          (host: {
-            name = host.name;
-            value = lib.nixosSystem {
-              inherit system pkgs;
-              modules = [
-                disko.nixosModules.disko
-                agenix.nixosModules.default
-                {
-                  jgero = {
-                    secrets.package = agenix.packages.${system}.default;
-                    colors = {
-                      background = "#23323f";
-                      foreground = "#969591";
-                    };
-                  };
-                }
-                ./modules
-                home-manager.nixosModules.home-manager
-                {
-                  home-manager.useGlobalPkgs = true;
-                  home-manager.useUserPackages = true;
-                  home-manager.users.jgero = import ./home;
-                  home-manager.extraSpecialArgs = inputs // { inherit pkgs-unstable; };
-                }
-              ] ++ host.nixosModules;
-            };
-          })
-          (import ./hosts.nix { inherit pkgs pkgs-unstable nixos-hardware; }));
-    };
+    (import ./pkgs/neovim inputs)
+    // (import ./pkgs/nixos inputs)
+    // (import ./pkgs/treefmt inputs)
+  ;
 }
