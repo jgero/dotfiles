@@ -1,4 +1,4 @@
-{ pkgs, pkgs-unstable, ... }: ''
+{ pkgs, ... }: ''
   local function use_exec_or_fallback(exec, fallback, ...)
     local cmd = {}
     if vim.fn.executable(exec) == 1 then
@@ -95,16 +95,6 @@
     capabilities = capabilities,
     on_attach = on_attach,
     cmd = use_exec_or_fallback("rust-analyzer", "${pkgs.rust-analyzer}/bin/rust-analyzer"),
-  })
-  lspc.svelte.setup({
-    capabilities = capabilities,
-    on_attach = on_attach,
-    cmd = use_exec_or_fallback("svelteserver", "${pkgs.nodePackages.svelte-language-server}/bin/svelteserver", "--stdio"),
-  })
-  lspc.kotlin_language_server.setup({
-    capabilities = capabilities,
-    on_attach = on_attach,
-    cmd = use_exec_or_fallback("kotlin-language-server", "${pkgs.kotlin-language-server}/bin/kotlin-language-server"),
   })
   lspc.gopls.setup({
     capabilities = capabilities,

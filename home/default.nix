@@ -54,7 +54,6 @@ in
   ] ++ osConfig.jgero.packages.home;
 
   imports = [
-    ./neovim
     ./waybar
     ./fzf.nix
     ./git.nix

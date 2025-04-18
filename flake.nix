@@ -36,9 +36,16 @@
     let
       lib = nixpkgs.lib;
       system = "x86_64-linux";
+      myNeovimOverlay = final: prev: {
+        neovim = import ./pkgs/neovim {
+          inherit system;
+          nixpkgs = nixpkgs-unstable;
+        };
+      };
       pkgs = import nixpkgs {
         inherit system;
         config = { allowUnfree = true; };
+        overlays = [ myNeovimOverlay ];
       };
       pkgs-unstable = import nixpkgs-unstable {
         inherit system;
