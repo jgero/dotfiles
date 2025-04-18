@@ -3,6 +3,7 @@
     curl
     udisks
     btop
+    neovim
   ];
 
   services.udisks2.enable = true;

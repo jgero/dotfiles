@@ -16,8 +16,11 @@ cmp.setup({
 		["<C-k>"] = cmp.mapping(cmp.mapping.select_prev_item(), { "i", "c" }),
 		["<CR>"] = cmp.mapping.confirm(),
 	},
+	performace = {
+		fetching_timeout = 10000,
+	},
 	sources = cmp.config.sources({
-		{ name = "cody" },
+		{ name = "minuet" },
 		{ name = "nvim_lsp" },
 		{ name = "luasnip" },
 		{ name = "treesitter" },
