@@ -1,5 +1,5 @@
-{ pkgs }: {
-  name = "tabset";
+{ pkgs, withPrefix }: {
+  name = withPrefix "tabset";
   plugins = [
     (pkgs.vimUtils.buildVimPlugin {
       name = "tabset-nvim";
@@ -11,7 +11,7 @@
       };
     })
   ];
-  config = ''
+  init = ''
     require("tabset").setup({
     	defaults = {
     		tabwidth = 4,

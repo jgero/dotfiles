@@ -3,30 +3,31 @@
 plugins:
 
 let
-  # Default order if not specified
-  addDefaultOrder = p: p // { order = p.order or 1000; };
-
+  # sort plugins
   sortedPlugins = builtins.sort
     (
       a: b: a.order < b.order
     )
-    (map addDefaultOrder plugins);
+    plugins;
 
+  # concat all dependencies into one flat runtime dependency list
   runtimeDeps = builtins.concatLists (map (p: p.dependencies or [ ]) sortedPlugins);
-
+  # build one derivation that contains all runtime deps
   runtimePath = pkgs.symlinkJoin {
     name = "nvim-plugins-runtime";
     paths = runtimeDeps;
   };
 
-  neovimPlugins = builtins.concatLists (map (p: p.plugins or [ ]) sortedPlugins);
+  # collect all neovim plugin dependencies
+  neovimPlugins = (builtins.concatLists (map (p: p.plugins or [ ]) sortedPlugins)) ++
+    # and add the plugins themselves to the list
+    sortedPlugins;
 
   init-lua = pkgs.writeText "init.lua" (builtins.concatStringsSep "\n" (
     map
-      (p: ''-- ${p.name}
-${p.config or ""}
+      (p: ''require("${p.pname}")
 '')
-      sortedPlugins
+      (builtins.filter (p: p.init != "") sortedPlugins)
   ));
 
 in
