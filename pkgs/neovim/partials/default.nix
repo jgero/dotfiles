@@ -11,6 +11,10 @@ let
     (builtins.readDir dir));
   requireAllModules = name: sources: builtins.concatStringsSep "\n" (map (p: generateRequire name p) (getAllModules sources));
   mkPack = import ../lib/mkPack.nix pkgs;
+  aiModel = builtins.fetchurl {
+    url = "https://huggingface.co/ggml-org/Qwen2.5-Coder-1.5B-Q8_0-GGUF/resolve/main/qwen2.5-coder-1.5b-q8_0.gguf?download=true";
+    sha256 = "0ci8lcnsy8qsyh5q0pjv46k2brja7l8kg6pp8giac9sps6a1r1r9";
+  }; 
 in
 map mkPack
   [
@@ -80,6 +84,19 @@ map mkPack
       name = withPrefix "undo";
       plugins = [ plugins.undotree ];
       init = ''vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle, { desc = "toggle [u]ndo tree" })'';
+    }
+    rec {
+      name = withPrefix "ai";
+      sources = ./ai;
+      plugins = with pkgs.vimPlugins; [ minuet-ai-nvim plenary-nvim ];
+      init = ''
+        ${generateRequire name "minuet"}
+        local serve = ${generateRequire name "llm_serving"}
+        serve.setup({
+          command = "${pkgs.llama-cpp}/bin/llama-server",
+          model_path = "${aiModel}",
+        })
+      '';
     }
     (import ./tabset.nix { inherit pkgs withPrefix; })
     {
