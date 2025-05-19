@@ -11,5 +11,5 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: DeterminateSystems/nix-installer-action@v17
-      - uses: DeterminateSystems/update-flake-lock@v24
+      - uses: DeterminateSystems/update-flake-lock@v25
       - run: nix flake check
