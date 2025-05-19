@@ -1,7 +1,7 @@
 local max_tokens = 25
 
 require('minuet').setup {
-	notify = 'debug',
+	notify = 'warn',
 	request_timeout = 10,
 	provider = 'openai_fim_compatible',
 	n_completions = 1,

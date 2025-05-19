@@ -1,12 +1,24 @@
-local progress = require("fidget.progress")
 local M = {}
-local llama_cpp_job = nil
 
 function M.setup(cfg)
-	llama_cpp_job = vim.system({
-		cfg.command,
+	M.cfg = cfg
+	vim.api.nvim_create_autocmd("VimLeavePre", {
+		callback = M.stop_process,
+		group = vim.api.nvim_create_augroup("LlmServingCleanup", { clear = true }),
+	})
+	vim.keymap.set("n", "<Leader>ai", M.start_process, { desc = "start [a][i] (AI/LLM) completion" })
+	vim.keymap.set("n", "<Leader>sai", M.stop_process, { desc = "[s]top [a][i] (AI/LLM) completion" })
+end
+
+function M.start_process()
+	if M.llama_cpp_job then
+		return
+	end
+	vim.notify("starting backend for LLM completion")
+	M.llama_cpp_job = vim.system({
+		M.cfg.command,
 		"-m",
-		cfg.model_path,
+		M.cfg.model_path,
 		"--port",
 		"8012",
 		"-ngl",
@@ -22,21 +34,16 @@ function M.setup(cfg)
 		"0",
 		"--cache-reuse",
 		"256"
-	}, { text = true }, function(out)
+	}, { text = true }, function(_)
 		M.is_stopped = true
-	end
-	)
-	vim.api.nvim_create_autocmd("VimLeavePre", {
-		callback = M.stop_process,
-		group = vim.api.nvim_create_augroup("LlmServingCleanup", { clear = true }),
-	})
+	end)
 end
 
 -- Function to stop the process
 function M.stop_process()
-	if llama_cpp_job and llama_cpp_job.pid then
+	if M.llama_cpp_job and M.llama_cpp_job.pid then
 		-- Attempt to gracefully shut down the process
-		llama_cpp_job:kill(15) -- SIGTERM
+		M.llama_cpp_job:kill(15) -- SIGTERM
 
 		-- Give it a short time to shut down gracefully
 		local shutdown_timeout = 5000 -- milliseconds
@@ -48,12 +55,12 @@ function M.stop_process()
 		)
 
 		-- If graceful shutdown failed, force kill
-		if not shutdown_success and llama_cpp_job.pid then
-			print("killing process with PID " .. llama_cpp_job.pid)
+		if not shutdown_success and M.llama_cpp_job.pid then
+			print("killing process with PID " .. M.llama_cpp_job.pid)
 			-- Use :kill() instead of :shutdown() for a hard kill
-			llama_cpp_job:kill(9) -- SIGKILL
+			M.llama_cpp_job:kill(9) -- SIGKILL
 		end
-		M.indicator:finish()
+		M.llama_cpp_job = nil
 	end
 end
 
