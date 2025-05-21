@@ -6,8 +6,8 @@ function M.setup(cfg)
 		callback = M.stop_process,
 		group = vim.api.nvim_create_augroup("LlmServingCleanup", { clear = true }),
 	})
-	vim.keymap.set("n", "<Leader>ai", M.start_process, { desc = "start [a][i] (AI/LLM) completion" })
 	vim.keymap.set("n", "<Leader>sai", M.stop_process, { desc = "[s]top [a][i] (AI/LLM) completion" })
+	M.start_process()
 end
 
 function M.start_process()

@@ -5,7 +5,8 @@ let
   configuredNeovim = pkgs.neovim.override {
     configure = {
       packages.myNeovimPackage = {
-        start = [ pluginSetup.neovimPlugins ];
+        start = pluginSetup.startPlugins or [];
+        opt = pluginSetup.optPlugins or [];
       };
     };
   };

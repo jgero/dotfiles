@@ -8,6 +8,7 @@ pkgs.stdenv.mkDerivation (rec {
   plugins = def.plugins or [ ];
   dependencies = def.dependencies or [ ];
   order = def.order or 1000;
+  opt = def.opt or false;
   version = "1";
   phases = [ "installPhase" ];
   installPhase = ''

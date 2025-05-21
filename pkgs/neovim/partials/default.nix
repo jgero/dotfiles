@@ -88,7 +88,7 @@ map mkPack
     rec {
       name = withPrefix "ai";
       sources = ./ai;
-      plugins = with pkgs.vimPlugins; [ minuet-ai-nvim plenary-nvim ];
+      plugins = with pkgs.vimPlugins; [ minuet-ai-nvim ];
       init = ''
         ${generateRequire name "minuet"}
         local serve = ${generateRequire name "llm_serving"}
@@ -97,6 +97,7 @@ map mkPack
           model_path = "${aiModel}",
         })
       '';
+      opt = true;
     }
     (import ./tabset.nix { inherit pkgs withPrefix; })
     {
