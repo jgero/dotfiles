@@ -34,7 +34,7 @@ function M.start_process()
 		"--ctx-size",
 		"0",
 		"--cache-reuse",
-		"256"
+		"256",
 	}, { text = true }, function(_)
 		M.is_stopped = true
 	end)
@@ -48,12 +48,10 @@ function M.stop_process()
 
 		-- Give it a short time to shut down gracefully
 		local shutdown_timeout = 5000 -- milliseconds
-		local poll_rate = 100   -- milliseconds
-		local shutdown_success = vim.wait(
-			shutdown_timeout,
-			function() return M.is_stopped end,
-			poll_rate
-		)
+		local poll_rate = 100 -- milliseconds
+		local shutdown_success = vim.wait(shutdown_timeout, function()
+			return M.is_stopped
+		end, poll_rate)
 
 		-- If graceful shutdown failed, force kill
 		if not shutdown_success and M.llama_cpp_job.pid then

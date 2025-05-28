@@ -33,6 +33,9 @@ Each Lua partial is represented as an attrset and can have up to 5 attributes:
   Specifies the order in which the partials are imported in the main `init.lua`
   entrypoint to the configuration. The default is 999, so packages with higher
   priority can be pushed to the front by specifying the value.
+- `opt` (boolean):\
+  Whether the plugin should be optional and not loaded on startup. Defaults to 
+  `false`.
 
 All partials are [collected in one file](partials/default.nix) and [converted to
 derivations](lib/mkPack.nix).

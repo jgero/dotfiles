@@ -1,16 +1,16 @@
 { pkgs }:
 
 let
-  sortPartials = filter: partials: builtins.sort (a: b: a.order < b.order) ( filter partials );
+  sortPartials = filter: partials: builtins.sort (a: b: a.order < b.order) (filter partials);
   onlyStartPartials = partials: builtins.filter (p: !p.opt) partials;
   onlyOptPartials = partials: builtins.filter (p: p.opt) partials;
 
   # extract the binaries the plugins require to be present
-  extractRuntimeDeps = partials : builtins.concatLists (map (p: p.dependencies or [ ]) partials);
-  
+  extractRuntimeDeps = partials: builtins.concatLists (map (p: p.dependencies or [ ]) partials);
+
   withDependencies = partials: (builtins.concatLists (map (p: p.plugins or [ ]) partials)) ++ partials;
   onlyPartialsWithInit = partials: builtins.filter (p: p.init != "") partials;
-  generateInitLua = filter: partials: pkgs.writeText "init.lua" (builtins.concatStringsSep "\n" (map (p: ''require("${p.pname}")'') ( filter partials )));
+  generateInitLua = filter: partials: pkgs.writeText "init.lua" (builtins.concatStringsSep "\n" (map (p: ''require("${p.pname}")'') (filter partials)));
 in
 
 allPartials:
