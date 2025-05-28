@@ -32,6 +32,7 @@ in
     (inkscape-with-extensions.override {
       inkscapeExtensions = with pkgs.inkscape-extensions; [
         silhouette
+        inkstitch
       ];
     })
     nextcloud-client
