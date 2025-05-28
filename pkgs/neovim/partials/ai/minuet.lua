@@ -23,6 +23,7 @@ require('minuet').setup {
 			-- Therefore, we must disable it and manually populate the special
 			-- tokens required for FIM completion.
 			template = {
+				-- QWEN PROMPT
 				prompt = function(context_before_cursor, context_after_cursor, _)
 					return '<|fim_prefix|>'
 						.. context_before_cursor
@@ -30,10 +31,23 @@ require('minuet').setup {
 						.. context_after_cursor
 						.. '<|fim_middle|>'
 				end,
+				-- STAR CODER PROMPT
+				-- prompt = function(context_before_cursor, context_after_cursor, _)
+				-- 	return '<fim_prfix>'
+				-- 		.. context_before_cursor
+				-- 		.. '<fim_suffix>'
+				-- 		.. context_after_cursor
+				-- 		.. '<fim_middle>'
+				-- end,
 				suffix = false,
 			},
 			get_text_fn = {
 				stream = function(json)
+					vim.inspect(json)
+					return json.choices[1].text
+				end,
+				no_stream = function(json)
+					vim.inspect(json)
 					return json.choices[1].text
 				end,
 			},

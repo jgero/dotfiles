@@ -11,10 +11,18 @@ let
     (builtins.readDir dir));
   requireAllModules = name: sources: builtins.concatStringsSep "\n" (map (p: generateRequire name p) (getAllModules sources));
   mkPack = import ../lib/mkPack.nix pkgs;
-  aiModel = builtins.fetchurl {
+  qwen2_5 = builtins.fetchurl {
     url = "https://huggingface.co/ggml-org/Qwen2.5-Coder-1.5B-Q8_0-GGUF/resolve/main/qwen2.5-coder-1.5b-q8_0.gguf?download=true";
     sha256 = "0ci8lcnsy8qsyh5q0pjv46k2brja7l8kg6pp8giac9sps6a1r1r9";
-  }; 
+  };
+  # starcoder2 = builtins.fetchurl {
+  #   url = "https://huggingface.co/second-state/StarCoder2-3B-GGUF/resolve/main/starcoder2-3b-Q5_K_S.gguf?download=true";
+  #   sha256 = "1h00c7ajz1y8sali3jyrq1a2cdqr4sjishr37zjmv3r21bcc0ka8";
+  # };
+  # codellama = builtins.fetchurl {
+  #   url = "https://huggingface.co/TheBloke/CodeLlama-7B-GGUF/resolve/main/codellama-7b.Q2_K.gguf?download=true";
+  #   sha256 = "1xczbvh08r35wpfjljbr4bhalnjij6692rgj98hs84i9vw0m1jfk";
+  # };
 in
 map mkPack
   [
@@ -94,7 +102,7 @@ map mkPack
         local serve = ${generateRequire name "llm_serving"}
         serve.setup({
           command = "${pkgs.llama-cpp}/bin/llama-server",
-          model_path = "${aiModel}",
+          model_path = "${qwen2_5}",
         })
       '';
       opt = true;
