@@ -13,12 +13,11 @@
         addK = "ssh-add -K";
         sp = ''${select-project}/bin/select-project'';
         udm = "udisksctl mount -b";
-        inkstitch = "nix run git+https://codeberg.org/tropf/nix-inkstitch";
       };
       sessionVariables = {
         EDITOR = "nvim";
       };
-      initExtra = ''
+      initContent = ''
         # bind ctrl-f to the tmux session switcher
         bindkey -s ^f "sp\n"
         # bind ctrl-h to reverse history search
