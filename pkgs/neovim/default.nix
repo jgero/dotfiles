@@ -4,7 +4,7 @@ let
   pkgs = import nixpkgs-unstable { inherit system; };
 
   myNeovimBuilder = import ./lib/buildNeovimDerivation.nix { inherit pkgs; };
-  pluginPartials = import ./partials { inherit pkgs; };
+  pluginPartials = import ./partials { inherit pkgs; lib = nixpkgs-unstable.lib; };
   myNeovim = myNeovimBuilder pluginPartials;
 in
 {

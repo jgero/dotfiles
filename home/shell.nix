@@ -15,6 +15,9 @@
         udm = "udisksctl mount -b";
         inkstitch = "nix run git+https://codeberg.org/tropf/nix-inkstitch";
       };
+      sessionVariables = {
+        EDITOR = "nvim";
+      };
       initExtra = ''
         # bind ctrl-f to the tmux session switcher
         bindkey -s ^f "sp\n"
