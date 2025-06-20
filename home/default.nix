@@ -1,4 +1,4 @@
-{ pkgs, osConfig, ... }:
+{ pkgs, pkgs-unstable, osConfig, ... }:
 let
   compress-vid-dir = pkgs.writeScriptBin "compress-vid-dir" ''
     for file in *; do
@@ -30,7 +30,7 @@ in
     eog
     vlc
     (inkscape-with-extensions.override {
-      inkscapeExtensions = with pkgs.inkscape-extensions; [
+      inkscapeExtensions = with pkgs-unstable.inkscape-extensions; [
         silhouette
         inkstitch
       ];
