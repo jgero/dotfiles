@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ pkgs, hideBorder, background, ... }: {
   programs.kitty = {
     enable = true;
     font = {
@@ -9,8 +9,8 @@
     settings = {
       enable_audio_bell = false;
       tab_bar_style = "hidden";
-      hide_window_decorations = true;
-      background = "#181a1f";
+      hide_window_decorations = hideBorder;
+      background = background;
       background_opacity = "0.89";
     };
   };

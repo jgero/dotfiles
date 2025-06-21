@@ -1,8 +1,8 @@
-{ pkgs, osConfig, ... }: {
+{ pkgs, ... }: {
   programs.tmux =
     let
-      background = osConfig.jgero.colors.background;
-      foreground = osConfig.jgero.colors.foreground;
+      background = "#23323f";
+      foreground = "#969591";
     in
     {
       enable = true;

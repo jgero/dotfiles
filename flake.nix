@@ -38,5 +38,6 @@
     (import ./pkgs/neovim inputs)
     // (import ./pkgs/nixos inputs)
     // (import ./pkgs/treefmt inputs)
+    // (import ./pkgs/home-manager/schwarz.nix inputs)
   ;
 }

@@ -3,6 +3,7 @@
 ```
 sudo nix --extra-experimental-features "nix-command flakes" run github:nix-community/disko -- --mode disko --flake github:jgero/dotfiles#nixpad
 sudo nixos-install --flake github:jgero/dotfiles#nixpad --root /mnt
+home-manager switch --flake .#
 ```
 
 ## TODO
