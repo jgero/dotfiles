@@ -58,7 +58,7 @@ in
     ./waybar
     ./fzf.nix
     ./git.nix
-    ./kitty.nix
+    (import ./kitty.nix { inherit pkgs; hideBorder = true; background = osConfig.jgero.colors.background; })
     ./mako.nix
     ./secrets.nix
     ./shell.nix
