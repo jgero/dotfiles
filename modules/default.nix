@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, pkgs-unstable, ... }:
+{
   environment.systemPackages = with pkgs; [
     curl
     udisks
@@ -6,7 +7,14 @@
     neovim
   ];
 
-  services.udisks2.enable = true;
+  services = {
+    udisks2.enable = true;
+    udev.packages = [
+      pkgs-unstable.usbkvm
+      # pkgs.android-udev-rules # for grapheneos flashing
+    ];
+
+  };
 
   documentation.man = {
     enable = true;
@@ -41,4 +49,3 @@
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "23.11"; # Did you read the comment?
 }
-

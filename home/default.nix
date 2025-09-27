@@ -37,6 +37,7 @@ in
     })
     nextcloud-client
     jameica
+    usbkvm
 
     ripgrep
     fd
