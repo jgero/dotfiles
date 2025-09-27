@@ -43,6 +43,7 @@ in
               home-manager.extraSpecialArgs = inputs // { inherit pkgs-unstable; };
             }
           ] ++ host.nixosModules;
+          specialArgs = { inherit pkgs-unstable; };
         };
       })
       (import ./hosts.nix { inherit pkgs pkgs-unstable nixos-hardware; }));
