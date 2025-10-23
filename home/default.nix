@@ -38,6 +38,7 @@ in
     nextcloud-client
     jameica
     usbkvm
+    freecad
 
     ripgrep
     fd
