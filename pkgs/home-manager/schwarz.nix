@@ -10,6 +10,7 @@ let
     config = { allowUnfree = true; };
     overlays = [ myNeovimOverlay ];
   };
+  lib = nixpkgs.lib;
 in
 {
   homeConfigurations."${user}" = home-manager.lib.homeManagerConfiguration {
@@ -28,16 +29,22 @@ in
         home.packages = with pkgs; [
           neovim
           ripgrep
+          kubectl
+          kubelogin-oidc
         ];
 
         nix.settings.experimental-features = [ "nix-command" "flakes" ];
         nix.package = pkgs.nix;
-
         imports = [
           ../../home/tmux.nix
           (import ../../home/kitty.nix { inherit pkgs; hideBorder = false; background = "#181a1f"; })
           ../../home/shell.nix
           ../../home/fzf.nix
+        ];
+
+        programs.zsh.initContent = lib.mkMerge [
+          (lib.mkBefore "[[ ! $(command -v nix) && -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]] && source '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'")
+          (lib.mkAfter ''export KUBECONFIG=$(echo ''${HOME}/.kube/*.yml | tr ' ' ':')'')
         ];
       }
     ];
