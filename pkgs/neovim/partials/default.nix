@@ -114,4 +114,21 @@ map mkPack
       plugins = [ plugins.fidget-nvim ];
       init = ''require("fidget").setup({})'';
     }
+    {
+      name = withPrefix "testing-debugging";
+      plugins = with plugins; [ neotest neotest-golang ];
+      init = ''
+        local neotest = require("neotest")
+        neotest.setup({
+          adapters = {
+            require("neotest-golang")({
+              go_test_args = { "-v", "-count=1" },
+            })
+          },
+        })
+        vim.keymap.set("n", "<leader>tn", function() neotest.run.run() end, { desc = "run the [t]est that is [n]erarest" })
+        vim.keymap.set("n", "<leader>ts", function() neotest.summary.toggle() end, { desc = "toggle the [t]est [s]ummary" })
+        vim.keymap.set("n", "<leader>to", function() neotest.output.open() end, { desc = "show [t]est [o]utput" })
+      '';
+    }
   ]
