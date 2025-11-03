@@ -108,7 +108,7 @@
   })
   lspc.golangci_lint_ls.setup({
     capabilities = capabilities,
-    cmd = use_exec_or_fallback("templ", "${pkgs-unstable.golangci-lint-langserver}/bin/golangci-lint-langserver"),
+    cmd = use_exec_or_fallback("golangci-lint-langserver", "${pkgs-unstable.golangci-lint-langserver}/bin/golangci-lint-langserver"),
     init_options = {
       command = { "${pkgs-unstable.golangci-lint}/bin/golangci-lint", "run", "--output.json.path", "stdout", "--show-stats=false", "--issues-exit-code=1" },
     },
