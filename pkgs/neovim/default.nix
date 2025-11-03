@@ -1,10 +1,10 @@
-{ nixpkgs-unstable, flake-utils, ... }:
+{ nixpkgs, flake-utils, ... }:
 flake-utils.lib.eachDefaultSystem (system:
 let
-  pkgs = import nixpkgs-unstable { inherit system; };
+  pkgs = import nixpkgs { inherit system; };
 
   myNeovimBuilder = import ./lib/buildNeovimDerivation.nix { inherit pkgs; };
-  pluginPartials = import ./partials { inherit pkgs; lib = nixpkgs-unstable.lib; };
+  pluginPartials = import ./partials { inherit pkgs; lib = nixpkgs.lib; };
   myNeovim = myNeovimBuilder pluginPartials;
 in
 {
