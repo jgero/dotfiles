@@ -1,4 +1,4 @@
-{ pkgs, lib }:
+{ pkgs, pkgs-unstable, lib }:
 
 let
   plugins = pkgs.vimPlugins;
@@ -55,7 +55,7 @@ map mkPack
         lsp_lines-nvim
       ];
       sources = ./languages;
-      init = (requireAllModules name sources) + (import ./languages/nvim-lspconfig.lua.nix { inherit pkgs; });
+      init = (requireAllModules name sources) + (import ./languages/nvim-lspconfig.lua.nix { inherit pkgs pkgs-unstable; });
     }
     rec {
       name = withPrefix "git";

@@ -1,4 +1,4 @@
-{ pkgs, ... }: ''
+{ pkgs, pkgs-unstable, ... }: ''
   local function use_exec_or_fallback(exec, fallback, ...)
     local cmd = {}
     if vim.fn.executable(exec) == 1 then
@@ -105,5 +105,12 @@
     capabilities = capabilities,
     on_attach = on_attach,
     cmd = use_exec_or_fallback("templ", "${pkgs.templ}/bin/templ", "lsp"),
+  })
+  lspc.golangci_lint_ls.setup({
+    capabilities = capabilities,
+    cmd = use_exec_or_fallback("templ", "${pkgs-unstable.golangci-lint-langserver}/bin/golangci-lint-langserver"),
+    init_options = {
+      command = { "${pkgs-unstable.golangci-lint}/bin/golangci-lint", "run", "--output.json.path", "stdout", "--show-stats=false", "--issues-exit-code=1" },
+    },
   })
 ''
