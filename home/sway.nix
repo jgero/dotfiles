@@ -3,6 +3,7 @@
   wayland.windowManager.sway =
     let
       quicknote = import ../pkgs/quicknote.nix { inherit pkgs; };
+      ocr = import ../pkgs/screenshot-ocr.nix { inherit pkgs; };
       wallpaper = builtins.fetchurl {
         url = "https://live.staticflickr.com/65535/51615066903_205139d85e_o_d.png";
         sha256 = "15yii4zlx422d2fdl3wpz6a4faflzqam18kn7sbr9rmxlflcj2iw";
@@ -122,6 +123,7 @@
 
           # Screenshot mode
           "${cfg.modifier}+Shift+s" = "exec ${pkgs.sway}/bin/swaymsg mode default && ${pkgs.grim}/bin/grim -g \"$(${pkgs.slurp}/bin/slurp)\" - | ${pkgs.wl-clipboard}/bin/wl-copy -t image/png";
+          "${cfg.modifier}+Shift+t" = "exec ${pkgs.sway}/bin/swaymsg mode default && ${ocr}/bin/screenshot-ocr";
 
           "Mod4+space" = "exec ${pkgs.sway}/bin/swaymsg input $(${pkgs.sway}/bin/swaymsg -t get_inputs --raw | ${pkgs.jq}/bin/jq '[.[] | select(.type == \"keyboard\")][0] | .identifier') xkb_switch_layout next";
           "${cfg.modifier}+n" = "exec kitty --detach -T floating_shell ${pkgs.bash}/bin/bash -c ${quicknote}/bin/quicknote";
