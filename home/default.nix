@@ -35,8 +35,6 @@ in
         inkstitch
       ];
     })
-    nextcloud-client
-    jameica
     usbkvm
     freecad
 
