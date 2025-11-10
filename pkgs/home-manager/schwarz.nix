@@ -31,6 +31,7 @@ in
           ripgrep
           kubectl
           kubelogin-oidc
+          btop
         ];
 
         nix.settings.experimental-features = [ "nix-command" "flakes" ];
