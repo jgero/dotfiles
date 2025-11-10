@@ -77,15 +77,18 @@ map mkPack
     }
     {
       name = withPrefix "theme";
-      plugins = [ plugins.onedark-nvim plugins.transparent-nvim ];
+      plugins = with plugins; [ onedark-nvim lualine-nvim vim-tpipeline ];
       init = ''
         require("onedark").setup({
           style = "darker",
         })
         require("onedark").load()
-        require("transparent").setup()
-
-        vim.g.transparent_enabled = true
+        if os.getenv("TMUX") then
+          vim.defer_fn(function()
+            vim.o.laststatus = 0
+          end, 0)
+        end
+        require("lualine").setup({ options = { theme = "onedark" } })
       '';
     }
     {
