@@ -53,9 +53,11 @@ map mkPack
         cmp_luasnip
         friendly-snippets
         lsp_lines-nvim
+
+        helm-ls-nvim
       ];
       sources = ./languages;
-      init = (requireAllModules name sources) + (import ./languages/nvim-lspconfig.lua.nix { inherit pkgs pkgs-unstable; });
+      init = (requireAllModules name sources) + (import ./lsp-config { inherit pkgs pkgs-unstable; });
     }
     rec {
       name = withPrefix "git";
@@ -115,7 +117,9 @@ map mkPack
       name = withPrefix "ui";
       order = 1;
       plugins = [ plugins.fidget-nvim ];
-      init = ''require("fidget").setup({})'';
+      init = ''
+        require("fidget").setup({ notification = { override_vim_notify = true } })
+      '';
     }
     {
       name = withPrefix "testing-debugging";

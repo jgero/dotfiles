@@ -37,7 +37,7 @@ vim.o.undodir = vim.fn.stdpath("data") .. "/undodir"
 -- visuals
 vim.o.termguicolors = true -- is also set automatically by some themes
 vim.o.signcolumn = "yes:5" -- give plenty of space for signs
-vim.o.cmdheight = 0
+vim.o.cmdheight = 4
 vim.o.scrolloff = 8 -- don't let cursor get too close to the edge
 -- performance
 vim.o.updatetime = 50

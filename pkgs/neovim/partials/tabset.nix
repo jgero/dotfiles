@@ -19,7 +19,7 @@
     	},
     	languages = {
     		{
-    			filetypes = { "go", "lua" },
+    			filetypes = { "go", "lua", "make" },
     			config = {
     				tabwidth = 4,
     				expandtab = false,

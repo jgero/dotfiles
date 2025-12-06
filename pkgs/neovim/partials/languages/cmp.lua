@@ -40,6 +40,10 @@ vim.keymap.set({ "i", "s" }, "<C-L>", function()
 	ls.jump(1)
 end, { silent = true, desc = "jump forwards in snippet" })
 
+vim.keymap.set({ "i", "s" }, "<C-H>", function()
+	ls.jump(-1)
+end, { silent = true, desc = "jump backwards in snippet" })
+
 local s = ls.snippet
 local t = ls.text_node
 local i = ls.insert_node
