@@ -19,9 +19,9 @@ in
   home.homeDirectory = "/home/jgero";
 
   home.packages = with pkgs; [
-    bitwarden
+    bitwarden-desktop
     signal-desktop
-    firefox-wayland
+    firefox
     thunderbird
     libreoffice
     gimp
