@@ -14,6 +14,6 @@ pkgs.stdenv.mkDerivation (rec {
   installPhase = ''
     mkdir -p $out/lua/${pname}
     cp $init $out/lua/${pname}/init.lua
-    ${if (def ? sources) then "cp $src/* $out/lua/${pname}/" else ""}
+    ${if (def ? sources) then "cp $src/*.lua $out/lua/${pname}/" else ""}
   '';
 } // (if (def ? sources) then { src = def.sources; } else { }))
